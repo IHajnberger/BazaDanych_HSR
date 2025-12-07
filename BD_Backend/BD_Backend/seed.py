@@ -1,7 +1,7 @@
 from __init__ import create_app
 from extensions import db
 
-from models.Character import Character, Character_Need
+from models.Character import Character
 from models.Skill import Skill
 from models.Effect import Effect
 from models.Need import Need
