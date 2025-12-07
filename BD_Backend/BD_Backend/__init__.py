@@ -1,7 +1,7 @@
 # centrala aplikacji Flask
 from flask import Flask
 from config import Config
-from extensions import db
+from extensions import db, migrate
 
 from models.user import User
 from models.Team import Team
@@ -16,7 +16,8 @@ def create_app():
     app.config.from_object(Config)
 
     db.init_app(app)
-
+    migrate.init_app(app, db)  # <--- dodane
+    
     # Tworzenie tabel
     with app.app_context():
         db.create_all()
