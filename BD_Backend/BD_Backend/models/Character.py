@@ -13,7 +13,7 @@ class Character(db.Model):
     Element = db.Column(db.String(100), nullable=False)
     Path = db.Column(db.String(100), nullable=False)
 
-    Needs = db.relationship('Need',secondary=Character_Need, back_populates='Character') # relacja wiele do wielu
+    Needs = db.relationship('Need',secondary=Character_Need, back_populates='Characters') # relacja wiele do wielu
     Users = db.relationship('User', secondary=User_Character, back_populates='Characters') # relacja wiele do wielu
     Teams = db.relationship('Team', secondary=Team_Character, back_populates='Characters') # relacja wiele do wielu
     Skills = db.relationship('Skill', backref='Character', lazy=True, cascade="all, delete-orphan") # relacja jeden do wielu
