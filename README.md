@@ -28,5 +28,6 @@ Nie wiem jak to działa w VS Code, ale i tak Ci napisze rzeczy które musiałam 
     - working directory: BD_Backend
 4. On chce mieć jakiś podgląd do tej bazy nie, i on dał jakieś propozycje programów ale ja pobrałam po prostu "DB Broswer for SQLite"
 5. Teraz pracuje żeby ta .db była ciągle updatetowana, bo like szczerze MAM DOŚĆ, MAM OCHOTE WYDŁUBAĆ SOBIE OCZY ŻEBY NIE MUSIEĆ NA TO DŁUŻEJ PATRZEĆ, NIE WIEM CO JEST ŹLE ALE DANE NIE CHCĄ SIĘ ZAPISYWAĆ DO TEJ ZASRANEJ BAZY, PRZYNAJMNIEJ W KOŃCU DO NICH PODGLĄD PRZEZ API ALE BOŻE, DAJ MI SIŁE BO JA JUŻ NIE MOGĘ. Anyway jak chcesz sobie odpisalić localhosta i polookać co tam się dzieje na polu bitwy to http://127.0.0.1:5000/api/ [tu wpisujesz co chcesz zobaczyć]
+6. Ostatecznie działa, ale że aktualnie to są testy to baza danych jest czyszczona za każdym razem, więc seed leci na nowej, ale ostatecznie działa, nwm jeszcze jak obsłużyć zapytania sql bo plik .db ignoruje dane w tabelkach ale no, jest coś.
 
  
