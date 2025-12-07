@@ -17,6 +17,12 @@
 9. **views.py** - warstwa kontaktowa z aplikacją, używana do testów w uglyahh localhostcie
 
  > [!IMPORTANT]
+ > Do zrobienia: 
+<img width="689" height="520" alt="image" src="https://github.com/user-attachments/assets/66c723b1-398b-4985-886f-82a9eb2f9531" />
+
+To tak brakuje zapytań, nimi się nie zajmowałam zbytnio, I mean są te takie bazowe w tym pliku views.py (stąd są zapytania na API, i to jest wtedy ta 3 kropki - zapytania purely przez backend, na razie dodałam tylko przykładowe 4 postacie, jest też implementacja teamu, oraz slotów (nie wiem czy działa, pewnie czegoś brakuje, nie siedziałam nad tym), próbowałam tą baze danych importować jako plik .bd i wtedy otwiertać przez aplikacje i tam można te zapytania robić, ale kurwa nie współpracuje kompletnie te .db, jak ty umiesz to ogarnąć to śmiało. No i trzeba dokończyć dodawanie użytkownika (nazwa + hasło hashowane). 
+ 
+ > [!IMPORTANT]
  > Dodatkowe informacje:
  
 Nie wiem jak to działa w VS Code, ale i tak Ci napisze rzeczy które musiałam dodać żeby działało/ co używałam itp
