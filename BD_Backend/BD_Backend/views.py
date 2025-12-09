@@ -23,17 +23,26 @@ def get_character(name):
     character = Character.query.get_or_404(name)
     return jsonify(character.to_dict())
 
-# CREATE character 
 @api_bp.route("/characters", methods=["POST"])
 def create_character():
     data = request.json
-    if Character.query.get(data["Name"]):
+
+    # sprawdzamy, czy postaæ ju¿ istnieje
+    if Character.query.filter_by(Name=data["Name"]).first():
         return {"message": "Character already exists"}, 400
 
-    character = Character(Name=data["Name"], Role=data["Role"])
+    # tworzymy obiekt z wszystkimi wymaganymi polami
+    character = Character(
+        Name=data["Name"],
+        Role=data["Role"],
+        Element=data["Element"],
+        Path=data["Path"]
+    )
+
     db.session.add(character)
     db.session.commit()
     return jsonify(character.to_dict()), 201
+
 
 # UPDATE character
 @api_bp.route("/characters/<string:name>", methods=["PUT"])
@@ -52,29 +61,36 @@ def delete_character(name):
     db.session.commit()
     return jsonify({"message": f"Character {name} deleted"})
 
-
+# register
 @api_bp.route("/register", methods=["POST"])
 def register():
-    data = request.json
+    data = request.json or {}
 
-    if User.query.filter_by(username=data["username"]).first():
+    if "username" not in data or "password" not in data:
+        return {"message": "Missing username or password"}, 400
+
+    if User.query.filter_by(Username=data["username"]).first():
         return {"message": "Username already exists"}, 400
 
-    user = User(username=data["username"])
+    # tworzymy u¿ytkownika z poprawnym polem
+    user = User(Username=data["username"])
     user.set_password(data["password"])
 
     db.session.add(user)
     db.session.commit()
 
-    return user.to_dict(), 201
+    # zwracamy tylko bezpieczne dane
+    return {"id": user.id, "username": user.Username}, 201
 
+#login
 @api_bp.route("/login", methods=["POST"])
 def login():
-    data = request.json
-    user = User.query.filter_by(username=data["username"]).first()
+    data = request.json or {}
 
+    user = User.query.filter_by(Username=data["username"]).first()
     if not user or not user.check_password(data["password"]):
         return {"message": "Invalid credentials"}, 401
 
     return {"message": "Login successful", "user_id": user.id}
+
 
