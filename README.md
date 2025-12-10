@@ -6,20 +6,20 @@
  
  Projekt wykorzystuje lekkie środowisko backendowe oparte na Pythonie oraz popularnych bibliotekach webowych i ORM.
  
- 1. Flask - minimalistyczny framework do tworzenia API, używany do:
+ 1. **Flask** - minimalistyczny framework do tworzenia API, używany do:
     - obsługi endpointów,
     - uruchamiania serwera,
     - zarządzania kontekstem aplikacji,
     - integracji z SQLAlchemy.
- 2. SQLAlchemy - ORM (Object-Relational Mapping), który pozwala definiować modele danych w Pythonie zamiast pisania SQL ręcznie, używany do:
+ 2. **SQLAlchemy** - ORM (Object-Relational Mapping), który pozwala definiować modele danych w Pythonie zamiast pisania SQL ręcznie, używany do:
     - definiowania modeli (User, Character, Team, itp.),
     - obsługi relacji 1:N oraz N:N,
     - migracji i inicjalizacji bazy.
- 3. SQLite - lekka, plikowa baza danych, odpowiedzialna za tworzenie pliku .db.
- 4. Wirtualne środowisko (venv):
+ 3. **SQLite** - lekka, plikowa baza danych, odpowiedzialna za tworzenie pliku .db.
+ 4. **Wirtualne środowisko (venv)**:
     - umożliwia łatwe odtworzenie środowiska na innym urządzeniu,
     - utrzymuje spójność wersji bibliotek.
- 5. Postman - klient APi, używany do testowania endpointów API.
+ 5. **Postman** - klient APi, używany do testowania endpointów API.
 
  > [!IMPORTANT]
  > Budowa projektu: 
