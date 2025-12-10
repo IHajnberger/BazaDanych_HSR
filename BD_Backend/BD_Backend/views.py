@@ -107,7 +107,7 @@ def get_user_characters(user_id):
 
 @api_bp.route("/users/<int:user_id>/characters", methods=["POST"])
 def add_character_to_user(user_id):
-    # 1) pobierz usera (404 je�li nie ma)
+    # 1) pobierz usera (404 jesli nie ma)
     user = User.query.get_or_404(user_id)
 
     # 2) pobierz JSON i waliduj
@@ -120,7 +120,7 @@ def add_character_to_user(user_id):
     if not char_name:
         return {"message": "Missing 'Name' in JSON body."}, 400
 
-    # 3) znajdz character � jezeli nie ma, zwroc 404
+    # 3) znajdz character  jezeli nie ma, zwroc 404
     character = Character.query.filter_by(Name=char_name).first()
     if not character:
         return {"message": f"Character '{char_name}' not found."}, 404
@@ -158,7 +158,7 @@ def create_team(user_id):
     if not (1 <= len(character_names) <= 4):
         return {"message": "Team must have between 1 and 4 characters"}, 400
 
-    # Pobranie postaci u¿ytkownika
+    # Pobranie postaci uzytkownika
     characters = []
     for name in character_names:
         char = Character.query.filter_by(Name=name).first()
@@ -166,7 +166,7 @@ def create_team(user_id):
             return {"message": f"Character {name} not assigned to user"}, 400
         characters.append(char)
 
-    # Utworzenie dru¿yny
+    # Utworzenie druzyny
     team = Team(Name=team_name, Score=team_score)
     team.Users.append(user)
     team.Characters = characters
@@ -198,22 +198,44 @@ def get_user_teams(user_id):
     return jsonify([t.to_dict() for t in user.Teams])
 
 
-#view teams
-@api_bp.route("/users/<int:user_id>/teams", methods=["GET"])
-def get_user_teams(user_id):
+#Score teamu
+@api_bp.route("/users/<int:user_id>/teams/<int:team_id>/dps_score", methods=["GET"])
+def team_support_for_dps(user_id, team_id):
+    dps_name = request.args.get("dps_name")
+    if not dps_name:
+        return {"message": "Missing query parameter: dps_name"}, 400
+
     user = User.query.get_or_404(user_id)
-    return jsonify([t.to_dict() for t in user.Teams])
+    team = Team.query.get_or_404(team_id)
 
+    if user not in team.Users:
+        return {"message": "Forbidden"}, 403
 
+    dps = Character.query.filter_by(Name=dps_name).first_or_404()
+    if dps.Role != "DPS":
+        return {"message": "Specified character is not a DPS"}, 400
 
+    dps_need_ids = [n.id for n in dps.Needs]
+    total_needs = len(dps_need_ids)
 
-#sort CHARS by path/element/role
+    total_percent_sum = 0
+    matched_need_ids = set()
 
-#sort TEAM by main char 
+    for char in team.Characters:
+        if char.Name == dps.Name:
+            continue
 
+        for skill in getattr(char, "Skills", []) or []:
+            for effect in getattr(skill, "Effects", []) or []:
+                if effect.id in dps_need_ids:
+                    matched_need_ids.add(effect.id)
+                    total_percent_sum += (effect.Value or 0)
 
-# TOP N ZESPOLOW
+    return jsonify({
+        "team_id": team.id,
+        "total_percent_sum": total_percent_sum,
+        "matched_needs_count": len(matched_need_ids),
+        "total_needs": total_needs
+    })
 
-
-# RANKING SUPPPORTOW DLA DPS
 
