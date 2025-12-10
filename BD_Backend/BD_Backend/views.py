@@ -215,7 +215,6 @@ def team_support_for_dps(user_id, team_id):
     if dps.Role != "DPS":
         return {"message": "Specified character is not a DPS"}, 400
 
-    # zamiast ID — bierzemy nazwy, typu: ["ATK", "CRITDMG", ...]
     dps_need_names = [n.Require for n in dps.Needs]
 
     total_percent_sum = 0
@@ -229,7 +228,6 @@ def team_support_for_dps(user_id, team_id):
             for effect in getattr(skill, "Effects", []) or []:
 
                 # Dopasowanie po nazwie
-                # Example: effect.Name = "ATK%", need = "ATK"
                 for need in dps_need_names:
                     if effect.Name.startswith(need):
                         matched_needs.add(need)
