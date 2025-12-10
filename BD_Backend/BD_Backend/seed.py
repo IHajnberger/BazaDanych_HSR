@@ -28,7 +28,7 @@ def run_seed():
         # ====================================
         Seele = Character(Name="Seele", Role="DPS", Element="Quantum", Path="Hunt")
         db.session.add(Seele)
-        Seele.Needs.extend([need_atk, need_critDMG, need_critRATE, need_spd])
+        Seele.Needs.extend([need_atk, need_critDMG, need_critRATE, need_spd, need_DMG])
 
         Bronya = Character(Name="Bronya", Role="Support", Element="Wind", Path="Harmony")
         db.session.add(Bronya)
