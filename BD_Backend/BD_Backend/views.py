@@ -107,7 +107,7 @@ def get_user_characters(user_id):
 
 @api_bp.route("/users/<int:user_id>/characters", methods=["POST"])
 def add_character_to_user(user_id):
-    # 1) pobierz usera (404 jeœli nie ma)
+    # 1) pobierz usera (404 jeï¿½li nie ma)
     user = User.query.get_or_404(user_id)
 
     # 2) pobierz JSON i waliduj
@@ -120,7 +120,7 @@ def add_character_to_user(user_id):
     if not char_name:
         return {"message": "Missing 'Name' in JSON body."}, 400
 
-    # 3) znajdz character — jezeli nie ma, zwroc 404
+    # 3) znajdz character ï¿½ jezeli nie ma, zwroc 404
     character = Character.query.filter_by(Name=char_name).first()
     if not character:
         return {"message": f"Character '{char_name}' not found."}, 404
@@ -158,7 +158,7 @@ def create_team(user_id):
     if not (1 <= len(character_names) <= 4):
         return {"message": "Team must have between 1 and 4 characters"}, 400
 
-    # Pobranie postaci uzytkownika
+    # Pobranie postaci uÂ¿ytkownika
     characters = []
     for name in character_names:
         char = Character.query.filter_by(Name=name).first()
@@ -166,7 +166,7 @@ def create_team(user_id):
             return {"message": f"Character {name} not assigned to user"}, 400
         characters.append(char)
 
-    # Utworzenie druzyny
+    # Utworzenie druÂ¿yny
     team = Team(Name=team_name, Score=team_score)
     team.Users.append(user)
     team.Characters = characters
@@ -189,6 +189,13 @@ def delete_team(user_id, team_id):
     db.session.delete(team)
     db.session.commit()
     return {"message": f"Team {team.Name} deleted"}
+
+
+#view teams
+@api_bp.route("/users/<int:user_id>/teams", methods=["GET"])
+def get_user_teams(user_id):
+    user = User.query.get_or_404(user_id)
+    return jsonify([t.to_dict() for t in user.Teams])
 
 
 #view teams
