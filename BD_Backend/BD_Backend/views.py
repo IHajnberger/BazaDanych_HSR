@@ -214,6 +214,8 @@ def team_support_for_dps(user_id, team_id):
     dps = Character.query.filter_by(Name=dps_name).first_or_404()
     if dps.Role != "DPS":
         return {"message": "Specified character is not a DPS"}, 400
+    dps_need_ids = [n.id for n in dps.Needs]
+    total_needs = len(dps_need_ids)
 
     dps_need_ids = [n.id for n in dps.Needs]
     total_needs = len(dps_need_ids)
