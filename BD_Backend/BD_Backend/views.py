@@ -214,14 +214,12 @@ def team_support_for_dps(user_id, team_id):
     dps = Character.query.filter_by(Name=dps_name).first_or_404()
     if dps.Role != "DPS":
         return {"message": "Specified character is not a DPS"}, 400
-    dps_need_ids = [n.id for n in dps.Needs]
-    total_needs = len(dps_need_ids)
 
-    dps_need_ids = [n.id for n in dps.Needs]
-    total_needs = len(dps_need_ids)
+    # zamiast ID — bierzemy nazwy, typu: ["ATK", "CRITDMG", ...]
+    dps_need_names = [n.Require for n in dps.Needs]
 
     total_percent_sum = 0
-    matched_need_ids = set()
+    matched_needs = set()
 
     for char in team.Characters:
         if char.Name == dps.Name:
@@ -229,15 +227,20 @@ def team_support_for_dps(user_id, team_id):
 
         for skill in getattr(char, "Skills", []) or []:
             for effect in getattr(skill, "Effects", []) or []:
-                if effect.id in dps_need_ids:
-                    matched_need_ids.add(effect.id)
-                    total_percent_sum += (effect.Value or 0)
+
+                # Dopasowanie po nazwie
+                # Example: effect.Name = "ATK%", need = "ATK"
+                for need in dps_need_names:
+                    if effect.Name.startswith(need):
+                        matched_needs.add(need)
+                        total_percent_sum += (effect.Value or 0)
 
     return jsonify({
         "team_id": team.id,
         "total_percent_sum": total_percent_sum,
-        "matched_needs_count": len(matched_need_ids),
-        "total_needs": total_needs
+        "matched_needs_count": len(matched_needs),
+        "total_needs": len(dps_need_names)
     })
+
 
 
