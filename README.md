@@ -28,7 +28,7 @@
     - skille itp.
 10. **views.py** - główna logika API, zawiera:
     - rejestrację użytkownika / logowanie,
-    - CRUD dla postaci,
+    - CRUD dla postaci (w ramach testu),
     - przypisywanie postaci do użytkownika,
     - tworzenie/usuwanie drużyn,
     - listowanie postaci i drużyn użytkownika.
