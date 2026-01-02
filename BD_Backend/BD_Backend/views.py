@@ -22,6 +22,12 @@ def home():
 def get_characters():
     return jsonify([c.to_dict() for c in Character.query.all()]), 200
 
+# get single char
+@api_bp.route("/characters/<string:name>", methods=["GET"])
+def get_character(name):
+    character = Character.query.get_or_404(name)
+    return jsonify(character.to_dict()), 200
+
 # DELETE character
 @api_bp.route("/characters/<string:name>", methods=["DELETE"])
 def delete_character(name):
