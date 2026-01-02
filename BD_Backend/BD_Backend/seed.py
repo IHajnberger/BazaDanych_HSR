@@ -141,7 +141,7 @@ def run_seed():
         db.session.add(Welt)
         Welt.Needs.extend([need_atk, need_DMG, need_spd, need_critDMG, need_critRATE])
 
-        BlackSwan = Character(Name="Black Swan", Role="DPS", Element="Wing", Path="Nihility")
+        BlackSwan = Character(Name="Black Swan", Role="DPS", Element="Wind", Path="Nihility")
         db.session.add(BlackSwan)
         BlackSwan.Needs.extend([need_atk, need_DMG, need_spd])
 
@@ -153,7 +153,7 @@ def run_seed():
         db.session.add(Cipher)
         Cipher.Needs.extend([need_atk, need_DMG, need_spd, need_critDMG, need_critRATE])
 
-        Hysilens = Character(Name="Acheron", Role="DPS", Element="Physical", Path="Nihility")
+        Hysilens = Character(Name="Hysilens", Role="DPS", Element="Physical", Path="Nihility")
         db.session.add(Hysilens)
         Hysilens.Needs.extend([need_atk, need_DMG, need_spd])
 
@@ -213,21 +213,21 @@ def run_seed():
         
         # The Remembrance
 
-        Hyacine = Character(Name="Hyacine", Role="Sustain", Element="Wind", Path="Rememberance")
+        Hyacine = Character(Name="Hyacine", Role="Sustain", Element="Wind", Path="Remembrance")
         db.session.add(Hyacine)
 
         # The Abudance 
         
-        Bailu = Character(Name="Bailu", Role="Sustain", Element="Lightning", Path="Abudance")
+        Bailu = Character(Name="Bailu", Role="Sustain", Element="Lightning", Path="Abundance")
         db.session.add(Bailu)
 
-        Luocha = Character(Name="Luocha", Role="Sustain", Element="Imaginary", Path="Abudance")
+        Luocha = Character(Name="Luocha", Role="Sustain", Element="Imaginary", Path="Abundance")
         db.session.add(Luocha)
 
-        Huohuo = Character(Name="Huohuo", Role="Sustain", Element="Wind", Path="Abudance")
+        Huohuo = Character(Name="Huohuo", Role="Sustain", Element="Wind", Path="Abundance")
         db.session.add(Huohuo)
 
-        Lingsha = Character(Name="Lingsha", Role="Sustain", Element="Fire", Path="Abudance")
+        Lingsha = Character(Name="Lingsha", Role="Sustain", Element="Fire", Path="Abundance")
         db.session.add(Lingsha)
 
         # ====================================
@@ -241,11 +241,11 @@ def run_seed():
         # Bronya
         skill1_bronya = Skill(Name="Combat Redeployment", Description="Boosts ally ATK and advances their action.", CharacterName="Bronya")
         skill2_bronya = Skill(Name="The Belobog March", Description="Provides team-wide damage buff.", CharacterName="Bronya")
-        db.session.add_all([skill1_sunday, skill2_sunday])
+        db.session.add_all([skill1_bronya, skill2_bronya])
         # Sunday
         skill1_sunday = Skill(Name="Benison of Paper and Rites", Description="Boosts ally DMG, CritRate and advances their action.", CharacterName="Sunday")
         skill2_sunday = Skill(Name="Ode to Caress and Cicatrix", Description="Regenerates ally energy and increases CritDMG", CharacterName="Sunday")
-        db.session.add_all([skill1_bronya, skill2_bronya])
+        db.session.add_all([skill1_sunday, skill2_sunday])
         #RuanMei
         skill1_ruanmei = Skill(Name="String Sings Slow Swirls", Description="Ruan Mei gains Overtone, giving all allies DMG and Weakness Break Efficiency boost.", CharacterName="Ruan Mei")
         skill2_ruanmei = Skill(Name="Inert Respiration", Description="Increases Break Effect and SPD for allies", CharacterName="Ruan Mei")
