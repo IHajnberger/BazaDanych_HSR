@@ -1,0 +1,974 @@
+{
+	"info": {
+		"_postman_id": "974a2922-567b-4361-b8d6-8d36229fce7f",
+		"name": "Uni Project - Character Database API",
+		"description": "Flask backend API for character database management with user authentication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50685096",
+		"_collection_link": "https://orion1160-6542387.postman.co/workspace/Santiago's-Workspace~8213eada-429a-454b-8627-370bbfec35a8/collection/50676377-974a2922-567b-4361-b8d6-8d36229fce7f?action=share&source=collection_link&creator=50685096"
+	},
+	"item": [
+		{
+			"name": "Character Operations",
+			"item": [
+				{
+					"name": "Test API Connection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api"
+							]
+						},
+						"description": "Test endpoint to verify API is running"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Characters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test 1: Validate response status is 200",
+									"pm.test(\"Response status is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Test 2: Validate response is an array",
+									"pm.test(\"Response is an array\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"});",
+									"",
+									"// Test 3: Validate each character has expected properties",
+									"pm.test(\"Each character has required properties (Name, Role, Element, Path)\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    ",
+									"    if (jsonData.length > 0) {",
+									"        jsonData.forEach((character, index) => {",
+									"            pm.expect(character, `Character at index ${index} should have Name`).to.have.property('Name');",
+									"            pm.expect(character, `Character at index ${index} should have Role`).to.have.property('Role');",
+									"            pm.expect(character, `Character at index ${index} should have Element`).to.have.property('Element');",
+									"            pm.expect(character, `Character at index ${index} should have Path`).to.have.property('Path');",
+									"            ",
+									"            // Validate property types",
+									"            pm.expect(character.Name, `Name should be a string at index ${index}`).to.be.a('string');",
+									"            pm.expect(character.Role, `Role should be a string at index ${index}`).to.be.a('string');",
+									"            pm.expect(character.Element, `Element should be a string at index ${index}`).to.be.a('string');",
+									"            pm.expect(character.Path, `Path should be a string at index ${index}`).to.be.a('string');",
+									"        });",
+									"    }",
+									"});",
+									"",
+									"// Test 4: Validate filtering works correctly if query parameters are present",
+									"const elementParam = pm.request.url.query.get('element');",
+									"const pathParam = pm.request.url.query.get('path');",
+									"const roleParam = pm.request.url.query.get('role');",
+									"",
+									"if (elementParam) {",
+									"    pm.test(`All characters have Element = \"${elementParam}\"`, function () {",
+									"        const jsonData = pm.response.json();",
+									"        jsonData.forEach((character, index) => {",
+									"            pm.expect(character.Element, `Character at index ${index} should have Element \"${elementParam}\"`).to.equal(elementParam);",
+									"        });",
+									"    });",
+									"}",
+									"",
+									"if (pathParam) {",
+									"    pm.test(`All characters have Path = \"${pathParam}\"`, function () {",
+									"        const jsonData = pm.response.json();",
+									"        jsonData.forEach((character, index) => {",
+									"            pm.expect(character.Path, `Character at index ${index} should have Path \"${pathParam}\"`).to.equal(pathParam);",
+									"        });",
+									"    });",
+									"}",
+									"",
+									"if (roleParam) {",
+									"    pm.test(`All characters have Role = \"${roleParam}\"`, function () {",
+									"        const jsonData = pm.response.json();",
+									"        jsonData.forEach((character, index) => {",
+									"            pm.expect(character.Role, `Character at index ${index} should have Role \"${roleParam}\"`).to.equal(roleParam);",
+									"        });",
+									"    });",
+									"}",
+									"",
+									"// Test 5: Validate sorting order if sort_by parameter is present",
+									"const sortByParam = pm.request.url.query.get('sort_by');",
+									"",
+									"if (sortByParam) {",
+									"    pm.test(`Characters are sorted by \"${sortByParam}\"`, function () {",
+									"        const jsonData = pm.response.json();",
+									"        ",
+									"        if (jsonData.length > 1) {",
+									"            for (let i = 0; i < jsonData.length - 1; i++) {",
+									"                const current = jsonData[i][sortByParam];",
+									"                const next = jsonData[i + 1][sortByParam];",
+									"                ",
+									"                pm.expect(current, `Character at index ${i} (${current}) should be <= character at index ${i + 1} (${next})`).to.satisfy(function(val) {",
+									"                    return val <= next;",
+									"                });",
+									"            }",
+									"        }",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/characters",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"characters"
+							]
+						},
+						"description": "Retrieve all characters from the database"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Character",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"pm.test(\"Response has Name and Role\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('Name');",
+									"    pm.expect(jsonData).to.have.property('Role');",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/characters/:name",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"characters",
+								":name"
+							],
+							"variable": [
+								{
+									"key": "name",
+									"value": "Seele"
+								}
+							]
+						},
+						"description": "Retrieve a single character by name"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Character",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"pm.test(\"Response has success message\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('message');",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"Name\": \"Acheron\",\n  \"Role\": \"DPS\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/characters",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"characters"
+							]
+						},
+						"description": "Create a new character"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Authentication",
+			"item": [
+				{
+					"name": "Register User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"pm.test(\"Response has success message\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('message');",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"testpass123\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"register"
+							]
+						},
+						"description": "Register a new user account"
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"pm.test(\"Response has success message\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('message');",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"testpass123\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "Login with existing user credentials"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TEAM",
+			"item": [
+				{
+					"name": "View User Chars",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Character to User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"Name\": \"Sunday\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/:user_id/characters",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								":user_id",
+								"characters"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Team",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"Name\": \"Dream Team\",\n  \"Score\": 0,\n  \"characters\": [\"Seele\", \"Bronya\", \"Sunday\", \"Gepard\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/:user_id/teams",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								":user_id",
+								"teams"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Team",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "View Team",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Calculate DPS Support Score",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/1/teams/1/dps_score?dps_name=Seele",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"1",
+								"teams",
+								"1",
+								"dps_score"
+							],
+							"query": [
+								{
+									"key": "dps_name",
+									"value": "Seele"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Top Teams for DPS (nie działa)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/dps/Acheron/top_teams?limit=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"dps",
+								"Acheron",
+								"top_teams"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CRUDN'T",
+			"item": [
+				{
+					"name": "Filter by Element and Path",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// Test 1: Response status is 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Test 2: Response is an array",
+									"pm.test(\"Response is an array\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"});",
+									"",
+									"// Test 3: Each character has required properties",
+									"pm.test(\"Each character has required properties (Name, Role, Element, Path)\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    jsonData.forEach(character => {",
+									"        pm.expect(character).to.have.property('Name');",
+									"        pm.expect(character).to.have.property('Role');",
+									"        pm.expect(character).to.have.property('Element');",
+									"        pm.expect(character).to.have.property('Path');",
+									"    });",
+									"});",
+									"",
+									"// Test 4: All returned characters have Element = Fire",
+									"pm.test(\"All characters have Element = 'Fire'\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.be.greaterThan(0, \"Expected at least one character matching both filters\");",
+									"    jsonData.forEach(character => {",
+									"        pm.expect(character.Element).to.eql('Fire', `Character ${character.Name} has Element ${character.Element}, expected Fire`);",
+									"    });",
+									"});",
+									"",
+									"// Test 5: All returned characters have Path = Destruction",
+									"pm.test(\"All characters have Path = 'Destruction'\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    jsonData.forEach(character => {",
+									"        pm.expect(character.Path).to.eql('Destruction', `Character ${character.Name} has Path ${character.Path}, expected Destruction`);",
+									"    });",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/characters?element=Fire&path=Destruction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "element",
+									"value": "Fire"
+								},
+								{
+									"key": "path",
+									"value": "Destruction"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sort by Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// Test 1: Response status is 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Test 2: Response is an array",
+									"pm.test(\"Response is an array\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"});",
+									"",
+									"// Test 3: Each character has required properties",
+									"pm.test(\"Each character has required properties (Name, Role, Element, Path)\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    jsonData.forEach(character => {",
+									"        pm.expect(character).to.have.property('Name');",
+									"        pm.expect(character).to.have.property('Role');",
+									"        pm.expect(character).to.have.property('Element');",
+									"        pm.expect(character).to.have.property('Path');",
+									"    });",
+									"});",
+									"",
+									"// Test 4: Results are sorted alphabetically by Name",
+									"pm.test(\"Characters are sorted alphabetically by Name\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.be.greaterThan(0, \"Expected at least one character\");",
+									"    ",
+									"    for (let i = 0; i < jsonData.length - 1; i++) {",
+									"        const currentName = jsonData[i].Name;",
+									"        const nextName = jsonData[i + 1].Name;",
+									"        pm.expect(currentName.localeCompare(nextName)).to.be.at.most(0, ",
+									"            `Characters not in alphabetical order: ${currentName} should come before or equal to ${nextName}`);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/characters?sort_by=Name",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "sort_by",
+									"value": "Name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by Role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// Test 1: Response status is 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Test 2: Response is an array",
+									"pm.test(\"Response is an array\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"});",
+									"",
+									"// Test 3: Each character has required properties",
+									"pm.test(\"Each character has required properties (Name, Role, Element, Path)\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    jsonData.forEach(character => {",
+									"        pm.expect(character).to.have.property('Name');",
+									"        pm.expect(character).to.have.property('Role');",
+									"        pm.expect(character).to.have.property('Element');",
+									"        pm.expect(character).to.have.property('Path');",
+									"    });",
+									"});",
+									"",
+									"// Test 4: All returned characters have Role = DPS",
+									"pm.test(\"All characters have Role = 'DPS'\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.be.greaterThan(0, \"Expected at least one DPS character\");",
+									"    jsonData.forEach(character => {",
+									"        pm.expect(character.Role).to.eql('DPS', `Character ${character.Name} has Role ${character.Role}, expected DPS`);",
+									"    });",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/characters?role=DPS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "role",
+									"value": "DPS"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by Path",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// Test 1: Response status is 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Test 2: Response is an array",
+									"pm.test(\"Response is an array\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"});",
+									"",
+									"// Test 3: Each character has required properties",
+									"pm.test(\"Each character has required properties (Name, Role, Element, Path)\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    jsonData.forEach(character => {",
+									"        pm.expect(character).to.have.property('Name');",
+									"        pm.expect(character).to.have.property('Role');",
+									"        pm.expect(character).to.have.property('Element');",
+									"        pm.expect(character).to.have.property('Path');",
+									"    });",
+									"});",
+									"",
+									"// Test 4: All returned characters have Path = Destruction",
+									"pm.test(\"All characters have Path = 'Destruction'\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.be.greaterThan(0, \"Expected at least one Destruction character\");",
+									"    jsonData.forEach(character => {",
+									"        pm.expect(character.Path).to.eql('Destruction', `Character ${character.Name} has Path ${character.Path}, expected Destruction`);",
+									"    });",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/characters?path=Destruction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "path",
+									"value": "Destruction"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by Element",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// Test 1: Response status is 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Test 2: Response is an array",
+									"pm.test(\"Response is an array\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"});",
+									"",
+									"// Test 3: Each character has required properties",
+									"pm.test(\"Each character has required properties (Name, Role, Element, Path)\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    jsonData.forEach(character => {",
+									"        pm.expect(character).to.have.property('Name');",
+									"        pm.expect(character).to.have.property('Role');",
+									"        pm.expect(character).to.have.property('Element');",
+									"        pm.expect(character).to.have.property('Path');",
+									"    });",
+									"});",
+									"",
+									"// Test 4: All returned characters have Element = Fire",
+									"pm.test(\"All characters have Element = 'Fire'\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.be.greaterThan(0, \"Expected at least one Fire character\");",
+									"    jsonData.forEach(character => {",
+									"        pm.expect(character.Element).to.eql('Fire', `Character ${character.Name} has Element ${character.Element}, expected Fire`);",
+									"    });",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/characters?element=Fire",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "element",
+									"value": "Fire"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter and Sort Combined",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/characters?element=Fire&sort_by=Name",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "element",
+									"value": "Fire"
+								},
+								{
+									"key": "sort_by",
+									"value": "Name"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
