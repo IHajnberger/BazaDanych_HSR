@@ -5,7 +5,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>b48b5fad-c4bf-4876-9544-2c66cec6be10</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
+    <ProjectHome>
+    </ProjectHome>
     <ProjectTypeGuids>{789894c7-04a9-4a11-a6b5-3f4435165112};{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <StartupFile>BD_Backend\runserver.py</StartupFile>
     <SearchPath>
@@ -57,6 +58,8 @@
     <Folder Include="BD_Backend\static\fonts\" />
     <Folder Include="BD_Backend\static\scripts\" />
     <Folder Include="BD_Backend\templates\" />
+    <Folder Include="BD_Frontend\" />
+    <Folder Include="BD_Frontend\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BD_Backend\requirements.txt" />
@@ -86,6 +89,9 @@
     <Content Include="BD_Backend\templates\contact.html" />
     <Content Include="BD_Backend\templates\index.html" />
     <Content Include="BD_Backend\templates\layout.html" />
+    <Content Include="BD_Frontend\index.html" />
+    <Content Include="BD_Frontend\js\api.js" />
+    <Content Include="BD_Frontend\js\index.js" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">

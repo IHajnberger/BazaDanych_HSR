@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>HSR Team Builder</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #121212;
+            color: #eee;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .character-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .character {
+            padding: 12px;
+            border-radius: 8px;
+            background: #1e1e1e;
+            border: 2px solid #333;
+        }
+
+        .owned {
+            border-color: #4caf50;
+            background: #1b2a1b;
+        }
+
+        .character span {
+            display: block;
+            font-size: 0.9em;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <h1> Lista postaci</h1>
+
+    <div id="characters" class="character-list">
+        <!-- tutaj JS wrzuci postacie -->
+    </div>
+
+    <script src="js/api.js"></script>
+</body>
+</html>
