@@ -14,15 +14,13 @@ def home():
     return {"message": "API is running"}, 200
 
 # ====================================
-# Character
+#             Character
 # ====================================
 
+# get all chars
 @api_bp.route("/characters", methods=["GET"])
 def get_characters():
     return jsonify([c.to_dict() for c in Character.query.all()]), 200
-
-#add char
-@api_bp.route("/characters", methods=["POST"])
 
 # DELETE character
 @api_bp.route("/characters/<string:name>", methods=["DELETE"])
@@ -33,7 +31,7 @@ def delete_character(name):
     return jsonify({"message": f"Character {name} deleted"})
 
 # ====================================
-# User
+#               User
 # ====================================
 
 # register
@@ -69,7 +67,7 @@ def login():
     return {"message": "Login successful", "user_id": user.id}, 200
 
 # ====================================
-# User-Character
+#          User-Character
 # ====================================
 
 # return list of chars
@@ -99,7 +97,7 @@ def add_character_to_user(user_id):
     return {"message": "Character assigned"}, 201
 
 # ====================================
-# Team
+#               Team
 # ====================================
 
 @api_bp.route("/users/<int:user_id>/teams", methods=["GET"])
