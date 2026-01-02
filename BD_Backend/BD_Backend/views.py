@@ -17,10 +17,22 @@ def home():
 #             Character
 # ====================================
 
-# get all chars
 @api_bp.route("/characters", methods=["GET"])
 def get_characters():
-    return jsonify([c.to_dict() for c in Character.query.all()]), 200
+    query = Character.query
+
+    role = request.args.get("role")
+    path = request.args.get("path")
+    element = request.args.get("element")
+
+    if role:
+        query = query.filter_by(Role=role)
+    if path:
+        query = query.filter_by(Path=path)
+    if element:
+        query = query.filter_by(Element=element)
+
+    return jsonify([c.to_dict() for c in query.all()]), 200
 
 # get single char
 @api_bp.route("/characters/<string:name>", methods=["GET"])
@@ -77,10 +89,20 @@ def login():
 # ====================================
 
 # return list of chars
-@api_bp.route("/users/<int:user_id>/characters", methods=["GET"])
-def get_user_characters(user_id):
+@api_bp.route("/users/<int:user_id>/characters/all", methods=["GET"])
+def get_all_characters_with_owned(user_id):
     user = User.query.get_or_404(user_id)
-    return jsonify([c.to_dict() for c in user.Characters]), 200
+
+    owned_ids = {c.Name for c in user.Characters}
+    result = []
+
+    for char in Character.query.all():
+        data = char.to_dict()
+        data["owned"] = char.Name in owned_ids
+        result.append(data)
+
+    return jsonify(result), 200
+
 
 @api_bp.route("/users/<int:user_id>/characters", methods=["POST"])
 def add_character_to_user(user_id):
@@ -101,6 +123,23 @@ def add_character_to_user(user_id):
     db.session.commit()
 
     return {"message": "Character assigned"}, 201
+
+# remove char from user
+@api_bp.route("/users/<int:user_id>/characters/<string:name>", methods=["DELETE"])
+def remove_character_from_user(user_id, name):
+    user = User.query.get_or_404(user_id)
+    character = Character.query.filter_by(Name=name).first()
+
+    if not character:
+        return {"message": "Character not found"}, 404
+
+    if character not in user.Characters:
+        return {"message": "Character not owned"}, 409
+
+    user.Characters.remove(character)
+    db.session.commit()
+
+    return "", 204
 
 # ====================================
 #               Team
