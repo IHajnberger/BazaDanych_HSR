@@ -5,57 +5,24 @@ from models.user import User
 from models.Character import Character
 from models.Team import Team
 
+
 api_bp = Blueprint("api", __name__)
 
-#test 
-@api_bp.route("/")
+# healthcheck
+@api_bp.route("/", methods=["GET"])
 def home():
-    return "API dziala!"
+    return {"message": "API is running"}, 200
 
-# READ ALL characters
+# ====================================
+# Character
+# ====================================
+
 @api_bp.route("/characters", methods=["GET"])
 def get_characters():
-    characters = Character.query.all()
-    return jsonify([c.to_dict() for c in characters])
-
-# READ one character
-@api_bp.route("/characters/<string:name>", methods=["GET"])
-def get_character(name):
-    character = Character.query.get_or_404(name)
-    return jsonify(character.to_dict())
+    return jsonify([c.to_dict() for c in Character.query.all()]), 200
 
 #add char
 @api_bp.route("/characters", methods=["POST"])
-def create_character():
-    data = request.json
-
-    # walidacja adminowa
-    #if not current_user.is_admin:
-    #   return {"message": "Forbidden"}, 403
-
-
-    if Character.query.filter_by(Name=data["Name"]).first():
-        return {"message": "Character already exists"}, 400
-
-    character = Character(
-        Name=data["Name"],
-        Role=data["Role"],
-        Element=data["Element"],
-        Path=data["Path"]
-    )
-
-    db.session.add(character)
-    db.session.commit()
-    return jsonify(character.to_dict()), 201
-
-# UPDATE character
-@api_bp.route("/characters/<string:name>", methods=["PUT"])
-def update_character(name):
-    character = Character.query.get_or_404(name)
-    data = request.json
-    character.Role = data.get("Role", character.Role)
-    db.session.commit()
-    return jsonify(character.to_dict())
 
 # DELETE character
 @api_bp.route("/characters/<string:name>", methods=["DELETE"])
@@ -65,16 +32,19 @@ def delete_character(name):
     db.session.commit()
     return jsonify({"message": f"Character {name} deleted"})
 
+# ====================================
+# User
+# ====================================
+
 # register
 @api_bp.route("/register", methods=["POST"])
 def register():
-    data = request.json or {}
-
-    if "username" not in data or "password" not in data:
+    data = request.get_json(silent=True)
+    if not data or "username" not in data or "password" not in data:
         return {"message": "Missing username or password"}, 400
 
     if User.query.filter_by(Username=data["username"]).first():
-        return {"message": "Username already exists"}, 400
+        return {"message": "Username already exists"}, 409
 
     user = User(Username=data["username"])
     user.set_password(data["password"])
@@ -84,90 +54,79 @@ def register():
 
     return {"id": user.id, "username": user.Username}, 201
 
+
 #login
 @api_bp.route("/login", methods=["POST"])
 def login():
-    data = request.json or {}
+    data = request.get_json(silent=True)
+    if not data:
+        return {"message": "Invalid JSON body"}, 400
 
-    user = User.query.filter_by(Username=data["username"]).first()
-    if not user or not user.check_password(data["password"]):
+    user = User.query.filter_by(Username=data.get("username")).first()
+    if not user or not user.check_password(data.get("password")):
         return {"message": "Invalid credentials"}, 401
 
-    return {"message": "Login successful", "user_id": user.id}
+    return {"message": "Login successful", "user_id": user.id}, 200
 
+# ====================================
+# User-Character
+# ====================================
 
-# return list of chars with owned being highlited (pozniej przy frontendzie)
+# return list of chars
 @api_bp.route("/users/<int:user_id>/characters", methods=["GET"])
 def get_user_characters(user_id):
     user = User.query.get_or_404(user_id)
-
-    characters = user.Characters 
-    return jsonify([c.to_dict() for c in characters])
-
+    return jsonify([c.to_dict() for c in user.Characters]), 200
 
 @api_bp.route("/users/<int:user_id>/characters", methods=["POST"])
 def add_character_to_user(user_id):
-    # 1) pobierz usera (404 jesli nie ma)
     user = User.query.get_or_404(user_id)
-
-    # 2) pobierz JSON i waliduj
     data = request.get_json(silent=True)
-    if not data:
-        return {"message": "Invalid or missing JSON body. Set Content-Type: application/json."}, 400
 
-    # akceptujemy "Name" lub "name"
-    char_name = data.get("Name") or data.get("name")
-    if not char_name:
-        return {"message": "Missing 'Name' in JSON body."}, 400
+    if not data or "Name" not in data:
+        return {"message": "Missing character name"}, 400
 
-    # 3) znajdz character  jezeli nie ma, zwroc 404
-    character = Character.query.filter_by(Name=char_name).first()
+    character = Character.query.filter_by(Name=data["Name"]).first()
     if not character:
-        return {"message": f"Character '{char_name}' not found."}, 404
+        return {"message": "Character not found"}, 404
 
-    # 4) sprawdz czy juz przypisany
-    # czy user.Characters jest listowalny
-    try:
-        already = character in user.Characters
-    except Exception:
-        # dodatkowa ochrona: pobieramy relacje na nowo z DB
-        db.session.refresh(user)
-        already = character in user.Characters
+    if character in user.Characters:
+        return {"message": "Character already assigned"}, 409
 
-    if already:
-        return {"message": "Character already assigned to user"}, 400
-
-    # 5) przypisz i zapisz
     user.Characters.append(character)
     db.session.commit()
 
-    return {"message": f"Character {character.Name} added to user {user.Username}"}, 201
+    return {"message": "Character assigned"}, 201
+
+# ====================================
+# Team
+# ====================================
+
+@api_bp.route("/users/<int:user_id>/teams", methods=["GET"])
+def get_user_teams(user_id):
+    user = User.query.get_or_404(user_id)
+    return jsonify([t.to_dict() for t in user.Teams]), 200
 
 
-#add team
 @api_bp.route("/users/<int:user_id>/teams", methods=["POST"])
 def create_team(user_id):
     user = User.query.get_or_404(user_id)
-    data = request.json or {}
+    data = request.get_json(silent=True)
 
-    team_name = data.get("Name")
-    team_score = data.get("Score", 0)  
-    character_names = data.get("characters", [])
+    if not data or "Name" not in data or "characters" not in data:
+        return {"message": "Invalid team data"}, 400
 
-    # Walidacja liczby postaci
-    if not (1 <= len(character_names) <= 4):
-        return {"message": "Team must have between 1 and 4 characters"}, 400
+    if not 1 <= len(data["characters"]) <= 4:
+        return {"message": "Team must have 4 characters"}, 400
 
-    # Pobranie postaci uzytkownika
     characters = []
-    for name in character_names:
+    for name in data["characters"]:
         char = Character.query.filter_by(Name=name).first()
         if not char or char not in user.Characters:
             return {"message": f"Character {name} not assigned to user"}, 400
         characters.append(char)
 
-    # Utworzenie druzyny
-    team = Team(Name=team_name, Score=team_score)
+    team = Team(Name=data["Name"], Score=data.get("Score", 0))
     team.Users.append(user)
     team.Characters = characters
 
@@ -175,7 +134,6 @@ def create_team(user_id):
     db.session.commit()
 
     return jsonify(team.to_dict()), 201
-
 
 #delete team
 @api_bp.route("/users/<int:user_id>/teams/<int:team_id>", methods=["DELETE"])
@@ -188,14 +146,7 @@ def delete_team(user_id, team_id):
 
     db.session.delete(team)
     db.session.commit()
-    return {"message": f"Team {team.Name} deleted"}
-
-
-#view teams
-@api_bp.route("/users/<int:user_id>/teams", methods=["GET"])
-def get_user_teams(user_id):
-    user = User.query.get_or_404(user_id)
-    return jsonify([t.to_dict() for t in user.Teams])
+    return "", 204
 
 
 #Score teamu
@@ -203,7 +154,7 @@ def get_user_teams(user_id):
 def team_support_for_dps(user_id, team_id):
     dps_name = request.args.get("dps_name")
     if not dps_name:
-        return {"message": "Missing query parameter: dps_name"}, 400
+        return {"message": "Missing dps_name parameter"}, 400
 
     user = User.query.get_or_404(user_id)
     team = Team.query.get_or_404(team_id)
@@ -211,34 +162,42 @@ def team_support_for_dps(user_id, team_id):
     if user not in team.Users:
         return {"message": "Forbidden"}, 403
 
-    dps = Character.query.filter_by(Name=dps_name).first_or_404()
+    dps = Character.query.filter_by(Name=dps_name).first()
+    if not dps:
+        return {"message": "DPS not found"}, 404
+
     if dps.Role != "DPS":
-        return {"message": "Specified character is not a DPS"}, 400
+        return {"message": "Character is not a DPS"}, 400
 
-    dps_need_names = [n.Require for n in dps.Needs]
-
-    total_percent_sum = 0
-    matched_needs = set()
+    dps_needs = {n.Require for n in dps.Needs}
+    matched = set()
+    total = 0
 
     for char in team.Characters:
-        if char.Name == dps.Name:
+        if char == dps:
             continue
-
-        for skill in getattr(char, "Skills", []) or []:
-            for effect in getattr(skill, "Effects", []) or []:
-
-                # Dopasowanie po nazwie
-                for need in dps_need_names:
+        for skill in char.Skills:
+            for effect in skill.Effects:
+                for need in dps_needs:
                     if effect.Name.startswith(need):
-                        matched_needs.add(need)
-                        total_percent_sum += (effect.Value or 0)
+                        matched.add(need)
+                        total += effect.Value or 0
 
-    return jsonify({
+    return {
         "team_id": team.id,
-        "total_percent_sum": total_percent_sum,
-        "matched_needs_count": len(matched_needs),
-        "total_needs": len(dps_need_names)
-    })
+        "score": total,
+        "matched_needs": len(matched),
+        "total_needs": len(dps_needs)
+    }, 200
 
 
+#               HTTP codes:
+#   200 OK	            poprawny GET / PUT
+#   201 Created	        poprawny POST (utworzono zasób)
+#   204 No Content 	    poprawny DELETE (opcjonalnie)
+#   400 Bad Request	    b³êdne dane wejœciowe (brak pola, z³y typ, z³a logika)
+#   401 Unauthorized	brak / b³êdne dane logowania
+#   403 Forbidden	    u¿ytkownik istnieje, ale nie ma prawa
+#   404 Not Found	    zasób nie istnieje
+#   409 Conflict	    konflikt danych (duplikat, UNIQUE)
 
