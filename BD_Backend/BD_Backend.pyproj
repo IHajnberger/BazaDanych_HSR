@@ -60,6 +60,7 @@
     <Folder Include="BD_Backend\templates\" />
     <Folder Include="BD_Frontend\" />
     <Folder Include="BD_Frontend\js\" />
+    <Folder Include="BD_Frontend\css\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BD_Backend\requirements.txt" />
@@ -89,9 +90,13 @@
     <Content Include="BD_Backend\templates\contact.html" />
     <Content Include="BD_Backend\templates\index.html" />
     <Content Include="BD_Backend\templates\layout.html" />
+    <Content Include="BD_Frontend\characters.html" />
+    <Content Include="BD_Frontend\css\main.css" />
     <Content Include="BD_Frontend\index.html" />
     <Content Include="BD_Frontend\js\api.js" />
     <Content Include="BD_Frontend\js\index.js" />
+    <Content Include="BD_Frontend\main.html" />
+    <Content Include="BD_Frontend\teams.html" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">

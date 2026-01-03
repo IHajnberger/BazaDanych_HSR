@@ -1,56 +1,54 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HSR Team Builder</title>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #121212;
-            color: #eee;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        .character-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 12px;
-            margin-top: 30px;
-        }
-
-        .character {
-            padding: 12px;
-            border-radius: 8px;
-            background: #1e1e1e;
-            border: 2px solid #333;
-        }
-
-        .owned {
-            border-color: #4caf50;
-            background: #1b2a1b;
-        }
-
-        .character span {
-            display: block;
-            font-size: 0.9em;
-            color: #aaa;
-        }
-    </style>
+    <title>HSR Team Builder – Login</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
-    <h1> Lista postaci</h1>
+    <main class="auth-container">
+        <h1>HSR Team Builder</h1>
 
-    <div id="characters" class="character-list">
-        <!-- tutaj JS wrzuci postacie -->
-    </div>
+        <!-- LOGIN -->
+        <section class="auth-box">
+            <h2>Login</h2>
 
-    <script src="js/api.js"></script>
+            <label>
+                Username
+                <input type="text">
+            </label>
+
+            <label>
+                Password
+                <input type="password">
+            </label>
+
+            <!-- tymczasowo zwykły link -->
+            <a href="main.html">
+                <button>Login</button>
+            </a>
+        </section>
+
+        <hr>
+
+        <!-- REGISTER -->
+        <section class="auth-box">
+            <h2>Create Account</h2>
+
+            <label>
+                Username
+                <input type="text">
+            </label>
+
+            <label>
+                Password
+                <input type="password">
+            </label>
+
+            <button>Create Account</button>
+        </section>
+    </main>
+
 </body>
 </html>
