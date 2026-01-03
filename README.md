@@ -1,4 +1,11 @@
 # BazaDanych
+## Frontend: [WIP]
+Podpinanie backend-frontend:
+- [x] login (index.html)
+- [ ] main.html
+- [ ] character.html
+- [ ] teams.html
+
 ## Backend:
 
  > [!IMPORTANT]
