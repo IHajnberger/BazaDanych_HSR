@@ -56,6 +56,7 @@
     <Folder Include="BD_Backend\static\" />
     <Folder Include="BD_Backend\static\content\" />
     <Folder Include="BD_Backend\static\fonts\" />
+    <Folder Include="BD_Backend\static\css\" />
     <Folder Include="BD_Backend\static\scripts\" />
     <Folder Include="BD_Backend\templates\" />
     <Folder Include="BD_Backend\static\img\" />
@@ -65,6 +66,7 @@
     <Content Include="BD_Backend\static\content\bootstrap.css" />
     <Content Include="BD_Backend\static\content\bootstrap.min.css" />
     <Content Include="BD_Backend\static\content\site.css" />
+    <Content Include="BD_Backend\static\css\style.css" />
     <Content Include="BD_Backend\static\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="BD_Backend\static\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="BD_Backend\static\fonts\glyphicons-halflings-regular.ttf" />

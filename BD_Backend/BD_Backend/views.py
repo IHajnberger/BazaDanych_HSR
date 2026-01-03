@@ -11,7 +11,7 @@ api_bp = Blueprint("api", __name__)
 def index():
     return render_template("index.html")
 
-@api_bp.route("/main")
+@api_bp.route("/main", methods=["GET"])
 def main_page():
     return render_template("main.html")
 

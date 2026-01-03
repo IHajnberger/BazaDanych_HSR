@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* BACKGROUND */
+.background {
+    position: fixed;
+    inset: 0;
+    background-image: url("/static/img/background.jpg"); /* póŸniej */
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+/* TOP BAR */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 0 20px;
+    z-index: 2;
+}
+
+.logout-btn {
+    background: transparent;
+    border: 1px solid #aaa;
+    color: white;
+    padding: 6px 14px;
+    cursor: pointer;
+}
+
+/* MAIN PANEL */
+.main-container {
+    width: 900px;
+    margin: 80px auto 40px auto;
+    background: rgba(20, 20, 20, 0.9);
+    border-radius: 12px;
+    padding: 24px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+/* CARDS */
+.card {
+    margin-bottom: 32px;
+}
+
+    .card h2 {
+        color: #fff;
+        margin-bottom: 16px;
+    }
+
+/* OVERVIEW */
+.overview-grid {
+    display: flex;
+    gap: 20px;
+}
+
+.overview-item {
+    background: #1e1e1e;
+    padding: 16px;
+    border-radius: 8px;
+    color: white;
+    min-width: 180px;
+}
+
+/* CHARACTERS */
+.characters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 80px);
+    gap: 12px;
+}
+
+.character img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+}
+
+.character.not-owned {
+    opacity: 0.25;
+}
+
+/* TEAMS */
+.team-card {
+    display: flex;
+    justify-content: space-between;
+    background: #1e1e1e;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.team-characters img {
+    width: 40px;
+    height: 40px;
+    margin-right: 4px;
+    border-radius: 6px;
+}
+
+.team-info {
+    color: white;
+    text-align: right;
+}

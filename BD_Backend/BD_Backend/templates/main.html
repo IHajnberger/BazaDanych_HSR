@@ -2,34 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HSR Team Builder – Dashboard</title>
-    <link rel="stylesheet" href="css/main.css">
+    <title>Main Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Main styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
+    <!-- BACKGROUND -->
+    <div class="background"></div>
+
+    <!-- TOP BAR -->
     <header class="top-bar">
-        <h2>HSR Team Builder</h2>
-        <button id="menu-button">MENU</button>
+        <div class="username">
+            <!-- backend later -->
+            Username
+        </div>
+
+        <button class="logout-btn">
+            Logout
+        </button>
     </header>
 
-    <main class="dashboard">
-        <h3>Welcome, User</h3>
-        <p>This is your main dashboard.</p>
+    <!-- MAIN CONTAINER -->
+    <main class="main-container">
+
+        <!-- DATA OVERVIEW -->
+        <section class="card overview">
+            <h2>Data Overview</h2>
+
+            <div class="overview-grid">
+                <div class="overview-item">
+                    <span class="label">Characters owned</span>
+                    <span class="value">0</span>
+                </div>
+
+                <div class="overview-item">
+                    <span class="label">Teams created</span>
+                    <span class="value">0</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- MY CHARACTERS -->
+        <section class="card characters">
+            <h2>My Characters</h2>
+
+            <div class="characters-grid">
+                <!-- example character -->
+                <div class="character owned">
+                    <img src="" alt="Character">
+                </div>
+
+                <div class="character not-owned">
+                    <img src="" alt="Character">
+                </div>
+
+                <!-- JS will generate these -->
+            </div>
+        </section>
+
+        <!-- MY TEAMS -->
+        <section class="card teams">
+            <h2>My Teams</h2>
+
+            <div class="teams-list">
+                <!-- example team -->
+                <div class="team-card">
+                    <div class="team-characters">
+                        <img src="" alt="Char">
+                        <img src="" alt="Char">
+                        <img src="" alt="Char">
+                        <img src="" alt="Char">
+                    </div>
+
+                    <div class="team-info">
+                        <span class="team-name">Team Name</span>
+                        <span class="team-score">Score: 000</span>
+                    </div>
+                </div>
+
+                <!-- JS will generate -->
+            </div>
+        </section>
+
     </main>
 
-    <!-- MENU POPUP -->
-    <div class="menu-popup">
-        <div class="menu-box">
-            <h3>Menu</h3>
-
-            <a href="characters.html">Characters</a>
-            <a href="teams.html">Teams</a>
-
-            <hr>
-
-            <a href="index.html" class="danger">Logout</a>
-        </div>
-    </div>
-
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
