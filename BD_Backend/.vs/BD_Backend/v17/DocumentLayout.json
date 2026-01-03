@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\models\\Team.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Backend\\models\\Team.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Frontend\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\views.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Backend\\views.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\teams.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Frontend\\teams.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\seed.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Backend\\seed.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\characters.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Frontend\\characters.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\main.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Frontend\\main.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,40 +51,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Team.py",
-              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\models\\Team.py",
-              "RelativeDocumentMoniker": "BD_Backend\\models\\Team.py",
-              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\models\\Team.py",
-              "RelativeToolTip": "BD_Backend\\models\\Team.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2025-12-07T15:16:25.882Z",
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\index.html",
+              "RelativeDocumentMoniker": "BD_Frontend\\index.html",
+              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\index.html",
+              "RelativeToolTip": "BD_Frontend\\index.html",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAiwNMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-01-02T22:17:48.047Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "seed.py",
-              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\seed.py",
-              "RelativeDocumentMoniker": "BD_Backend\\seed.py",
-              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\seed.py",
-              "RelativeToolTip": "BD_Backend\\seed.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFMAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2025-12-07T11:19:46.725Z",
+              "DocumentIndex": 3,
+              "Title": "main.html",
+              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\main.html",
+              "RelativeDocumentMoniker": "BD_Frontend\\main.html",
+              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\main.html",
+              "RelativeToolTip": "BD_Frontend\\main.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-01-03T14:24:54.56Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "views.py",
-              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\views.py",
-              "RelativeDocumentMoniker": "BD_Backend\\views.py",
-              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\views.py",
-              "RelativeToolTip": "BD_Backend\\views.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2025-12-06T13:24:22.715Z",
+              "Title": "teams.html",
+              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\teams.html",
+              "RelativeDocumentMoniker": "BD_Frontend\\teams.html",
+              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\teams.html",
+              "RelativeToolTip": "BD_Frontend\\teams.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-01-03T14:25:22.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "characters.html",
+              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\characters.html",
+              "RelativeDocumentMoniker": "BD_Frontend\\characters.html",
+              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\characters.html",
+              "RelativeToolTip": "BD_Frontend\\characters.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-01-03T14:25:13.203Z",
               "EditorCaption": ""
             }
           ]
