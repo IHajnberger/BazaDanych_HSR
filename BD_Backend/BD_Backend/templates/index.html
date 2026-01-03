@@ -1,33 +1,308 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HSR Team Builder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="icon" type="image/x-icon" href="/images/favicon.ico">   ikonka do dodania -->
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: url('static/img/background_index.png'); /* nie działa, nwm jak to we flasku implementować */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
 
-{% block content %}
+        /* MAIN SCREEN */
+        .start-screen {
+            text-align: center;
+        }
 
-<div class="jumbotron">
-    <h1>Flask</h1>
-    <p class="lead">Flask is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
+            .start-screen h1 {
+                font-size: 42px;
+                margin-bottom: 30px;
+            }
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            Flask gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://flask.pocoo.org/docs/">Learn more &raquo;</a></p>
+            .start-screen button {
+                padding: 14px 40px;
+                font-size: 18px;
+                background: #4da6ff;
+                border: none;
+                border-radius: 6px;
+                color: white;
+                cursor: pointer;
+            }
+
+                .start-screen button:hover {
+                    opacity: 0.85;
+                }
+
+        /* MODAL BACKGROUND */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        /* MODAL BOX */
+        .modal-content {
+            background-color: #1e2347;
+            padding: 30px;
+            width: 320px;
+            border-radius: 8px;
+            position: relative;
+            animation: zoom 0.3s ease;
+        }
+
+        @keyframes zoom {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* CLOSE BUTTON */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* FORM */
+        .modal-content h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .modal-content button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background: #4da6ff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .switch-text {
+            margin-top: 16px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+            .switch-text span {
+                color: #4da6ff;
+                cursor: pointer;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="start-screen">
+        <h1>HSR Team Builder</h1>
+        <button onclick="openLogin()">Login</button>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.python.org/pypi">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Microsoft Azure</h2>
-        <p>You can easily publish to Microsoft Azure using Visual Studio. Find out how you can host your application using a free trial today.</p>
-        <p><a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></p>
-    </div>
-</div>
 
-{% endblock %}
+    <!-- LOGIN MODAL -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAll()">&times;</span>
+            <h2>Login</h2>
+
+            <label>Username</label>
+            <input id="loginUsername" type="text">
+
+            <label>Password</label>
+            <input id="loginPassword" type="password">
+
+            <button onclick="login()">Login</button>
+
+            <div class="switch-text">
+                No account?
+                <span onclick="switchToRegister()">Register now</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- REGISTER MODAL -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAll()">&times;</span>
+            <h2>Create account</h2>
+
+            <label>Username</label>
+            <input id="registerUsername" type="text">
+
+            <label>Password</label>
+            <input id="registerPassword" type="password">
+
+            <button onclick="register()">Create account</button>
+
+            <div class="switch-text">
+                Already have an account?
+                <span onclick="switchToLogin()">Login</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const loginModal = document.getElementById("loginModal");
+        const registerModal = document.getElementById("registerModal");
+        // pop upy
+        function openLogin() {
+            loginModal.style.display = "flex";
+        }
+
+        function closeAll() {
+            loginModal.style.display = "none";
+            registerModal.style.display = "none";
+        }
+
+        function switchToRegister() {
+            loginModal.style.display = "none";
+            registerModal.style.display = "flex";
+        }
+
+        function switchToLogin() {
+            registerModal.style.display = "none";
+            loginModal.style.display = "flex";
+        }
+
+        // close when clicking outside
+        window.onclick = function (e) {
+            if (e.target === loginModal || e.target === registerModal) {
+                closeAll();
+            }
+        }
+
+        function showError(message) {
+            const toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.style.display = "block";
+
+            setTimeout(() => {
+                toast.style.display = "none";
+            }, 3000);
+        }
+
+        //Login function
+        async function login() {
+            const username = document.getElementById("loginUsername").value;
+            const password = document.getElementById("loginPassword").value;
+
+            if (!username || !password) {
+                showError("Please enter username and password");
+                return;
+            }
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/api/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    showError(data.message || "Login failed");
+                    return;
+                }
+
+                // zapianie user_id
+                localStorage.setItem("user_id", data.user_id);
+
+                // przejście dalej (na razie placeholder)
+                window.location.href = "main.html";
+
+            } catch (err) {
+                showError("Cannot connect to server");
+            }
+        }
+
+        //Register function
+        async function register() {
+            const username = document.getElementById("registerUsername").value;
+            const password = document.getElementById("registerPassword").value;
+
+            if (!username || !password) {
+                showError("Please fill all fields");
+                return;
+            }
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/api/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    showError(data.message || "Registration failed");
+                    return;
+                }
+
+                // po rejestracji wracamy do loginu
+                switchToLogin();
+                showError("Account created! You can log in now.");
+
+            } catch (err) {
+                showError("Cannot connect to server");
+            }
+        }
+
+    </script>
+    <div id="toast" style="
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff4d4d;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    display: none;
+    font-size: 14px;
+    z-index: 100;">
+    </div>
+
+</body>
+</html>

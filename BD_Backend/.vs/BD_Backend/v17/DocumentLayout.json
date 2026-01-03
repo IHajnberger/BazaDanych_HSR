@@ -3,20 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Frontend\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\templates\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Backend\\templates\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\teams.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Frontend\\teams.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\static\\scripts\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Backend\\static\\scripts\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\characters.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Frontend\\characters.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\views.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Backend\\views.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\main.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Frontend\\main.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\runserver.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Backend\\runserver.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\templates\\main.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Backend\\templates\\main.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\templates\\characters.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Backend\\templates\\characters.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\templates\\teams.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Backend\\templates\\teams.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\static\\scripts\\api.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Backend\\static\\scripts\\api.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\models\\User.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{B48B5FAD-C4BF-4876-9544-2C66CEC6BE10}|BD_Backend.pyproj|solutionrelative:BD_Backend\\models\\User.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,38 +70,103 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "runserver.py",
+              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\runserver.py",
+              "RelativeDocumentMoniker": "BD_Backend\\runserver.py",
+              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\runserver.py",
+              "RelativeToolTip": "BD_Backend\\runserver.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-01-03T17:45:24.668Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "api.js",
+              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\static\\scripts\\api.js",
+              "RelativeDocumentMoniker": "BD_Backend\\static\\scripts\\api.js",
+              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\static\\scripts\\api.js",
+              "RelativeToolTip": "BD_Backend\\static\\scripts\\api.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-01-03T17:39:34.812Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "index.js",
+              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\static\\scripts\\index.js",
+              "RelativeDocumentMoniker": "BD_Backend\\static\\scripts\\index.js",
+              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\static\\scripts\\index.js",
+              "RelativeToolTip": "BD_Backend\\static\\scripts\\index.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-01-03T17:31:15.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "views.py",
+              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\views.py",
+              "RelativeDocumentMoniker": "BD_Backend\\views.py",
+              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\views.py",
+              "RelativeToolTip": "BD_Backend\\views.py",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-01-03T17:03:53.71Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "User.py",
+              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\models\\user.py",
+              "RelativeDocumentMoniker": "BD_Backend\\models\\user.py",
+              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\models\\user.py",
+              "RelativeToolTip": "BD_Backend\\models\\user.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-01-03T17:02:52.547Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "index.html",
-              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\index.html",
-              "RelativeDocumentMoniker": "BD_Frontend\\index.html",
-              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\index.html",
-              "RelativeToolTip": "BD_Frontend\\index.html",
-              "ViewState": "AgIAAFgAAAAAAAAAAAAiwNMAAAAAAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\templates\\index.html",
+              "RelativeDocumentMoniker": "BD_Backend\\templates\\index.html",
+              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\templates\\index.html",
+              "RelativeToolTip": "BD_Backend\\templates\\index.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAB4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-01-02T22:17:48.047Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "main.html",
-              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\main.html",
-              "RelativeDocumentMoniker": "BD_Frontend\\main.html",
-              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\main.html",
-              "RelativeToolTip": "BD_Frontend\\main.html",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\templates\\main.html",
+              "RelativeDocumentMoniker": "BD_Backend\\templates\\main.html",
+              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\templates\\main.html",
+              "RelativeToolTip": "BD_Backend\\templates\\main.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-01-03T14:24:54.56Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "teams.html",
-              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\teams.html",
-              "RelativeDocumentMoniker": "BD_Frontend\\teams.html",
-              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\teams.html",
-              "RelativeToolTip": "BD_Frontend\\teams.html",
+              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\templates\\teams.html",
+              "RelativeDocumentMoniker": "BD_Backend\\templates\\teams.html",
+              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\templates\\teams.html",
+              "RelativeToolTip": "BD_Backend\\templates\\teams.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-01-03T14:25:22.482Z",
@@ -89,12 +174,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "characters.html",
-              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\characters.html",
-              "RelativeDocumentMoniker": "BD_Frontend\\characters.html",
-              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Frontend\\characters.html",
-              "RelativeToolTip": "BD_Frontend\\characters.html",
+              "DocumentMoniker": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\templates\\characters.html",
+              "RelativeDocumentMoniker": "BD_Backend\\templates\\characters.html",
+              "ToolTip": "C:\\Users\\izaX1\\Desktop\\BazyDanych\\BazaDanych_HSR\\BD_Backend\\BD_Backend\\templates\\characters.html",
+              "RelativeToolTip": "BD_Backend\\templates\\characters.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-01-03T14:25:13.203Z",

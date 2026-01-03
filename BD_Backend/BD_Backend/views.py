@@ -1,17 +1,19 @@
 # warstwa kontaktowa z aplikacja - interfejs
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template
 from extensions import db
 from models.user import User
 from models.Character import Character
 from models.Team import Team
 
-
 api_bp = Blueprint("api", __name__)
 
-# healthcheck
 @api_bp.route("/", methods=["GET"])
-def home():
-    return {"message": "API is running"}, 200
+def index():
+    return render_template("index.html")
+
+@api_bp.route("/main")
+def main_page():
+    return render_template("main.html")
 
 # ====================================
 #             Character
