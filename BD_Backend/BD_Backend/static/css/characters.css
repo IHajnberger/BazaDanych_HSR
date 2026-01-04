@@ -1,0 +1,25 @@
+body {
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+#charactersContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.character-tile {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    background: #1e1e1e;
+    border-radius: 8px;
+}
+
+    .character-tile input {
+        transform: scale(1.3);
+    }

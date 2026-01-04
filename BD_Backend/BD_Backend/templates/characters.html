@@ -2,29 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Your Characters</title>
+    <title>Characters</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- style -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/character.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/characters.css') }}">
 </head>
 <body>
 
     <header class="top-bar">
-        <a href="main.html">← Back</a>
         <h2>Characters</h2>
+        <button onclick="goBack()">Back</button>
     </header>
 
-    <main>
-        <p>List of all characters.</p>
-
-        <!-- placeholder -->
-        <div class="character-card owned">
-            Seele (owned)
-        </div>
-
-        <div class="character-card">
-            Bronya
-        </div>
+    <main class="characters-container" id="charactersContainer">
+        <!-- JS will generate character tiles here -->
     </main>
 
     <script src="{{ url_for('static', filename='scripts/characters.js') }}"></script>

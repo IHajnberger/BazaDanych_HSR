@@ -1,4 +1,4 @@
-# warstwa kontaktowa z aplikacja - interfejs
+Ôªø# warstwa kontaktowa z aplikacja - interfejs
 from flask import Blueprint, request, jsonify, render_template
 from extensions import db
 from models.user import User
@@ -15,40 +15,18 @@ def index():
 def main_page():
     return render_template("main.html")
 
+@api_bp.route("/characters", methods=["GET"])
+def characters_page():
+    return render_template("characters.html")
+
 # ====================================
 #             Character
 # ====================================
 
 @api_bp.route("/characters", methods=["GET"])
-def get_characters():
-    query = Character.query
-
-    role = request.args.get("role")
-    path = request.args.get("path")
-    element = request.args.get("element")
-
-    if role:
-        query = query.filter_by(Role=role)
-    if path:
-        query = query.filter_by(Path=path)
-    if element:
-        query = query.filter_by(Element=element)
-
-    return jsonify([c.to_dict() for c in query.all()]), 200
-
-# get single char
-@api_bp.route("/characters/<string:name>", methods=["GET"])
-def get_character(name):
-    character = Character.query.get_or_404(name)
-    return jsonify(character.to_dict()), 200
-
-# DELETE character
-@api_bp.route("/characters/<string:name>", methods=["DELETE"])
-def delete_character(name):
-    character = Character.query.get_or_404(name)
-    db.session.delete(character)
-    db.session.commit()
-    return jsonify({"message": f"Character {name} deleted"})
+def get_all_characters():
+    characters = Character.query.all()
+    return jsonify([c.to_dict() for c in characters])
 
 # ====================================
 #               User
@@ -99,58 +77,33 @@ def get_user(user_id):
 #          User-Character
 # ====================================
 
-# return list of chars
-@api_bp.route("/users/<int:user_id>/characters/all", methods=["GET"])
-def get_all_characters_with_owned(user_id):
+@api_bp.route("/users/<int:user_id>/characters", methods=["GET"])
+def get_user_characters(user_id):
     user = User.query.get_or_404(user_id)
-
-    owned_ids = {c.Name for c in user.Characters}
-    result = []
-
-    for char in Character.query.all():
-        data = char.to_dict()
-        data["owned"] = char.Name in owned_ids
-        result.append(data)
-
-    return jsonify(result), 200
+    return jsonify([c.to_dict() for c in user.Characters])
 
 
 @api_bp.route("/users/<int:user_id>/characters", methods=["POST"])
 def add_character_to_user(user_id):
     user = User.query.get_or_404(user_id)
-    data = request.get_json(silent=True)
+    data = request.get_json()
 
-    if not data or "Name" not in data:
-        return {"message": "Missing character name"}, 400
-
-    character = Character.query.filter_by(Name=data["Name"]).first()
-    if not character:
-        return {"message": "Character not found"}, 404
-
-    if character in user.Characters:
-        return {"message": "Character already assigned"}, 409
-
+    character = Character.query.filter_by(Name=data["Name"]).first_or_404()
     user.Characters.append(character)
     db.session.commit()
 
-    return {"message": "Character assigned"}, 201
+    return {"message": "Added"}, 201
 
-# remove char from user
+
 @api_bp.route("/users/<int:user_id>/characters/<string:name>", methods=["DELETE"])
 def remove_character_from_user(user_id, name):
     user = User.query.get_or_404(user_id)
-    character = Character.query.filter_by(Name=name).first()
-
-    if not character:
-        return {"message": "Character not found"}, 404
-
-    if character not in user.Characters:
-        return {"message": "Character not owned"}, 409
+    character = Character.query.filter_by(Name=name).first_or_404()
 
     user.Characters.remove(character)
     db.session.commit()
 
-    return "", 204
+    return {"message": "Removed"}, 200
 
 # ====================================
 #               Team
@@ -247,11 +200,11 @@ def team_support_for_dps(user_id, team_id):
 
 #               HTTP codes:
 #   200 OK	            poprawny GET / PUT
-#   201 Created	        poprawny POST (utworzono zasÛb)
+#   201 Created	        poprawny POST (utworzono zas√≥b)
 #   204 No Content 	    poprawny DELETE (opcjonalnie)
-#   400 Bad Request	    b≥Ídne dane wejúciowe (brak pola, z≥y typ, z≥a logika)
-#   401 Unauthorized	brak / b≥Ídne dane logowania
-#   403 Forbidden	    uøytkownik istnieje, ale nie ma prawa
-#   404 Not Found	    zasÛb nie istnieje
+#   400 Bad Request	    b≈Çƒôdne dane wej≈õciowe (brak pola, z≈Çy typ, z≈Ça logika)
+#   401 Unauthorized	brak / b≈Çƒôdne dane logowania
+#   403 Forbidden	    u≈ºytkownik istnieje, ale nie ma prawa
+#   404 Not Found	    zas√≥b nie istnieje
 #   409 Conflict	    konflikt danych (duplikat, UNIQUE)
 
