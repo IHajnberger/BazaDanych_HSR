@@ -9,7 +9,7 @@
 .background {
     position: fixed;
     inset: 0;
-    background-image: url("/static/img/background.jpg"); /* póŸniej */
+    background-image: url("/static/img/main_background.jpg"); /* póŸniej */
     background-size: cover;
     background-position: center;
     z-index: -1;
@@ -34,7 +34,6 @@
 .logout-btn {
     background: transparent;
     border: 1px solid #aaa;
-    color: white;
     padding: 6px 14px;
     cursor: pointer;
 }
