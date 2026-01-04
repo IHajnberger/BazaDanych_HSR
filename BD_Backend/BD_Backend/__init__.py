@@ -24,6 +24,9 @@ def create_app():
 
     # Import i rejestracja routow
     from views import api_bp
+    from views_html import pages_bp
+
     app.register_blueprint(api_bp, url_prefix="/api")
+    app.register_blueprint(pages_bp)
 
     return app

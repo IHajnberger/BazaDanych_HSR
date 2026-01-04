@@ -47,6 +47,7 @@
     <Compile Include="BD_Backend\models\__init__.py" />
     <Compile Include="BD_Backend\runserver.py" />
     <Compile Include="BD_Backend\seed.py" />
+    <Compile Include="BD_Backend\views_html.py" />
     <Compile Include="BD_Backend\__init__.py" />
     <Compile Include="BD_Backend\views.py" />
   </ItemGroup>
@@ -66,7 +67,9 @@
     <Content Include="BD_Backend\static\content\bootstrap.css" />
     <Content Include="BD_Backend\static\content\bootstrap.min.css" />
     <Content Include="BD_Backend\static\content\site.css" />
+    <Content Include="BD_Backend\static\css\characters.css" />
     <Content Include="BD_Backend\static\css\style.css" />
+    <Content Include="BD_Backend\static\css\teams.css" />
     <Content Include="BD_Backend\static\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="BD_Backend\static\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="BD_Backend\static\fonts\glyphicons-halflings-regular.ttf" />
@@ -86,10 +89,11 @@
     <Content Include="BD_Backend\static\scripts\modernizr-2.6.2.js" />
     <Content Include="BD_Backend\static\scripts\respond.js" />
     <Content Include="BD_Backend\static\scripts\respond.min.js" />
+    <Content Include="BD_Backend\static\scripts\teams.js" />
     <Content Include="BD_Backend\static\scripts\_references.js" />
     <Content Include="BD_Backend\templates\characters.html" />
     <Content Include="BD_Backend\templates\index.html" />
-    <Content Include="BD_Backend\static\scripts\api.js" />
+    <Content Include="BD_Backend\static\scripts\characters.js" />
     <Content Include="BD_Backend\static\scripts\index.js" />
     <Content Include="BD_Backend\templates\main.html" />
     <Content Include="BD_Backend\templates\teams.html" />

@@ -66,7 +66,7 @@ async function login() {
         localStorage.setItem("user_id", data.user_id);
 
         // przejœcie dalej
-        window.location.href = "/api/main";
+        window.location.href = "/main";
 
     } catch (err) {
         showError("Cannot connect to server");

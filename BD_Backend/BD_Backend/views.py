@@ -1,4 +1,4 @@
-﻿# warstwa kontaktowa z aplikacja - interfejs
+﻿# warstwa kontaktowa z API - interfejs - moje piekło nr.1
 from flask import Blueprint, request, jsonify, render_template
 from extensions import db
 from models.user import User
@@ -6,18 +6,6 @@ from models.Character import Character
 from models.Team import Team
 
 api_bp = Blueprint("api", __name__)
-
-@api_bp.route("/", methods=["GET"])
-def index():
-    return render_template("index.html")
-
-@api_bp.route("/main", methods=["GET"])
-def main_page():
-    return render_template("main.html")
-
-@api_bp.route("/characters", methods=["GET"])
-def characters_page():
-    return render_template("characters.html")
 
 # ====================================
 #             Character
@@ -103,10 +91,10 @@ def remove_character_from_user(user_id, name):
     user.Characters.remove(character)
     db.session.commit()
 
-    return {"message": "Removed"}, 200
+    return {"message": "Removed"}, 204
 
 # ====================================
-#               Team
+#            User-Team
 # ====================================
 
 @api_bp.route("/users/<int:user_id>/teams", methods=["GET"])

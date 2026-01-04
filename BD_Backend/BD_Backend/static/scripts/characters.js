@@ -2,35 +2,27 @@
 
 const container = document.getElementById("charactersContainer");
 
-const dummyCharacters = [
-    {
-        Name: "Kafka",
-        Role: "DPS",
-        Element: "Lightning",
-        Path: "Nihility"
-    },
-    {
-        Name: "Bronya",
-        Role: "Support",
-        Element: "Wind",
-        Path: "Harmony"
-    },
-    {
-        Name: "Seele",
-        Role: "DPS",
-        Element: "Quantum",
-        Path: "Hunt"
-    }
-];
-
-function goBack() {
-    window.location.href = "/api/main"; 
+if (!container) {
+    console.error("charactersContainer not found in HTML");
 }
 
-function renderCharacters() {
+async function loadCharacters() {
+    try {
+        const res = await fetch("/api/characters");
+        const characters = await res.json();
+
+        console.log("Characters from API:", characters);
+
+        renderCharacters(characters);
+    } catch (err) {
+        console.error("Failed to load characters:", err);
+    }
+}
+
+function renderCharacters(characters) {
     container.innerHTML = "";
 
-    dummyCharacters.forEach(char => {
+    characters.forEach(char => {
         const tile = document.createElement("div");
         tile.className = "character-tile";
 
@@ -49,4 +41,4 @@ function renderCharacters() {
     });
 }
 
-renderCharacters();
+loadCharacters();

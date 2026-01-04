@@ -2,7 +2,7 @@ const userId = localStorage.getItem("user_id");
 
 if (!userId) {
     // brak sesji -> cofamy do loginu
-    window.location.href = "/api/";
+    window.location.href = "/";
 }
 
 async function loadUser() {
@@ -18,7 +18,7 @@ async function loadUser() {
 }
 function logout() {
     localStorage.removeItem("user_id");
-    window.location.href = "/api/";
+    window.location.href = "/";
 }
 
 loadUser();
