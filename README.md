@@ -1,11 +1,44 @@
 # BazaDanych
 ## Frontend: [WIP]
+
 Podpinanie backend-frontend:
 - [x] login (index.html)
 - [ ] main.html
 - [ ] character.html
 - [ ] teams.html
 
+Poprawienie HTML:
+- [ ] login (index.html)
+- [ ] main.html
+- [ ] character.html
+- [ ] teams.html
+
+ > [!IMPORTANT]
+ > Środowisko i użyte technologie:
+
+1. Moja cierpliwość oraz zdrowie psychiczne
+ 
+> [!IMPORTANT]
+ > Budowa projektu:
+ 
+1. **static** - folder na pliki statyczne:
+    - **css** - folder zawierający pliki o formacie .css opowiedzialne za forme prezentacji poszczególnych stron:
+       - **characters.css**
+       - **style.css** - do main.html
+       - **teams.css**
+2. **img** - zawiera zdjęcia wykorzystane do projektu
+3. **scripts** - zawiera pliki o formacie .js
+     - **index.js** 
+     - **main.js**
+     - **characters.js**
+     - **teams.js**
+     - reszta jest stworzona przez Flask przy generowaniu projektu, nie tykam bo nie wiem czy coś jest potrzebne czy nie tbh
+4. **templates** - folder składujący pliki o formacie .html
+     - **index.html**
+     - **mains.html**
+     - **characters.html**
+     - **teams.html**
+     
 ## Backend:
 
  > [!IMPORTANT]
