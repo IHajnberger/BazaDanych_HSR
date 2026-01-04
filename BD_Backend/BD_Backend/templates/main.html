@@ -16,13 +16,10 @@
     <!-- TOP BAR -->
     <header class="top-bar">
         <div class="username">
-            <!-- backend later -->
-            Username
+            <span id="username"></span>
         </div>
 
-        <button class="logout-btn">
-            Logout
-        </button>
+        <button onclick="logout()">Logout</button>
     </header>
 
     <!-- MAIN CONTAINER -->
@@ -89,6 +86,6 @@
 
     </main>
 
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
 </body>
 </html>

@@ -86,6 +86,15 @@ def login():
 
     return {"message": "Login successful", "user_id": user.id}, 200
 
+#pobranie info o userze
+@api_bp.route("/users/<int:user_id>", methods=["GET"])
+def get_user(user_id):
+    user = User.query.get_or_404(user_id)
+    return {
+        "id": user.id,
+        "username": user.Username
+    }, 200
+
 # ====================================
 #          User-Character
 # ====================================
