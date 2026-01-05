@@ -70,7 +70,7 @@ Poprawienie HTML (css):
  > [!IMPORTANT]
  > Budowa projektu: 
  
-<img width="283" height="450" alt="image" src="https://github.com/user-attachments/assets/1e56e764-b511-4702-abc1-b4dbe6ab4a6e" />
+<img width="308" height="569" alt="image" src="https://github.com/user-attachments/assets/9b4f018b-54c3-4635-b5ef-5ac8588d85d5" />
 
 1. **models** - folder z wszystkimi modelami SQLAlchemy opisującymi strukturę bazy danych. Każdy model odpowiada jednej tabeli lub tabeli łączącej w relacje many-to-many.
     - \_\_init\_\_.py - plik inicjujący moduł — pozwala importować modele jako from models import User, Character. Łączy folder models z resztą programu.
@@ -99,6 +99,7 @@ Poprawienie HTML (css):
     - przypisywanie postaci do użytkownika,
     - tworzenie/usuwanie drużyn,
     - listowanie postaci i drużyn użytkownika.
+11. **views_html.py** - wartstwa kontaktowa z HTML, zawiera templates dla poszczególnych stron projektu
 
  
  
