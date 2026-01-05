@@ -5,9 +5,10 @@ Podpinanie backend-frontend:
 - [x] login (index.html)
 - [ ] main.html
 - [x] character.html
-- [ ] teams.html
+- [x] teams.html
 
 Dodanie brakujących elementów:
+- [ ] system tworzenia teamów (teams.html/js)
 - [ ] filtrowanie przez teamy (via score, nazwa)
 - [ ] filtrowanie przez postacie (via path, element, class itp)
 - [ ] opcja wyszukania postaci (opcjonalnie)
