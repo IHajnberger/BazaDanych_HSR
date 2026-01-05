@@ -3,7 +3,7 @@
 
 Podpinanie backend-frontend:
 - [x] login (index.html)
-- [ ] main.html
+- [x] main.html
 - [x] character.html
 - [x] teams.html
 
