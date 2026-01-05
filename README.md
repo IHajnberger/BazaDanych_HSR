@@ -4,7 +4,7 @@
 Podpinanie backend-frontend:
 - [x] login (index.html)
 - [ ] main.html
-- [ ] character.html
+- [x] character.html
 - [ ] teams.html
 
 Poprawienie HTML:
