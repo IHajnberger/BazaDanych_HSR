@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    background: #0f172a;
+    color: #e5e7eb;
+    font-family: Arial, sans-serif;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: #020617;
+}
+
+main {
+    padding: 24px;
+}
+
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.team-tile {
+    background: #020617;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.team-characters {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+    .team-characters img {
+        width: 48px;
+        height: 48px;
+        border-radius: 4px;
+        object-fit: cover;
+    }
+
+.team-info h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.team-actions {
+    margin-top: 10px;
+    text-align: right;
+}
+
+    .team-actions button {
+        background: #7f1d1d;
+        border: none;
+        color: white;
+        padding: 6px 10px;
+        cursor: pointer;
+        border-radius: 4px;
+    }

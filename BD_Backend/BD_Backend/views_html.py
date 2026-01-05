@@ -14,3 +14,7 @@ def main_page():
 @pages_bp.route("/characters", methods=["GET"])
 def characters_page():
     return render_template("characters.html")
+
+@pages_bp.route("/teams", methods=["GET"])
+def teams_page():
+    return render_template("teams.html")
