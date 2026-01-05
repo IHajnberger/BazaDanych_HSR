@@ -1,8 +1,22 @@
 const userId = localStorage.getItem("user_id");
+const menuBtn = document.getElementById("menuBtn");
+const menuPopup = document.getElementById("menuPopup");
+
+menuBtn.addEventListener("click", () => {
+    menuPopup.classList.toggle("hidden");
+});
 
 if (!userId) {
     // brak sesji -> cofamy do loginu
     window.location.href = "/";
+}
+
+//menu
+function goTo(path) {
+    if (path === "/") {
+        localStorage.removeItem("user_id");
+    }
+    window.location.href = path;
 }
 
 // username load
@@ -73,6 +87,95 @@ async function loadMyCharacters() {
     }
 }
 
-loadMyCharacters();
-loadUser();
-loadOverview();
+//load teams
+async function loadMyTeams() {
+    const userId = localStorage.getItem("user_id");
+    if (!userId) return;
+
+    try {
+        const res = await fetch(`/api/users/${userId}/teams`);
+        const teams = await res.json();
+
+        const container = document.getElementById("myTeams");
+        if (!container) return;
+
+        if (teams.length === 0) {
+            container.innerHTML = "<p>No teams yet</p>";
+            return;
+        }
+
+        teams.forEach(team => {
+            const tile = document.createElement("div");
+            tile.className = "team preview";
+
+            const names = Object.values(team.Characters);
+
+            tile.innerHTML = `
+                <h4>${team.Name}</h4>
+                <p>${names.join(", ")}</p>
+            `;
+
+            container.appendChild(tile);
+        });
+
+    } catch {
+        console.error("Failed to load teams");
+    }
+}
+
+//load best score
+async function loadBestTeamScore() {
+    const userId = localStorage.getItem("user_id");
+    if (!userId) return;
+
+    try {
+        // role
+        const charsRes = await fetch("/api/characters");
+        const allCharacters = await charsRes.json();
+
+        const roles = {};
+        allCharacters.forEach(c => {
+            roles[c.Name] = c.Role;
+        });
+
+        const teamsRes = await fetch(`/api/users/${userId}/teams`);
+        const teams = await teamsRes.json();
+
+        let bestScore = 0;
+
+        for (const team of teams) {
+            const characterNames = Object.values(team.Characters);
+
+            const dpsName = characterNames.find(
+                name => roles[name] === "DPS"
+            );
+
+            if (!dpsName) continue;
+
+            const scoreRes = await fetch(
+                `/api/users/${userId}/teams/${team.id}/dps_score?dps_name=${encodeURIComponent(dpsName)}`
+            );
+
+            if (!scoreRes.ok) continue;
+
+            const scoreData = await scoreRes.json();
+            bestScore = Math.max(bestScore, scoreData.score);
+        }
+
+        const scoreEl = document.getElementById("bestTeamScore");
+        if (!scoreEl) return;
+        scoreEl.textContent = bestScore > 0 ? bestScore : "-";
+
+
+    } catch (err) {
+        console.error("Failed to load best team score");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadUser();
+    loadOverview();
+    loadMyCharacters();
+    loadMyTeams();
+    loadBestTeamScore();
+});

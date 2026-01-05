@@ -20,7 +20,12 @@
             <span id="username"></span>
         </div>
 
-        <button onclick="logout()">Logout</button>
+        <button id="menuBtn">Menu</button>
+        <div id="menuPopup" class="menu hidden">
+            <button onclick="goTo('/')">Logout</button>
+            <button onclick="goTo('/characters')">Characters</button>
+            <button onclick="goTo('/teams')">Teams</button>
+        </div>
     </header>
 
     <!-- MAIN CONTAINER -->
@@ -43,7 +48,7 @@
 
                 <div class="overview-item">
                     <span class="label">Best team score</span>
-                    <span class="value">0</span>
+                    <span class="value" id="bestTeamScore">0</span>
                 </div>
             </div>
         </section>
@@ -60,7 +65,7 @@
 
             <div class="teams-list">
 
-                <div id="teamsContainer" class="teams-grid"></div>
+                <div id="myTeams" class="teams-grid"></div>
 
             </div>
         </section>

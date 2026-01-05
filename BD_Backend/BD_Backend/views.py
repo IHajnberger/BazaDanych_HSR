@@ -185,14 +185,15 @@ def team_support_for_dps(user_id, team_id):
         "total_needs": len(dps_needs)
     }, 200
 
+'''
+               HTTP codes:
+   200 OK	              poprawny GET / PUT
+   201 Created	          poprawny POST (utworzono zasób)
+   204 No Content 	      poprawny DELETE (opcjonalnie)
+   400 Bad Request	      błędne dane wejściowe (brak pola, zły typ, zła logika)
+   401 Unauthorized       brak / błędne dane logowania
+   403 Forbidden	      użytkownik istnieje, ale nie ma prawa
+   404 Not Found	      zasób nie istnieje
+   409 Conflict	          konflikt danych (duplikat, UNIQUE)
 
-#               HTTP codes:
-#   200 OK	            poprawny GET / PUT
-#   201 Created	        poprawny POST (utworzono zasób)
-#   204 No Content 	    poprawny DELETE (opcjonalnie)
-#   400 Bad Request	    błędne dane wejściowe (brak pola, zły typ, zła logika)
-#   401 Unauthorized	brak / błędne dane logowania
-#   403 Forbidden	    użytkownik istnieje, ale nie ma prawa
-#   404 Not Found	    zasób nie istnieje
-#   409 Conflict	    konflikt danych (duplikat, UNIQUE)
-
+'''

@@ -10,7 +10,7 @@ def run_seed():
     app = create_app()
     with app.app_context():
 
-        print("CHAR BEFORE:", Character.query.count())  # test przed seedem
+        # print("CHAR BEFORE:", Character.query.count())  # test przed seedem
 
         # ====================================
         # 1. REQUIREMENTS (Need)
@@ -406,8 +406,8 @@ def run_seed():
         # 6. Commit wszystkich zmian
         # ====================================
         db.session.commit()
-        print("CHAR AFTER:", Character.query.count())  # test po seedzie
-        print("SEED COMPLETE")
+        #print("CHAR AFTER:", Character.query.count())  # test po seedzie
+        #print("SEED COMPLETE")
 
 if __name__ == "__main__":
     run_seed()
