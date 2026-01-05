@@ -5,7 +5,7 @@ Podpinanie backend-frontend:
 - [x] login (index.html)
 - [ ] main.html
 - [x] character.html
-- [ ] teams.html
+- [x] teams.html
 
 Dodanie brakujących elementów:
 - [ ] filtrowanie przez teamy (via score, nazwa)
