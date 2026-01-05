@@ -9,6 +9,10 @@ if (!userId) {
 
 let ownedCharacters = new Set();
 
+function goBack() {
+    window.location.href = "/main";
+}
+
 /* ===============================
    LOAD DATA
 ================================ */
