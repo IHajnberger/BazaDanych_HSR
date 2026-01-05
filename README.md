@@ -7,7 +7,13 @@ Podpinanie backend-frontend:
 - [x] character.html
 - [ ] teams.html
 
-Poprawienie HTML:
+Dodanie brakujących elementów:
+- [ ] filtrowanie przez teamy (via score, nazwa)
+- [ ] filtrowanie przez postacie (via path, element, class itp)
+- [ ] opcja wyszukania postaci (opcjonalnie)
+- [ ] wyświetlanie skillów + opisów przy najechaniu na okno postaci (to jeszcze nwm jak ma wyglądać, nie mam wizji, ale chce to gdzieś umieścić) 
+
+Poprawienie HTML (css):
 - [ ] login (index.html)
 - [ ] main.html
 - [ ] character.html
