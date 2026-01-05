@@ -25,7 +25,7 @@ async function loadTeams() {
 function renderTeams(teams) {
     container.innerHTML = "";
 
-    if (teams.length === 0) {
+    if (!teams || teams.length === 0) {
         container.innerHTML = "<p>No teams created yet.</p>";
         return;
     }
@@ -34,31 +34,31 @@ function renderTeams(teams) {
         const tile = document.createElement("div");
         tile.className = "team-tile";
 
-        const charactersHtml = team.Characters.map(char => `
-            <img 
-                src="/static/images/characters/${char.Name}.png"
-                alt="${char.Name}"
-            >
-        `).join("");
+        let charactersHtml = "";
+
+        if (team.Characters && typeof team.Characters === "object") {
+            charactersHtml = Object.values(team.Characters)
+                .map(name => `<span class="char-name">${name}</span>`)
+                .join(", ");
+        } else {
+            charactersHtml = "<em>No characters</em>";
+        }
 
         tile.innerHTML = `
-            <div class="team-characters">
-                ${charactersHtml}
-            </div>
-
             <div class="team-info">
                 <h3>${team.Name}</h3>
-                <p>Score: <strong>${team.Score}</strong></p>
+                <p><strong>Characters:</strong> ${charactersHtml}</p>
+                <p><strong>Score:</strong> ${team.Score}</p>
             </div>
 
-            <div class="team-actions">
-                <button onclick="deleteTeam(${team.id})">Delete</button>
-            </div>
+            <button onclick="deleteTeam(${team.id})">Delete</button>
         `;
 
         container.appendChild(tile);
     });
 }
+
+
 
 async function deleteTeam(teamId) {
     if (!confirm("Delete this team?")) return;
