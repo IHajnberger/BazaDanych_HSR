@@ -5,126 +5,9 @@
     <title>HSR Team Builder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">   <!-- icon -->
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
-            background-image: url('/static/img/background_index.png'); 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-        }
-
-        /* MAIN SCREEN */
-        .start-screen {
-            text-align: center;
-        }
-
-            .start-screen h1 {
-                font-size: 42px;
-                margin-bottom: 30px;
-            }
-
-            .start-screen button {
-                padding: 14px 40px;
-                font-size: 18px;
-                background: #4da6ff;
-                border: none;
-                border-radius: 6px;
-                color: white;
-                cursor: pointer;
-            }
-
-                .start-screen button:hover {
-                    opacity: 0.85;
-                }
-
-        /* MODAL BACKGROUND */
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background-color: rgba(0,0,0,0.6);
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-        }
-
-        /* MODAL BOX */
-        .modal-content {
-            background-color: #1e2347;
-            padding: 30px;
-            width: 320px;
-            border-radius: 8px;
-            position: relative;
-            animation: zoom 0.3s ease;
-        }
-
-        @keyframes zoom {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        /* CLOSE BUTTON */
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 14px;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        /* FORM */
-        .modal-content h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-top: 12px;
-            font-size: 14px;
-        }
-
-        input {
-            width: 94%;
-            padding: 10px;
-            margin-top: 6px;
-            border-radius: 4px;
-            border: none;
-        }
-
-        .modal-content button {
-            width: 100%;
-            margin-top: 20px;
-            padding: 12px;
-            background: #4da6ff;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .switch-text {
-            margin-top: 16px;
-            font-size: 13px;
-            text-align: center;
-        }
-
-            .switch-text span {
-                color: #4da6ff;
-                cursor: pointer;
-            }
-    </style>
+    
+    <!-- Login style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 </head>
 
 <body>
@@ -176,21 +59,11 @@
         </div>
     </div>
 
-    <!-- js -->
+    <!-- JS -->
     <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
 
-    <div id="toast" style="
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ff4d4d;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 6px;
-    display: none;
-    font-size: 14px;
-    z-index: 100;">
+    <!-- REGISTER/ERROR POP-UP -->
+    <div id="toast" class="toast">
     </div>
 
 </body>

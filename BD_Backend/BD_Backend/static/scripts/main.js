@@ -1,3 +1,6 @@
+// =====================
+// ELEMENTY DOM
+// =====================
 const userId = localStorage.getItem("user_id");
 const menuBtn = document.getElementById("menuBtn");
 const menuPopup = document.getElementById("menuPopup");
@@ -7,11 +10,12 @@ menuBtn.addEventListener("click", () => {
 });
 
 if (!userId) {
-    // brak sesji -> cofamy do loginu
     window.location.href = "/";
 }
 
-//menu
+// =====================
+// MENU
+// =====================
 function goTo(path) {
     if (path === "/") {
         localStorage.removeItem("user_id");
@@ -19,7 +23,9 @@ function goTo(path) {
     window.location.href = path;
 }
 
-// username load
+// =====================
+// USERNAME LOAD
+// =====================
 async function loadUser() {
     try {
         const response = await fetch(`/api/users/${userId}`);
@@ -36,7 +42,9 @@ function logout() {
     window.location.href = "/";
 }
 
-// overview load
+// =====================
+// LOAD OVERVIEW
+// =====================
 async function loadOverview() {
     const userId = localStorage.getItem("user_id");
     if (!userId) return;
@@ -58,7 +66,9 @@ async function loadOverview() {
     }
 }
 
-// load owned characters
+// =====================
+// LOAD OWNED CHARACTERS
+// =====================
 async function loadMyCharacters() {
     const userId = localStorage.getItem("user_id");
     if (!userId) return;
@@ -87,7 +97,9 @@ async function loadMyCharacters() {
     }
 }
 
-//load teams
+// =====================
+// LOAD TEAMS
+// =====================
 async function loadMyTeams() {
     const userId = localStorage.getItem("user_id");
     if (!userId) return;
@@ -123,7 +135,9 @@ async function loadMyTeams() {
     }
 }
 
-//load best score
+// =====================
+// LOAD BEST TEAM SCORE
+// =====================
 async function loadBestTeamScore() {
     const userId = localStorage.getItem("user_id");
     if (!userId) return;
@@ -172,6 +186,9 @@ async function loadBestTeamScore() {
     }
 }
 
+// =====================
+// INNIT
+// =====================
 document.addEventListener("DOMContentLoaded", () => {
     loadUser();
     loadOverview();

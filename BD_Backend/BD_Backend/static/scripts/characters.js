@@ -1,5 +1,8 @@
 ﻿console.log("characters.js loaded");
 
+// =====================
+// ELEMENTY DOM
+// =====================
 const container = document.getElementById("charactersContainer");
 const userId = localStorage.getItem("user_id");
 
@@ -13,9 +16,9 @@ function goBack() {
     window.location.href = "/main";
 }
 
-/* ===============================
-   LOAD DATA
-================================ */
+// =====================
+//  CHARACTERS LOAD
+// =====================
 
 async function loadCharacters() {
     try {
@@ -36,9 +39,9 @@ async function loadCharacters() {
     }
 }
 
-/* ===============================
-   RENDER
-================================ */
+// =====================
+// RENDER CHARACTERS
+// =====================
 
 function renderCharacters(characters) {
     container.innerHTML = "";
@@ -49,6 +52,7 @@ function renderCharacters(characters) {
         const tile = document.createElement("div");
         tile.className = `character-tile ${isOwned ? "owned" : "not-owned"}`;
 
+        // kafelek
         tile.innerHTML = `
             <input type="checkbox" ${isOwned ? "checked" : ""}>
 
@@ -70,9 +74,9 @@ function renderCharacters(characters) {
     });
 }
 
-/* ===============================
-   TOGGLE (API)
-================================ */
+// =====================
+// API INTERACTIONS
+// =====================
 
 async function toggleCharacter(name, checked) {
     try {
@@ -95,7 +99,7 @@ async function toggleCharacter(name, checked) {
             ownedCharacters.delete(name);
         }
 
-        // odśwież highlight
+        // reload
         loadCharacters();
 
     } catch (err) {
@@ -103,8 +107,8 @@ async function toggleCharacter(name, checked) {
     }
 }
 
-/* ===============================
-   INIT
-================================ */
+// =====================
+// INNIT
+// =====================
 
 loadCharacters();

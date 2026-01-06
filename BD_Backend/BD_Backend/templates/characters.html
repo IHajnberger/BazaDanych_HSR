@@ -5,7 +5,8 @@
     <title>Characters</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">   <!-- icon -->
-
+    
+    <!-- Characters style -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/characters.css') }}">
 </head>
 <body>
@@ -15,10 +16,12 @@
         <button class="back-btn" onclick="goBack()">← Back</button>
     </header>
 
+    <!-- CHARACTERS -->
     <main class="characters-container" id="charactersContainer">
-        <!-- JS will generate character tiles here -->
+
     </main>
 
+    <!-- JS -->
     <script src="{{ url_for('static', filename='scripts/characters.js') }}"></script>
 
 </body>
