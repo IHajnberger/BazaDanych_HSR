@@ -21,42 +21,55 @@
         <!-- TEAM BUILDER -->
         <section class="team-builder">
 
-            <h2>Create Team</h2>
-
-            <!-- DPS SELECT -->
-            <div class="builder-section">
-                <label>Select DPS</label>
-                <select id="dpsSelect">
-                    <option value="">-- choose DPS --</option>
-                </select>
+            <div class="builder-header">
+                <h2 id="builderTitle">Create Team</h2>
             </div>
 
-            <!-- SUPPORTS -->
+            <!-- TEAM NAME -->
             <div class="builder-section">
-                <h3>Suggested Supports</h3>
-                <div id="supportSuggestions" class="suggestions"></div>
+                <label>Team name</label>
+                <input id="teamNameInput" placeholder="e.g. Seele Hypercarry">
             </div>
 
-            <!-- SUSTAINS -->
-            <div class="builder-section">
-                <h3>Suggested Sustains</h3>
-                <div id="sustainSuggestions" class="suggestions"></div>
+            <!-- BUILDER GRID -->
+            <div class="builder-grid">
+
+                <!-- DPS -->
+                <div class="builder-column">
+                    <label>DPS</label>
+                    <select id="dpsSelect">
+                        <option value="">-- choose DPS --</option>
+                    </select>
+                </div>
+
+                <!-- SUPPORTS -->
+                <div class="builder-column">
+                    <h3>Supports</h3>
+                    <div id="supportSuggestions" class="suggestions"></div>
+                </div>
+
+                <!-- SUSTAINS -->
+                <div class="builder-column">
+                    <h3>Sustain</h3>
+                    <div id="sustainSuggestions" class="suggestions"></div>
+                </div>
+
             </div>
 
             <!-- SELECTED PREVIEW -->
-            <div class="builder-section selected-preview">
-                <p><strong>DPS:</strong> <span id="selectedDps">-</span></p>
-                <p><strong>Support 1:</strong> <span id="selectedSupport1">-</span></p>
-                <p><strong>Support 2:</strong> <span id="selectedSupport2">-</span></p>
-                <p><strong>Sustain:</strong> <span id="selectedSustain">-</span></p>
+            <div class="selected-preview">
+                <div><strong>DPS</strong><span id="selectedDps">-</span></div>
+                <div><strong>Support 1</strong><span id="selectedSupport1">-</span></div>
+                <div><strong>Support 2</strong><span id="selectedSupport2">-</span></div>
+                <div><strong>Sustain</strong><span id="selectedSustain">-</span></div>
             </div>
 
             <button id="readyBtn" disabled>Ready</button>
 
         </section>
 
-        <!-- EXISTING TEAMS -->
-        <section>
+        <!-- TEAMS -->
+        <section class="teams-section">
             <h2>Existing Teams</h2>
             <div id="teamsContainer" class="teams-grid"></div>
         </section>

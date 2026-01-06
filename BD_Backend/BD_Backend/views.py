@@ -143,6 +143,51 @@ def delete_team(user_id, team_id):
     db.session.commit()
     return "", 204
 
+#get 1 - edit team 
+@api_bp.route("/users/<int:user_id>/teams/<int:team_id>", methods=["GET"])
+def get_team(user_id, team_id):
+    user = User.query.get_or_404(user_id)
+    team = Team.query.get_or_404(team_id)
+
+    if user not in team.Users:
+        return {"message": "Forbidden"}, 403
+
+    return jsonify(team.to_dict()), 200
+
+#Update team
+@api_bp.route("/users/<int:user_id>/teams/<int:team_id>", methods=["PUT"])
+def update_team(user_id, team_id):
+    user = User.query.get_or_404(user_id)
+    team = Team.query.get_or_404(team_id)
+
+    if user not in team.Users:
+        return {"message": "Forbidden"}, 403
+
+    data = request.get_json(silent=True)
+    if not data:
+        return {"message": "No data"}, 400
+
+    # name
+    if "Name" in data:
+        team.Name = data["Name"]
+
+    # characters
+    if "characters" in data:
+        if len(data["characters"]) != 4:
+            return {"message": "Team must have 4 characters"}, 400
+
+        characters = []
+        for name in data["characters"]:
+            char = Character.query.filter_by(Name=name).first()
+            if not char or char not in user.Characters:
+                return {"message": f"Invalid character {name}"}, 400
+            characters.append(char)
+
+        team.Characters = characters
+
+    db.session.commit()
+    return jsonify(team.to_dict()), 200
+
 
 #Score teamu
 @api_bp.route("/users/<int:user_id>/teams/<int:team_id>/dps_score", methods=["GET"])
