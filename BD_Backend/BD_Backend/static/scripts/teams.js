@@ -1,17 +1,43 @@
 console.log("teams.js loaded");
 
 const userId = localStorage.getItem("user_id");
-const container = document.getElementById("teamsContainer");
-let characterRoles = {};
 
 if (!userId) {
     window.location.href = "/";
 }
 
+// =====================
+// ELEMENTY DOM
+// =====================
+const teamsContainer = document.getElementById("teamsContainer");
+const dpsSelect = document.getElementById("dpsSelect");
+const supportBox = document.getElementById("supportSuggestions");
+const sustainBox = document.getElementById("sustainSuggestions");
+const readyBtn = document.getElementById("readyBtn");
+
+const selectedDpsEl = document.getElementById("selectedDps");
+const selectedSupport1El = document.getElementById("selectedSupport1");
+const selectedSupport2El = document.getElementById("selectedSupport2");
+const selectedSustainEl = document.getElementById("selectedSustain");
+
+// =====================
+// STAN
+// =====================
+let characterRoles = {};
+let selectedDps = null;
+let selectedSupports = [];
+let selectedSustain = null;
+
+// =====================
+// NAV
+// =====================
 function goBack() {
     window.location.href = "/main";
 }
 
+// =====================
+// LOAD ROLES
+// =====================
 async function loadCharacterRoles() {
     const res = await fetch("/api/characters");
     const characters = await res.json();
@@ -21,32 +47,158 @@ async function loadCharacterRoles() {
     });
 }
 
+// =====================
+// LOAD DPS LIST
+// =====================
+async function loadDpsOptions() {
+    const res = await fetch(`/api/users/${userId}/characters`);
+    const characters = await res.json();
+
+    characters
+        .filter(c => c.Role === "DPS")
+        .forEach(dps => {
+            const option = document.createElement("option");
+            option.value = dps.Name;
+            option.textContent = dps.Name;
+            dpsSelect.appendChild(option);
+        });
+}
+
+dpsSelect.addEventListener("change", () => {
+    selectedDps = dpsSelect.value || null;
+    selectedSupports = [];
+    selectedSustain = null;
+
+    updatePreview();
+    readyBtn.disabled = true;
+
+    if (selectedDps) {
+        loadCandidatesForDps(selectedDps);
+    } else {
+        supportBox.innerHTML = "";
+        sustainBox.innerHTML = "";
+    }
+});
+
+// =====================
+// LOAD CANDIDATES
+// =====================
+async function loadCandidatesForDps(dpsName) {
+    const res = await fetch(
+        `/api/users/${userId}/dps/${encodeURIComponent(dpsName)}/candidates`
+    );
+
+    const candidates = await res.json();
+
+    renderSupportSuggestions(
+        candidates.filter(c => c.Role === "Support")
+    );
+
+    renderSustainSuggestions(
+        candidates.filter(c => c.Role === "Sustain")
+    );
+}
+
+// =====================
+// RENDER SUGGESTIONS
+// =====================
+function renderSupportSuggestions(list) {
+    supportBox.innerHTML = "";
+
+    list.forEach(char => {
+        const el = document.createElement("div");
+        el.className = "suggestion";
+        el.textContent = `${char.Name} (${char.score})`;
+
+        el.onclick = () => {
+            if (selectedSupports.includes(char.Name)) return;
+            if (selectedSupports.length >= 2) return;
+
+            selectedSupports.push(char.Name);
+            updatePreview();
+        };
+
+        supportBox.appendChild(el);
+    });
+}
+
+function renderSustainSuggestions(list) {
+    sustainBox.innerHTML = "";
+
+    list.forEach(char => {
+        const el = document.createElement("div");
+        el.className = "suggestion";
+        el.textContent = `${char.Name} (${char.score})`;
+
+        el.onclick = () => {
+            selectedSustain = char.Name;
+            updatePreview();
+        };
+
+        sustainBox.appendChild(el);
+    });
+}
+
+// =====================
+// PREVIEW + READY
+// =====================
+function updatePreview() {
+    selectedDpsEl.textContent = selectedDps || "-";
+    selectedSupport1El.textContent = selectedSupports[0] || "-";
+    selectedSupport2El.textContent = selectedSupports[1] || "-";
+    selectedSustainEl.textContent = selectedSustain || "-";
+
+    readyBtn.disabled = !(
+        selectedDps &&
+        selectedSupports.length === 2 &&
+        selectedSustain
+    );
+}
+
+readyBtn.onclick = createTeam;
+
+// =====================
+// CREATE TEAM
+// =====================
+async function createTeam() {
+    const characters = [
+        selectedDps,
+        selectedSupports[0],
+        selectedSupports[1],
+        selectedSustain
+    ];
+
+    await fetch(`/api/users/${userId}/teams`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            Name: "New Team",
+            characters
+        })
+    });
+
+    loadTeams();
+}
+
+// =====================
+// TEAMS LIST
+// =====================
 async function loadTeamScore(teamId, dpsName) {
     const res = await fetch(
         `/api/users/${userId}/teams/${teamId}/dps_score?dps_name=${encodeURIComponent(dpsName)}`
     );
-
     if (!res.ok) return null;
     return await res.json();
 }
 
-
 async function loadTeams() {
-    try {
-        const res = await fetch(`/api/users/${userId}/teams`);
-        const teams = await res.json();
+    const res = await fetch(`/api/users/${userId}/teams`);
+    const teams = await res.json();
 
-        renderTeams(teams);
-    } catch (err) {
-        console.error("Failed to load teams", err);
-    }
-}
+    teamsContainer.innerHTML = "";
 
-async function renderTeams(teams) {
-    container.innerHTML = "";
-
-    if (!teams || teams.length === 0) {
-        container.innerHTML = "<p>No teams created yet.</p>";
+    if (!teams.length) {
+        teamsContainer.innerHTML = "<p>No teams created yet.</p>";
         return;
     }
 
@@ -54,42 +206,26 @@ async function renderTeams(teams) {
         const tile = document.createElement("div");
         tile.className = "team-tile";
 
-        const characterNames = Object.values(team.Characters);
+        const names = Object.values(team.Characters);
+        const dpsName = names.find(n => characterRoles[n] === "DPS");
 
-        // znajdz DPS
-        const dpsName = characterNames.find(
-            name => characterRoles[name] === "DPS"
-        );
-
-        let scoreHtml = "<em>No DPS</em>";
+        let scoreHtml = "-";
 
         if (dpsName) {
-            const scoreData = await loadTeamScore(team.id, dpsName);
-
-            if (scoreData) {
-                scoreHtml = `
-                    ${scoreData.score}
-                    (${scoreData.matched_needs}/${scoreData.total_needs})
-                `;
+            const score = await loadTeamScore(team.id, dpsName);
+            if (score) {
+                scoreHtml = `${score.score} (${score.matched_needs}/${score.total_needs})`;
             }
         }
 
         tile.innerHTML = `
             <h3>${team.Name}</h3>
-
-            <p>
-                <strong>Team:</strong>
-                ${characterNames.join(", ")}
-            </p>
-
-            <p>
-                <strong>Score:</strong> ${scoreHtml}
-            </p>
-
+            <p>${names.join(", ")}</p>
+            <p><strong>Score:</strong> ${scoreHtml}</p>
             <button onclick="deleteTeam(${team.id})">Delete</button>
         `;
 
-        container.appendChild(tile);
+        teamsContainer.appendChild(tile);
     }
 }
 
@@ -103,9 +239,13 @@ async function deleteTeam(teamId) {
     loadTeams();
 }
 
-async function initTeamsPage() {
-    await loadCharacterRoles(); // najpierw role
-    await loadTeams();          // dopiero potem teamy
+// =====================
+// INIT
+// =====================
+async function init() {
+    await loadCharacterRoles();
+    await loadDpsOptions();
+    await loadTeams();
 }
 
-initTeamsPage();
+init();

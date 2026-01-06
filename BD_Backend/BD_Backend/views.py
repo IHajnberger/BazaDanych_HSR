@@ -185,6 +185,47 @@ def team_support_for_dps(user_id, team_id):
         "total_needs": len(dps_needs)
     }, 200
 
+# Dopasowanie postaci pod DPSa
+@api_bp.route("/users/<int:user_id>/dps/<string:dps_name>/candidates", methods=["GET"])
+def suggest_characters_for_dps(user_id, dps_name):
+    user = User.query.get_or_404(user_id)
+
+    dps = Character.query.filter_by(Name=dps_name).first_or_404()
+    if dps.Role != "DPS":
+        return {"message": "Character is not a DPS"}, 400
+
+    dps_needs = {n.Require for n in dps.Needs}
+
+    results = []
+
+    for char in user.Characters:
+        if char.Name == dps.Name:
+            continue
+        if char.Role not in ("Support", "Sustain"):
+            continue
+
+        matched = set()
+        total = 0
+
+        for skill in char.Skills:
+            for effect in skill.Effects:
+                for need in dps_needs:
+                    if effect.Name.startswith(need):
+                        matched.add(need)
+                        total += effect.Value or 0
+
+        results.append({
+            "Name": char.Name,
+            "Role": char.Role,
+            "score": total,
+            "matched_needs": len(matched)
+        })
+
+    # sortujemy malejąco po score
+    results.sort(key=lambda x: x["score"], reverse=True)
+
+    return jsonify(results), 200
+
 '''
                HTTP codes:
    200 OK	              poprawny GET / PUT
