@@ -8,7 +8,7 @@ Podpinanie backend-frontend:
 - [x] teams.html
 
 Dodanie brakujących elementów:
-- [ ] system tworzenia teamów (teams.html/js)
+- [x] system tworzenia teamów (teams.html/js)
 - [ ] filtrowanie przez teamy (via score, nazwa)
 - [ ] filtrowanie przez postacie (via path, element, class itp)
 - [ ] opcja wyszukania postaci (opcjonalnie)
