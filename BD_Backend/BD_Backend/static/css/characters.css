@@ -36,3 +36,45 @@ body {
     padding: 6px 12px;
     cursor: pointer;
 }
+
+.characters-toolbar {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin: 16px 0;
+}
+
+#searchInput {
+    flex: 1;
+    padding: 8px;
+    background: #020617;
+    border: 1px solid #334155;
+    color: #e5e7eb;
+    border-radius: 6px;
+}
+
+#filterToggle {
+    padding: 8px 12px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.filters {
+    display: flex;
+    gap: 8px;
+}
+
+    .filters select {
+        background: #020617;
+        color: #e5e7eb;
+        border: 1px solid #334155;
+        padding: 6px;
+        border-radius: 4px;
+    }
+
+.hidden {
+    display: none;
+}

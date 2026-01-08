@@ -68,7 +68,32 @@ def get_user(user_id):
 @api_bp.route("/users/<int:user_id>/characters", methods=["GET"])
 def get_user_characters(user_id):
     user = User.query.get_or_404(user_id)
-    return jsonify([c.to_dict() for c in user.Characters])
+
+    search = request.args.get("search", "").lower()
+    path = request.args.get("path")
+    role = request.args.get("role")
+    element = request.args.get("element")
+
+    characters = user.Characters  
+
+    # search po nazwie
+    if search:
+        characters = [
+            c for c in characters
+            if search in c.Name.lower()
+        ]
+
+    # 🎯 filtry
+    if path:
+        characters = [c for c in characters if c.Path == path]
+
+    if role:
+        characters = [c for c in characters if c.Role == role]
+
+    if element:
+        characters = [c for c in characters if c.Element == element]
+
+    return jsonify([c.to_dict() for c in characters])
 
 
 @api_bp.route("/users/<int:user_id>/characters", methods=["POST"])

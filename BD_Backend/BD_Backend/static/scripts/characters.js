@@ -6,43 +6,105 @@
 const container = document.getElementById("charactersContainer");
 const userId = localStorage.getItem("user_id");
 
+const searchInput = document.getElementById("searchInput");
+const filterToggle = document.getElementById("filterToggle");
+const filtersPanel = document.getElementById("filtersPanel");
+
+const filterPath = document.getElementById("filterPath");
+const filterRole = document.getElementById("filterRole");
+const filterElement = document.getElementById("filterElement");
+
 if (!userId) {
     window.location.href = "/";
 }
 
+// =====================
+// STAN
+// =====================
+let allCharacters = [];
 let ownedCharacters = new Set();
 
+// =====================
+// NAV
+// =====================
 function goBack() {
     window.location.href = "/main";
 }
 
-// =====================
-//  CHARACTERS LOAD
-// =====================
+filterToggle.onclick = () => {
+    const isHidden = filtersPanel.classList.contains("hidden");
 
-async function loadCharacters() {
-    try {
-        // 1. wszystkie postacie
-        const allRes = await fetch("/api/characters");
-        const allCharacters = await allRes.json();
-
-        // 2. postacie usera
-        const ownedRes = await fetch(`/api/users/${userId}/characters`);
-        const owned = await ownedRes.json();
-
-        ownedCharacters = new Set(owned.map(c => c.Name));
-
-        renderCharacters(allCharacters);
-
-    } catch (err) {
-        console.error("Failed to load characters:", err);
+    if (isHidden) {
+        filtersPanel.classList.remove("hidden");
+        filterToggle.textContent = "Clear";
+    } else {
+        clearFilters();
     }
+};
+
+// =====================
+// LOAD DATA
+// =====================
+async function loadAllCharacters() {
+    const res = await fetch("/api/characters");
+    allCharacters = await res.json();
+}
+
+async function loadOwnedCharacters() {
+    const res = await fetch(`/api/users/${userId}/characters`);
+    const owned = await res.json();
+
+    ownedCharacters = new Set(owned.map(c => c.Name));
 }
 
 // =====================
-// RENDER CHARACTERS
+// FILTER + SEARCH
 // =====================
+function applyFilters() {
+    let result = [...allCharacters];
 
+    const search = searchInput.value.toLowerCase();
+    const path = filterPath.value;
+    const role = filterRole.value;
+    const element = filterElement.value;
+
+    if (search) {
+        result = result.filter(c =>
+            c.Name.toLowerCase().includes(search)
+        );
+    }
+
+    if (path) {
+        result = result.filter(c => c.Path === path);
+    }
+
+    if (role) {
+        result = result.filter(c => c.Role === role);
+    }
+
+    if (element) {
+        result = result.filter(c => c.Element === element);
+    }
+
+    renderCharacters(result);
+}
+
+function clearFilters() {
+    searchInput.value = "";
+    filterPath.value = "";
+    filterRole.value = "";
+    filterElement.value = "";
+
+    filtersPanel.classList.add("hidden");
+    filterToggle.textContent = "Filters";
+
+    renderCharacters(allCharacters);
+}
+
+
+// =====================
+// RENDER
+// =====================
 function renderCharacters(characters) {
     container.innerHTML = "";
 
@@ -52,7 +114,6 @@ function renderCharacters(characters) {
         const tile = document.createElement("div");
         tile.className = `character-tile ${isOwned ? "owned" : "not-owned"}`;
 
-        // kafelek
         tile.innerHTML = `
             <input type="checkbox" ${isOwned ? "checked" : ""}>
 
@@ -75,40 +136,45 @@ function renderCharacters(characters) {
 }
 
 // =====================
-// API INTERACTIONS
+// OWN / UNOWN
 // =====================
-
 async function toggleCharacter(name, checked) {
-    try {
-        if (checked) {
-            await fetch(`/api/users/${userId}/characters`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ Name: name })
-            });
+    if (checked) {
+        await fetch(`/api/users/${userId}/characters`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ Name: name })
+        });
 
-            ownedCharacters.add(name);
+        ownedCharacters.add(name);
+    } else {
+        await fetch(`/api/users/${userId}/characters/${name}`, {
+            method: "DELETE"
+        });
 
-        } else {
-            await fetch(`/api/users/${userId}/characters/${name}`, {
-                method: "DELETE"
-            });
-
-            ownedCharacters.delete(name);
-        }
-
-        // reload
-        loadCharacters();
-
-    } catch (err) {
-        console.error("Failed to update character:", err);
+        ownedCharacters.delete(name);
     }
+
+    applyFilters();
 }
 
 // =====================
-// INNIT
+// EVENTS
 // =====================
+searchInput.addEventListener("input", applyFilters);
+filterPath.addEventListener("change", applyFilters);
+filterRole.addEventListener("change", applyFilters);
+filterElement.addEventListener("change", applyFilters);
 
-loadCharacters();
+// =====================
+// INIT
+// =====================
+async function init() {
+    await loadAllCharacters();
+    await loadOwnedCharacters();
+    renderCharacters(allCharacters); // ⬅️ WSZYSTKIE NA START
+    filterToggle.textContent = "Filters";
+    filtersPanel.classList.add("hidden");
+}
+
+init();
