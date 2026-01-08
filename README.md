@@ -33,6 +33,7 @@ Poprawienie HTML (css):
        - **characters.css**
        - **style.css** - do main.html
        - **teams.css**
+       - **login.css** - do index.html
 2. **img** - zawiera zdjęcia wykorzystane do projektu
 3. **scripts** - zawiera pliki o formacie .js
      - **index.js** 
