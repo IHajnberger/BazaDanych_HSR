@@ -15,7 +15,7 @@ const filterRole = document.getElementById("filterRole");
 const filterElement = document.getElementById("filterElement");
 
 if (!userId) {
-    window.location.href = "/";
+    window.location.replace("/");
 }
 
 // =====================
@@ -176,5 +176,10 @@ async function init() {
     filterToggle.textContent = "Filters";
     filtersPanel.classList.add("hidden");
 }
-
+window.addEventListener("pageshow", () => {
+    const userId = localStorage.getItem("user_id");
+    if (!userId) {
+        window.location.replace("/");
+    }
+});
 init();

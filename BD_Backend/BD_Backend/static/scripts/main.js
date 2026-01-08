@@ -1,3 +1,5 @@
+console.log("main.js loaded");
+
 // =====================
 // ELEMENTY DOM
 // =====================
@@ -10,7 +12,7 @@ menuBtn.addEventListener("click", () => {
 });
 
 if (!userId) {
-    window.location.href = "/";
+    window.location.replace("/");
 }
 
 // =====================
@@ -19,8 +21,10 @@ if (!userId) {
 function goTo(path) {
     if (path === "/") {
         localStorage.removeItem("user_id");
+        window.location.replace("/");
+    } else {
+        window.location.href = path;
     }
-    window.location.href = path;
 }
 
 // =====================
@@ -39,7 +43,8 @@ async function loadUser() {
 }
 function logout() {
     localStorage.removeItem("user_id");
-    window.location.href = "/";
+
+    window.location.replace("/");
 }
 
 // =====================
@@ -195,4 +200,11 @@ document.addEventListener("DOMContentLoaded", () => {
     loadMyCharacters();
     loadMyTeams();
     loadBestTeamScore();
+});
+
+window.addEventListener("pageshow", () => {
+    const userId = localStorage.getItem("user_id");
+    if (!userId) {
+        window.location.replace("/");
+    }
 });

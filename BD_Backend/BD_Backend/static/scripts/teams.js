@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("teams.js loaded");
 
     const userId = localStorage.getItem("user_id");
+
     if (!userId) {
-        window.location.href = "/";
-        return;
+        window.location.replace("/");
     }
 
     // =====================
@@ -301,4 +301,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     init();
+});
+window.addEventListener("pageshow", () => {
+    const userId = localStorage.getItem("user_id");
+    if (!userId) {
+        window.location.replace("/");
+    }
 });
