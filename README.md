@@ -10,8 +10,8 @@ Podpinanie backend-frontend:
 Dodanie brakujących elementów:
 - [x] system tworzenia teamów (teams.html/js) - z działającym usuwaniem oraz edytowaniem istniejących teamów
 - [ ] filtrowanie przez teamy (via score, nazwa)
-- [ ] filtrowanie przez postacie (via path, element, class itp)
-- [ ] opcja wyszukania postaci (opcjonalnie)
+- [x] filtrowanie przez postacie (via path, element, class itp)
+- [x] opcja wyszukania postaci (opcjonalnie)
 - [ ] wyświetlanie skillów + opisów przy najechaniu na okno postaci (to jeszcze nwm jak ma wyglądać, nie mam wizji, ale chce to gdzieś umieścić) 
 
 Poprawienie HTML (css):
