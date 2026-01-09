@@ -11,7 +11,8 @@ Dodanie brakujących elementów:
 - [x] system tworzenia teamów (teams.html/js) - z działającym usuwaniem oraz edytowaniem istniejących teamów
 - [x] filtrowanie przez postacie (via path, element, class itp)
 - [x] opcja wyszukania postaci 
-- [ ] wyświetlanie skillów + opisów ( jeszcze nwm gdzie ) 
+- [x] wyświetlanie skillów + opisów 
+- [ ] poprawa seed'a
 
 Poprawienie HTML (css):
 - [ ] login (index.html)
