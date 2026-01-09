@@ -13,51 +13,77 @@
 <body>
 
     <div class="start-screen">
-        <h1>HSR Team Builder</h1>
-        <button onclick="openLogin()">Login</button>
+
+
+        <img src="static\img\hsr_logo.png" alt="HSR Logo" style="width:800px">
+
+        <h1 class="gradient-text" >HSR Team Builder</h1>
+        <button  onclick="openLogin()" >Login</button>
     </div>
 
     <!-- LOGIN MODAL -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeAll()">&times;</span>
-            <h2>Login</h2>
+            <span class="close" onclick="closeAll()">
 
-            <label>Username</label>
-            <input id="loginUsername" type="text">
+                <svg viewBox="0 0 24 24" class="close-icon">
+                    <path d="M6 6L18 18M18 6L6 18" />
+                </svg>
 
-            <label>Password</label>
-            <input id="loginPassword" type="password">
+            </span>
+            <h2 style="color:#e6e7e9">Account Log In</h2>
 
-            <button onclick="login()">Login</button>
+            <div class="input-group">
+                <input id="loginUsername" type="text" required placeholder=" ">
+                <label for="loginUsername">Username</label>
+            </div>
 
-            <div class="switch-text">
+            <div class="input-group">
+                <input id="loginPassword" type="password" required placeholder=" ">
+                <label for="loginPassword">Password</label>
+            </div>
+
+            <button id="loginBtn" onclick="login()" disabled>Log In</button>
+
+            <div class="switch-text" style="color:#e6e7e9">
                 No account?
                 <span onclick="switchToRegister()">Register now</span>
             </div>
         </div>
     </div>
 
+
     <!-- REGISTER MODAL -->
     <div id="registerModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeAll()">&times;</span>
-            <h2>Create account</h2>
+            <span class="close" onclick="closeAll()">
 
-            <label>Username</label>
-            <input id="registerUsername" type="text">
+                <svg viewBox="0 0 24 24" class="close-icon">
+                    <path d="M6 6L18 18M18 6L6 18" />
+                </svg>
 
-            <label>Password</label>
-            <input id="registerPassword" type="password">
+            </span>
+            <h2 style="color:#e6e7e9">Create Account</h2>
 
-            <button onclick="register()">Create account</button>
+            <div class="input-group">
+                <input id="registerUsername" type="text" required placeholder=" ">
+                <label for="registerUsername">Username</label>
+            </div>
 
-            <div class="switch-text">
+            <div class="input-group">
+                <input id="registerPassword" type="password" required placeholder=" ">
+                <label for="registerPassword">Password</label>
+            </div>
+
+            <button id="registerBtn" onclick="register()" disabled>Create</button>
+
+            <div class="switch-text" style="color:#e6e7e9">
                 Already have an account?
                 <span onclick="switchToLogin()">Login</span>
             </div>
         </div>
     </div>
+
 
     <!-- JS -->
     <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
