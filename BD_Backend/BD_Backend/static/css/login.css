@@ -1,12 +1,34 @@
 body {
     margin: 0;
     height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "font1", Helvetica, sans-serif;
     background-image: url('/static/img/background_index.png');
+    background-repeat: no-repeat;
+    background-size: cover; /* dopasowuje teraz obraz do ca³ego body */
+    background-position: center; 
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: first baseline;
     color: white;
+}
+
+
+@font-face {
+    font-family: "font1"; 
+    src: url("../fonts/font1.ttf") format("truetype");
+    font-weight: normal; 
+    font-style: normal;
+}
+
+/*³adny gradientowy text*/
+.gradient-text {
+    font-family:"font1";
+    font-size: 52px;
+    font-weight: bold;
+    background: #4a4a4a;
+    background: linear-gradient(138deg,rgba(74, 74, 74, 1) 28%, rgba(240, 208, 113, 1) 91%);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
 }
 
 /* MAIN SCREEN */
@@ -15,48 +37,60 @@ body {
 }
 
     .start-screen h1 {
-        font-size: 42px;
-        margin-bottom: 30px;
+        font-size: 50px;
+        margin-bottom: 50px;
     }
 
     .start-screen button {
+        font-family: "font1";
         padding: 14px 40px;
-        font-size: 18px;
-        background: #4da6ff;
+        font-size: 26px;
         border: none;
         border-radius: 6px;
-        color: white;
         cursor: pointer;
+        /* gradient tylko dla tekstu */
+        background: linear-gradient(138deg, rgba(74, 74, 74, 1) 28%, rgba(224, 192, 96, 1) 91%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        /* t³o buttona osobno */
+        position: relative;
+        background-color: #303030;
+        transition: background-color 0.3s ease, transform 0.4s ease;
     }
 
-        .start-screen button:hover {
-            opacity: 0.85;
-        }
+       
+    .start-screen button:hover {
+        background-color: #505050; 
+        transform: scale(1.4);
+    }
+
 
 /* MODAL BACKGROUND */
 .modal {
     display: none;
     position: fixed;
+    font-family:Arial, sans-serif;
     inset: 0;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0,0,0,0.4);
     justify-content: center;
     align-items: center;
     z-index: 10;
+    transition: background 0.5s ease, color 0.5s ease;
 }
 
 /* MODAL BOX */
 .modal-content {
-    background-color: #1e2347;
+    background-color: #18191b;
     padding: 30px;
     width: 320px;
-    border-radius: 8px;
+    border-radius: 32px;
     position: relative;
     animation: zoom 0.3s ease;
 }
 
 @keyframes zoom {
     from {
-        transform: scale(0.8);
+        transform: scale(0.84);
         opacity: 0;
     }
 
@@ -69,11 +103,30 @@ body {
 /* CLOSE BUTTON */
 .close {
     position: absolute;
-    top: 10px;
-    right: 14px;
-    font-size: 24px;
+    top: 14px;
+    right: 18px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.25s ease;
 }
+
+    .close-icon {
+        width: 28px;
+        height: 28px;
+        stroke: #d5dadc;
+        stroke-width: 1.6;
+        fill: none;
+        transition: stroke 0.25s ease;
+    }
+
+    .close:hover {
+        background-color: #212226;
+    }
 
 /* FORM */
 .modal-content h2 {
@@ -87,24 +140,62 @@ label {
     font-size: 14px;
 }
 
-input {
-    width: 94%;
-    padding: 10px;
-    margin-top: 6px;
-    border-radius: 4px;
-    border: none;
+.input-group {
+    position: relative;
+    margin: 18px 0;
 }
 
-.modal-content button {
-    width: 100%;
-    margin-top: 20px;
-    padding: 12px;
-    background: #4da6ff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-}
+    /* input */
+    .input-group input {
+        width: 100%;
+        padding: 18px 10px 10px; 
+        font-size: 17px;
+        border-radius: 12px;
+        border: 1px solid #323339;
+        background: #212226;
+        color: #e6e7e9;
+        outline: none;
+        box-sizing: border-box;
+        height: 50px; 
+        line-height: 20px; 
+        transition: border-color 0.3s ease;
+    }
+
+        
+        .input-group input:focus {
+            border-color: #6166cb;
+        }
+
+    
+    .input-group label {
+        position: absolute;
+        left: 5px;
+        top: 5px; 
+        font-size: 16px;
+        color: #777983;
+        pointer-events: none;
+        transition: 0.25s ease all;
+        background: #212226;
+        padding: 0 6px;
+    }
+
+    .input-group input:focus + label {
+        top: -7px; 
+        left: 5px;
+        font-size: 10px;
+        color: #555aad;
+        transform: none;
+    }
+
+    .input-group input:not(:focus):not(:placeholder-shown) + label {
+        top: -7px; 
+        left: 5px; 
+        font-size: 10px;
+        color: #71737d;
+        transform: none;
+    }
+
+
 
 .switch-text {
     margin-top: 16px;
@@ -113,9 +204,41 @@ input {
 }
 
 .switch-text span {
-    color: #4da6ff;
-    cursor: pointer;
+    color: #5a8cff;
 }
+
+    .switch-text span:hover {
+        color: #4f80f0;
+        cursor: pointer;
+    }
+
+
+.modal-content button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    border: none;
+    font-weight: bold;
+    border-radius: 12px;
+    font-size: 16px;
+    background: #2f3136; /* disabled */
+    color: #8a8d93;
+    cursor: not-allowed;
+    opacity: 0.6;
+    transition: background 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+}
+
+    
+    .modal-content button:enabled {
+        background: #6166cb;
+        color: #e6e7e9;
+        cursor: pointer;
+        opacity: 1;
+    }
+
+        .modal-content button:enabled:hover {
+            background: #7076d1;
+        }
 
 .toast {
     position: fixed;
