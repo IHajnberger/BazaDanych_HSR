@@ -107,3 +107,34 @@ async function register() {
         showError("Cannot connect to server");
     }
 }
+
+    // logowanie
+    const loginUsername = document.getElementById("loginUsername");
+    const loginPassword = document.getElementById("loginPassword");
+    const loginBtn = document.getElementById("loginBtn");
+
+    function checkLoginInputs() {
+        loginBtn.disabled = !(
+            loginUsername.value.trim() &&
+            loginPassword.value.trim()
+        );
+    }
+
+    loginUsername.addEventListener("input", checkLoginInputs);
+    loginPassword.addEventListener("input", checkLoginInputs);
+
+    //rejestracja
+    const registerUsername = document.getElementById("registerUsername");
+    const registerPassword = document.getElementById("registerPassword");
+    const registerBtn = document.getElementById("registerBtn");
+
+    function checkRegisterInputs() {
+        registerBtn.disabled = !(
+            registerUsername.value.trim() &&
+            registerPassword.value.trim()
+        );
+    }
+
+    registerUsername.addEventListener("input", checkRegisterInputs);
+    registerPassword.addEventListener("input", checkRegisterInputs);
+
