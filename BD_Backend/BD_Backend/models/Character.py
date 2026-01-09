@@ -16,7 +16,7 @@ class Character(db.Model):
     Needs = db.relationship('Need',secondary=Character_Need, back_populates='Characters') # relacja wiele do wielu
     Users = db.relationship('User', secondary=User_Character, back_populates='Characters') # relacja wiele do wielu
     Teams = db.relationship('Team', secondary=Team_Character, back_populates='Characters') # relacja wiele do wielu
-    Skills = db.relationship('Skill', backref='Character', lazy=True, cascade="all, delete-orphan") # relacja jeden do wielu
+    Skills = db.relationship('Skill', back_populates="Character", cascade="all, delete-orphan") # relacja jeden do wielu
     
     def to_dict(self):
-        return {"Name": self.Name, "Role": self.Role, "Element": self.Element, "Path": self.Path}
+        return {"Name": self.Name, "Role": self.Role, "Element": self.Element, "Path": self.Path, "Skills": [s.to_dict() for s in self.Skills]}

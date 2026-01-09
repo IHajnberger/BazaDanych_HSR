@@ -4,6 +4,7 @@ from extensions import db
 from models.user import User
 from models.Character import Character
 from models.Team import Team
+from sqlalchemy.orm import joinedload
 
 api_bp = Blueprint("api", __name__)
 
@@ -13,7 +14,11 @@ api_bp = Blueprint("api", __name__)
 
 @api_bp.route("/characters", methods=["GET"])
 def get_all_characters():
-    characters = Character.query.all()
+    characters = (
+        Character.query
+        .options(joinedload(Character.Skills))
+        .all()
+    )
     return jsonify([c.to_dict() for c in characters])
 
 # ====================================
@@ -67,7 +72,14 @@ def get_user(user_id):
 
 @api_bp.route("/users/<int:user_id>/characters", methods=["GET"])
 def get_user_characters(user_id):
-    user = User.query.get_or_404(user_id)
+    user = (
+        User.query
+        .options(
+            joinedload(User.Characters)
+            .joinedload(Character.Skills)
+        )
+        .get_or_404(user_id)
+    )
 
     search = request.args.get("search", "").lower()
     path = request.args.get("path")
@@ -83,7 +95,7 @@ def get_user_characters(user_id):
             if search in c.Name.lower()
         ]
 
-    # 🎯 filtry
+    # filtry
     if path:
         characters = [c for c in characters if c.Path == path]
 

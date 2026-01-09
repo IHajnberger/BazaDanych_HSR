@@ -22,7 +22,9 @@ def run_seed():
         need_hp = Need(Require="HP")
         need_DMG = Need(Require="DMG")
         need_breakEffect = Need(Require="BREAKEFFECT")
-        db.session.add_all([need_atk, need_critDMG, need_critRATE, need_spd, need_hp, need_DMG, need_breakEffect])
+        need_energy = Need(Require="ENERGY")
+        need_atp = Need(Require="ATP") #All-Type RES PEN
+        db.session.add_all([need_atp, need_atk, need_critDMG, need_critRATE, need_spd, need_hp, need_DMG, need_breakEffect, need_energy])
 
         # ====================================
         # 2. CHARACTERS
@@ -35,127 +37,127 @@ def run_seed():
         # The Hunt
         Seele = Character(Name="Seele", Role="DPS", Element="Quantum", Path="Hunt")
         db.session.add(Seele)
-        Seele.Needs.extend([need_atk, need_critDMG, need_critRATE, need_spd, need_DMG])
+        Seele.Needs.extend([need_atk, need_critDMG, need_critRATE, need_spd, need_DMG, need_atp])
 
         Yanqing = Character(Name="Yanqing", Role="DPS", Element="Ice", Path="Hunt")
         db.session.add(Yanqing)
-        Yanqing.Needs.extend([need_atk, need_critDMG, need_critRATE, need_spd, need_DMG])
+        Yanqing.Needs.extend([need_atk, need_critDMG, need_critRATE, need_spd, need_DMG, need_atp])
 
         Feixiao = Character(Name="Feixiao", Role="DPS", Element="Wind", Path="Hunt")
         db.session.add(Feixiao)
-        Feixiao.Needs.extend([need_atk, need_critDMG, need_critRATE, need_spd, need_DMG])
+        Feixiao.Needs.extend([need_atk, need_critDMG, need_critRATE, need_spd, need_DMG, need_atp])
 
         Boothill = Character(Name="Boothill", Role="DPS", Element="Physical", Path="Hunt")
         db.session.add(Boothill)
-        Boothill.Needs.extend([need_breakEffect, need_critDMG, need_critRATE, need_spd, need_DMG])
+        Boothill.Needs.extend([need_breakEffect, need_critDMG, need_critRATE, need_spd, need_DMG, need_atp])
 
         Topaz = Character(Name="Topaz", Role="DPS", Element="Fire", Path="Hunt")
         db.session.add(Topaz)
-        Topaz.Needs.extend([need_atk, need_critDMG, need_critRATE, need_spd, need_DMG])
+        Topaz.Needs.extend([need_atk, need_critDMG, need_critRATE, need_spd, need_DMG, need_atp])
 
         DrRatio = Character(Name="Dr.Ratio", Role="DPS", Element="Imaginary", Path="Hunt")
         db.session.add(DrRatio)
-        DrRatio.Needs.extend([need_atk, need_critDMG, need_critRATE, need_spd, need_DMG])
+        DrRatio.Needs.extend([need_atk, need_critDMG, need_critRATE, need_spd, need_DMG, need_atp])
 
         # The Destruction
         Blade = Character(Name="Blade", Role="DPS", Element="Wind", Path="Destruction")
         db.session.add(Blade)
-        Blade.Needs.extend([need_hp, need_critDMG, need_critRATE, need_spd, need_DMG])
+        Blade.Needs.extend([need_hp, need_critDMG, need_critRATE, need_spd, need_DMG, need_atp])
 
         Clara = Character(Name="Clara", Role="DPS", Element="Physical", Path="Destruction")
         db.session.add(Clara)
-        Clara.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG])
+        Clara.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_atp])
 
         ImbibitorLunae = Character(Name="Imbibitor Lunae", Role="DPS", Element="Imaginary", Path="Destruction")
         db.session.add(ImbibitorLunae)
-        ImbibitorLunae.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd])
+        ImbibitorLunae.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd, need_atp])
 
         Jingliu = Character(Name="Jingliu", Role="DPS", Element="Ice", Path="Destruction")
         db.session.add(Jingliu)
-        Jingliu.Needs.extend([need_hp, need_critDMG, need_critRATE, need_DMG, need_spd])
+        Jingliu.Needs.extend([need_hp, need_critDMG, need_critRATE, need_DMG, need_spd, need_atp])
 
         Firefly = Character(Name="Firefly", Role="DPS", Element="Fire", Path="Destruction")
         db.session.add(Firefly)
-        Firefly.Needs.extend([need_atk, need_breakEffect, need_DMG, need_spd])
+        Firefly.Needs.extend([need_atk, need_breakEffect, need_DMG, need_spd, need_atp])
 
         Yunli = Character(Name="Yunli", Role="DPS", Element="Physical", Path="Destruction")
         db.session.add(Yunli)
-        Yunli.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG])
+        Yunli.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_atp])
 
         Mydei = Character(Name="Mydei", Role="DPS", Element="Imaginary", Path="Destruction")
         db.session.add(Mydei)
-        Mydei.Needs.extend([need_hp, need_critDMG, need_critRATE, need_DMG, need_spd])
+        Mydei.Needs.extend([need_hp, need_critDMG, need_critRATE, need_DMG, need_spd, need_atp])
 
         Phainon = Character(Name="Phainon", Role="DPS", Element="Physical", Path="Destruction")
         db.session.add(Phainon)
-        Phainon.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd])
+        Phainon.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd, need_atp])
 
         # The Erudition
         Argenti = Character(Name="Argenti", Role="DPS", Element="Physical", Path="Erudition")
         db.session.add(Argenti)
-        Argenti.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd])
+        Argenti.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd, need_atp])
 
         Himeko = Character(Name="Himeko", Role="DPS", Element="Fire", Path="Erudition")
         db.session.add(Himeko)
-        Himeko.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd])
+        Himeko.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd, need_atp])
 
         JingYuan = Character(Name="Jing Yuan", Role="DPS", Element="Lightning", Path="Erudition")
         db.session.add(JingYuan)
-        JingYuan.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd])
+        JingYuan.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd, need_atp])
 
         Jade = Character(Name="Jade", Role="DPS", Element="Quantum", Path="Erudition")
         db.session.add(Jade)
-        Jade.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd])
+        Jade.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd, need_atp])
 
         Rappa = Character(Name="Rappa", Role="DPS", Element="Imaginary", Path="Erudition")
         db.session.add(Rappa)
-        Rappa.Needs.extend([need_atk, need_breakEffect, need_DMG, need_spd])
+        Rappa.Needs.extend([need_atk, need_breakEffect, need_DMG, need_spd, need_atp])
 
         TheHerta = Character(Name="The Herta", Role="DPS", Element="Ice", Path="Erudition")
         db.session.add(TheHerta)
-        TheHerta.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd])
+        TheHerta.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd, need_atp])
 
         Anaxa = Character(Name="Anaxa", Role="DPS", Element="Wind", Path="Erudition")
         db.session.add(Anaxa)
-        Anaxa.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd])
+        Anaxa.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd, need_atp])
 
         # The Remembrance
         Aglaea = Character(Name="Aglaea", Role="DPS", Element="Lightning", Path="Remembrance")
         db.session.add(Aglaea)
-        Aglaea.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd])
+        Aglaea.Needs.extend([need_atk, need_critDMG, need_critRATE, need_DMG, need_spd, need_energy, need_atp])
 
         Castorice = Character(Name="Castorice", Role="DPS", Element="Quantum", Path="Remembrance")
         db.session.add(Castorice)
-        Castorice.Needs.extend([need_hp, need_critDMG, need_critRATE, need_DMG])
+        Castorice.Needs.extend([need_hp, need_critDMG, need_critRATE, need_DMG, need_atp])
 
         Evernight = Character(Name="Evernight", Role="DPS", Element="Ice", Path="Remembrance")
         db.session.add(Evernight)
-        Evernight.Needs.extend([need_hp, need_critDMG, need_critRATE, need_DMG, need_spd])
+        Evernight.Needs.extend([need_hp, need_critDMG, need_critRATE, need_DMG, need_spd, need_atp])
 
         # The Nihility
         Kafka = Character(Name="Kafka", Role="DPS", Element="Lightning", Path="Nihility")
         db.session.add(Kafka)
-        Kafka.Needs.extend([need_atk, need_DMG, need_spd])
+        Kafka.Needs.extend([need_atk, need_DMG, need_spd, need_atp])
 
         Welt = Character(Name="Welt", Role="DPS", Element="Imaginary", Path="Nihility")
         db.session.add(Welt)
-        Welt.Needs.extend([need_atk, need_DMG, need_spd, need_critDMG, need_critRATE])
+        Welt.Needs.extend([need_atk, need_DMG, need_spd, need_critDMG, need_critRATE, need_atp])
 
         BlackSwan = Character(Name="Black Swan", Role="DPS", Element="Wind", Path="Nihility")
         db.session.add(BlackSwan)
-        BlackSwan.Needs.extend([need_atk, need_DMG, need_spd])
+        BlackSwan.Needs.extend([need_atk, need_DMG, need_spd, need_atp])
 
         Acheron = Character(Name="Acheron", Role="DPS", Element="Lightning", Path="Nihility")
         db.session.add(Acheron)
-        Acheron.Needs.extend([need_atk, need_DMG, need_spd, need_critDMG, need_critRATE])
+        Acheron.Needs.extend([need_atk, need_DMG, need_spd, need_critDMG, need_critRATE, need_atp])
 
         Cipher = Character(Name="Cipher", Role="DPS", Element="Quantum", Path="Nihility")
         db.session.add(Cipher)
-        Cipher.Needs.extend([need_atk, need_DMG, need_spd, need_critDMG, need_critRATE])
+        Cipher.Needs.extend([need_atk, need_DMG, need_spd, need_critDMG, need_critRATE, need_atp])
 
         Hysilens = Character(Name="Hysilens", Role="DPS", Element="Physical", Path="Nihility")
         db.session.add(Hysilens)
-        Hysilens.Needs.extend([need_atk, need_DMG, need_spd])
+        Hysilens.Needs.extend([need_atk, need_DMG, need_spd, need_atp])
 
         # ------------------------------------
         # The Support Characters
@@ -235,6 +237,12 @@ def run_seed():
         # ====================================
         
         # ------------------------------------
+        # The DPS Characters
+        # ------------------------------------
+
+        # ---- do uzupe³nienia ----
+
+        # ------------------------------------
         # The Support Characters
         # ------------------------------------
 
@@ -283,24 +291,35 @@ def run_seed():
         # The Sustain Characters
         # ------------------------------------
 
-        #Gepard - null
+        #Gepard 
+        skill_gepard= Skill(Name="Daunting Smite", Description="Provides shield to ally and increases target's critDMG", CharacterName="Gepard")
+        db.session.add(skill_gepard)
         #FuXuan
-        skill_fuxuan = Skill(Name="Known by Stars, Shown by Hearts", Description="Boosts ally max HP and increases CritRate", CharacterName="FuXuan")
+        skill_fuxuan = Skill(Name="Known by Stars, Shown by Hearts", Description="Boosts ally max HP and increases critRate", CharacterName="Fu Xuan")
         db.session.add(skill_fuxuan)
-        #Aventurine - null
+        #Aventurine 
+        skill_aventurine = Skill(Name="Roulette Shark", Description="Provides shield to ally and increases target's critDMG", CharacterName="Aventurine")
+        db.session.add(skill_aventurine)
         #PermansorTerrae 
         skill_pt= Skill(Name="Terra Omnibus", Description="Provides shield to ally and increases target's ATK", CharacterName="Permansor Terrae")
         db.session.add(skill_pt)
+        
         #Hyacine 
-        skill_hyacine= Skill(Name="We Who Fly Into Twilight", Description="Summons memosprite Little Ica, restores HP for allies and increases their max HP", CharacterName="Hyacine")
-        technique_hyacine=Skill(Name="Day So Right, Life So Fine!", Description="Boosts ally max HP and provides healing.", CharacterName="Hyacine" )
-        db.session.add_all([skill_hyacine, technique_hyacine])
-        #Bailu - null
-        #Luocha - null
+        skill_hyacine= Skill(Name="Love Over the Rainbow", Description="Summons memosprite Little Ica, restores HP for allies and increases their max HP", CharacterName="Hyacine")
+        db.session.add(skill_hyacine)
+        
+        #Bailu
+        skill_bailu= Skill(Name="Singing Among Clouds", Description="Heals 3 allies", CharacterName="Bailu")
+        db.session.add(skill_bailu)
+        #Luocha 
+        skill_luocha= Skill(Name="Prayer of Abyss Flower", Description="After using his Skill, immediately restore the target ally's HP", CharacterName="Luocha")
+        db.session.add(skill_luocha)
         #Huohuo 
         skill_huohuo= Skill(Name="Tail: Spiritual Domination:", Description="Regenerates Energy for all allies and increases their ATK", CharacterName="Huohuo")
         db.session.add(skill_huohuo)
-        #Lingsha - null
+        #Lingsha
+        skill_lingsha= Skill(Name="Smoke and Splendor", Description="Deals Fire DMG to all enemies and restores HP for all allies", CharacterName="Lingsha")
+        db.session.add(skill_lingsha)
 
         # ====================================
         # 4. EFFECTS
@@ -355,52 +374,112 @@ def run_seed():
         db.session.add(eff_critrate_12)
         eff_hp_6= Effect(Name="HP%", Value=6)
         db.session.add(eff_hp_6)
-        eff_hp_30= Effect(Name="HP%", Value=30)
-        db.session.add(eff_hp_30)
+        eff_hp_34= Effect(Name="HP%", Value=34)
+        db.session.add(eff_hp_34)
         eff_hp_20= Effect(Name="HP%", Value=20)
         db.session.add(eff_hp_20)
         eff_atk_24= Effect(Name="ATK%", Value=24)
         db.session.add(eff_atk_24)
+        eff_dmg_66= Effect(Name="DMG%", Value=66)
+        db.session.add(eff_dmg_66)
+        eff_critdmg_28= Effect(Name="CRITDMG%", Value=28)
+        db.session.add(eff_critdmg_28)
+        eff_critdmg_36=Effect(Name="CRITDMG%", Value=36)
+        db.session.add(eff_critdmg_36)
+        eff_atk_55=Effect(Name="ATK%", Value=55)
+        db.session.add(eff_atk_55)
+        eff_critdmg_80=Effect(Name="CRITDMG%", Value=80)
+        db.session.add(eff_critdmg_80)
+        eff_dmg_80= Effect(Name="DMG%", Value=80)
+        db.session.add(eff_dmg_80)
+        eff_critrate_20= Effect(Name="CRITRATE%", Value=20)
+        db.session.add(eff_critrate_20)
+        eff_energy_20= Effect(Name="ENERGY%", Value=20)
+        db.session.add(eff_energy_20)
+        eff_critdmg_18= Effect(Name="CRITDMG%", Value=18)
+        db.session.add(eff_critdmg_18)
+        eff_dmg_18= Effect(Name="DMG%", Value=18)
+        db.session.add(eff_dmg_18)
+        eff_atk_120= Effect(Name="ATK%", Value=120)
+        db.session.add(eff_atk_120)
+        eff_atp_24= Effect(Name="ATP%", Value=24)
+        db.session.add(eff_atp_24)
+        eff_atk_70= Effect(Name="ATK%", Value=70)
+        db.session.add(eff_atk_70)
+        eff_atp_10= Effect(Name="ATP%", Value=10)
+        db.session.add(eff_atp_10)
+        eff_atk_60= Effect(Name="ATK%", Value=60)
+        db.session.add(eff_atk_60)
+        eff_spd_15= Effect(Name="SPD%", Value=15)
+        db.session.add(eff_spd_15)
+        eff_critdmg_10= Effect(Name="CRITDMG%", Value=10)
+        db.session.add(eff_critdmg_10)
+        eff_dmg_55= Effect(Name="DMG%", Value=55)
+        db.session.add(eff_dmg_55)
+        eff_breakeff_80= Effect(Name="BREAKEFFECT%", Value=80)
+        db.session.add(eff_breakeff_80)
+        eff_critdmg_15= Effect(Name="CRITDMG%", Value=15)
+        db.session.add(eff_critdmg_15)
+        eff_critdmg_40= Effect(Name="CRITDMG%", Value=40)
+        db.session.add(eff_critdmg_40)
+        eff_atk_35= Effect(Name="ATK%", Value=35)
+        db.session.add(eff_atk_35)
+        eff_energy_15= Effect(Name="ENERGY%", Value=15)
+        db.session.add(eff_energy_15)
 
         # ====================================
         # 5. Przypisanie efektow do skillow
         # ====================================
-        #Bronya
-        skill1_bronya.Effects.extend([eff_dmg_58])
-        skill2_bronya.Effects.extend([eff_critdmg_33, eff_atk_49])
-        #Sunday
-        skill1_sunday.Effects.extend([eff_dmg_69, eff_critrate_18])
-        skill2_sunday.Effects.extend([eff_critdmg_37])
-        #RuanMei
+        #Bronya-Fixed
+        skill1_bronya.Effects.extend([eff_dmg_52, eff_critdmg_28])
+        skill2_bronya.Effects.extend([eff_critdmg_36, eff_atk_55])
+        #Sunday-Fixed
+        skill1_sunday.Effects.extend([eff_dmg_80, eff_critrate_20, eff_critdmg_28])
+        skill2_sunday.Effects.extend([eff_critdmg_80,eff_energy_20])
+        #RuanMei-Fixed
         skill1_ruanmei.Effects.extend([eff_dmg_52, eff_breakeff_50])
-        skill2_ruanmei.Effects.extend([eff_breakeff_20, eff_spd_8])
-        #Sparkle
-        skill1_sparkle.Effects.extend([eff_critdmg_69, eff_atk_15])
-        skill2_sparkle.Effects.extend([eff_dmg_28])
-        #Robin
+        skill2_ruanmei.Effects.extend([eff_breakeff_50, eff_spd_8])
+        #Sparkle-Fixed
+        skill1_sparkle.Effects.extend([eff_critdmg_80, eff_atk_15])
+        skill2_sparkle.Effects.extend([eff_critdmg_28, eff_dmg_18])
+        #Robin-Fixed
         skill1_robin.Effects.extend([eff_dmg_50, eff_critdmg_20])
-        skill2_robin.Effects.extend([eff_atk_23])
-        #Tribbie
-        skill2_tribbie.Effects.extend([eff_dmg_30])
-        #Cerydra
-        skill1_cerydra.Effects.extend([eff_critdmg_72, eff_atk_18, eff_spd_8])
-        #Jiaoqiu
-        skill2_jiaoqiu.Effects.extend([eff_dmg_35])
-        #Fuque
-        skill1_fugue.Effects.extend([eff_breakeff_48])
-        skill2_fugue.Effects.extend([eff_breakeff_30])
-        #TheDahlia
+        skill2_robin.Effects.extend([eff_atk_120])
+        #Tribbie-Fixed
+        skill1_tribbie.Effects.extend([eff_dmg_28, eff_atk_23, eff_atp_24])
+        skill2_tribbie.Effects.extend([eff_dmg_30, eff_atk_70])
+        #Cerydra-Fixed
+        skill1_cerydra.Effects.extend([eff_critdmg_72, eff_atp_10 ,eff_atk_60, eff_spd_15])
+        skill2_cerydra.Effects.extend([eff_critdmg_10])
+        #Jiaoqiu-Fixed
+        skill1_jiaoqiu.Effects.extend([eff_dmg_55])
+        skill2_jiaoqiu.Effects.extend([eff_dmg_55])
+        #Fuque-Fixed
+        skill1_fugue.Effects.extend([eff_breakeff_80])
+        skill2_fugue.Effects.extend([eff_breakeff_48])
+        #TheDahlia-Fixed
         skill1_thedahlia.Effects.extend([eff_breakeff_50])
-        skill2_thedahlia.Effects.extend([eff_breakeff_74])
+        skill2_thedahlia.Effects.extend([eff_breakeff_80])
+        
+        #Gepard
+        skill_gepard.Effects.extend([eff_critdmg_15])
         #FuXuan
-        skill_fuxuan.Effects.extend([eff_critrate_12, eff_hp_6])
+        skill_fuxuan.Effects.extend([eff_critrate_12, eff_hp_6, eff_critdmg_10])
+        #Aventurine
+        skill_aventurine.Effects.extend([eff_critdmg_40])
         #PermansorTerrae
-        skill_pt.Effects.extend([eff_atk_15])
+        skill_pt.Effects.extend([eff_atk_35, eff_critdmg_10])
+        
         #Hyacine
-        skill_hyacine.Effects.extend([eff_hp_30])
-        technique_hyacine.Effects.extend([eff_hp_20])
+        skill_hyacine.Effects.extend([eff_hp_34])
+        #Bailu
+        skill_bailu.Effects.extend([eff_critdmg_15])
         #Huohuo
-        skill_huohuo.Effects.extend([eff_atk_24])
+        skill_huohuo.Effects.extend([eff_atk_24, eff_critdmg_15, eff_energy_15])
+        #Luocha
+        skill_luocha.Effects.extend([eff_critdmg_15])
+        #Lingsha
+        skill_lingsha.Effects.extend([eff_breakeff_20])
         
         # ====================================
         # 6. Commit wszystkich zmian

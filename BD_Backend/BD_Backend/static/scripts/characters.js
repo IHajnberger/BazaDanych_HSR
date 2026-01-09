@@ -114,6 +114,15 @@ function renderCharacters(characters) {
         const tile = document.createElement("div");
         tile.className = `character-tile ${isOwned ? "owned" : "not-owned"}`;
 
+        const skillsHtml = char.Skills && char.Skills.length
+            ? char.Skills.map(skill => `
+                <div class="skill">
+                    <strong>${skill.Name}</strong>
+                    <p>${skill.Description}</p>
+                </div>
+            `).join("")
+            : "<p class='no-skills'>No skills</p>";
+
         tile.innerHTML = `
             <input type="checkbox" ${isOwned ? "checked" : ""}>
 
@@ -122,6 +131,10 @@ function renderCharacters(characters) {
                 <p>Role: ${char.Role}</p>
                 <p>Element: ${char.Element}</p>
                 <p>Path: ${char.Path}</p>
+            </div>
+
+            <div class="skills">
+                ${skillsHtml}
             </div>
         `;
 
