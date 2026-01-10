@@ -237,54 +237,202 @@ def run_seed():
         # ====================================
         
         # ------------------------------------
-        # The DPS Characters
+        # The DPS Characters - place holders
         # ------------------------------------
 
-        # ---- do uzupe³nienia ----
+        # Seele-Fixed
+        skill1_seele= Skill(Name="Sheathed Blade", Description="Deals Quantum DMG to a single enemy. Seele gains big SPD buff for 2 turn(s).", CharacterName="Seele")
+        skill2_seele= Skill(Name="Butterfly Flurry", Description="Seele enters the buffed state and deals Quantum DMG to a single enemy.", CharacterName="Seele")
+        db.session.add_all([skill1_seele, skill2_seele])
+
+        # Yanqing-Fixed
+        skill1_yanqing= Skill(Name="Darting Ironthorn", Description="Deals Ice DMG to a single enemy and activates Soulsteel Sync Link for 1 turn.", CharacterName="Yanqing")
+        skill2_yanqing= Skill(Name="Amidst the Raining Bliss", Description="Increases Yanqing's crit RATE. When Soulsteel Sync is active, increases Yanqing's crit DMG. Afterwards, deals Ice DMG to a single enemy.", CharacterName="Yanqing")
+        db.session.add_all([skill1_yanqing, skill2_yanqing])
+
+        # Feixiao-Fixed
+        skill1_feixiao= Skill(Name="Waraxe", Description="Deals Wind DMG to a target enemy. Then, immediately launches 1 instance of Talent's follow-up attack against the target.", CharacterName="Feixiao")
+        skill2_feixiao= Skill(Name="Terrasplit", Description="Deals increased Wind DMG to a single target enemy. During this time, can ignore Weakness Type to reduce the target's Toughness. During the attack, Feixiao first launches Boltsunder Blitz or Waraxe Skyward on the target, for a total of 6 time(s).", CharacterName="Feixiao")
+        db.session.add_all([skill1_feixiao, skill2_feixiao])
+
+        # Boothill-Fixed
+        skill1_boothill= Skill(Name="Sizzlin' Tango", Description="Forces Boothill and a single target enemy into the Standoff state. Boothill's Basic ATK gets Enhanced, and he cannot use his Skill. After this target is defeated or becomes Weakness Broken, Boothill gains 1 stack of Pocket Trickshot. Each stack of Pocket Trickshot increases the Enhanced Basic Attack's Toughness Reduction", CharacterName="Boothill")
+        skill2_boothill= Skill(Name="Dust Devil's Sunset Rodeo", Description="Applies Physical Weakness to a single target enemy. Deals Physical DMG to the target and delays their action.", CharacterName="Boothill")
+        db.session.add_all([skill1_boothill, skill2_boothill])
+
+        # Topaz-Fixed
+        skill1_topaz= Skill(Name="Difficulty Paying?", Description="Inflicts a single target enemy with a Proof of Debt status, increasing the DMG it takes from follow-up attacks. If there are no enemies inflicted with Proof of Debt on the field when an ally's turn starts or when an ally takes action, Topaz will inflict a random enemy with Proof of Debt", CharacterName="Topaz")
+        skill2_topaz= Skill(Name="Turn a Profit!", Description=" Numby enters the Windfall Bonanza! state and its DMG multiplier and crit DMG increases. Also, when enemies with Proof of Debt are hit by an ally's Basic ATK, Skill, or Ultimate, Numby's action is Advanced Forward.", CharacterName="Topaz")
+        db.session.add_all([skill1_topaz, skill2_topaz])
+
+        # Dr.Ratio-Fixed
+        skill1_drratio= Skill(Name="Intellectual Midwifery", Description="Deals part of Dr. Ratio's ATK as Imaginary DMG to a single target enemy.", CharacterName="Dr.Ratio")
+        skill2_drratio= Skill(Name="Syllogistic Paradox", Description="Deals Imaginary DMG to a single target enemy and applies Wiseman's Folly. When Dr. Ratio's allies attack a target afflicted with Wiseman's Folly, Dr. Ratio launches his Talent's follow-up attack.", CharacterName="Dr.Ratio")
+        db.session.add_all([skill1_drratio, skill2_drratio])
+
+        # Blade-Fixed
+        skill1_blade= Skill(Name="Hellscape", Description="Consumes part HP of Blade's Max HP to enter the Hellscape state. While under this state, his Skill cannot be used, his DMG dealt and the chance of receiving attacks from enemy targets increase.His Basic ATK Shard Sword is enhanced to Forest of Swords.", CharacterName="Blade")
+        skill2_blade= Skill(Name="Death Sentence", Description="Sets Blade's current HP to 50% of his Max HP and deals Wind DMG to one designated enemy and the tally of Blade's HP loss in the current battle. At the same time, deals Wind DMG to adjacent targets.", CharacterName="Blade")
+        db.session.add_all([skill1_blade, skill2_blade])
+
+        # Clara-Fixed
+        skill1_clara= Skill(Name="Svarog Watches Over You", Description="Deals Physical DMG to all enemies, and additionally deals Physical DMG equal to part of Clara's ATK to enemies marked by Svarog with a Mark of Counter.", CharacterName="Clara")
+        skill2_clara= Skill(Name="Promise, Not Command", Description="After Clara uses Ultimate, DMG dealt to her is reduced, and she has greatly increased chance of being attacked by enemies for 2 turn(s). In addition, Svarog's Counter is enhanced, when an ally is attacked, Svarog immediately launches a Counter, and its DMG multiplier on the enemy increases.", CharacterName="Clara")
+        db.session.add_all([skill1_clara, skill2_clara])
+
+        # Imbibitor Lunae-Fixed
+        skill1_imbibitorlunae= Skill(Name="Dracore Libre", Description=" Enhances Basic ATK using skill points. Enhancements may be applied up to 3 times consecutively.", CharacterName="Imbibitor Lunae")
+        skill2_imbibitorlunae= Skill(Name="Azure Aqua's Ablutes All", Description="Uses a 3-hit attack and deals Imaginary DMG to a single target. At the same time, deals Imaginary DMG equal to part of Imbibitor Lunae's ATK to adjacent enemies. Then, obtains 2 Squama Sacrosancta - which can be used to offset Imbibitor Lunae's consumption of skill points.", CharacterName="Imbibitor Lunae")
+        db.session.add_all([skill1_imbibitorlunae, skill2_imbibitorlunae])
+
+        # Jingliu-Fixed
+        skill1_jingliu= Skill(Name="Transcendent Flash | Moon on Glacial River", Description="Deals Ice DMG based on Jingliu's Max HP to one designated enemy and gains 1 stack(s) of Syzygy. When Jingliu has 2 stacks of Syzygy she enters the Spectral Transmigration state. Then Jingliu's Skill is enhanced to Moon On Glacial River. Enhanced skill deals Ice DMG based of Jingliu's Max HP to one designated enemy, and deals additional to adjacent enemies.", CharacterName="Jingliu")
+        skill2_jingliu= Skill(Name="Florephemeral Dreamflux", Description="Deals Ice DMG to one designated enemy, and deals additional Ice DMG equal to their adjacent enemies, gains 1 stack(s) of Syzygy", CharacterName="Jingliu")
+        db.session.add_all([skill1_jingliu, skill2_jingliu])
+
+        # Firefly-Fixed
+        skill1_firefly= Skill(Name="Order: Aerial Bombardment | Fyrefly Type-IV: Deathstar Overload", Description="Consumes part of SAM's Max HP and regenerates a fixed amount of Energy. Deals Fire DMG to a single target enemy. Upon entering the Complete Combustion state gains Enhanced Skill. When enhanced Restores small amount of this unit's Max HP. Applies Fire Weakness to a single target enemy, lasting for 2 turn(s). Deals enchanced Fire DMG to this target. At the same time, deals Fire DMG to adjacent targets.", CharacterName="Firefly")
+        skill2_firefly= Skill(Name="Fyrefly Type-IV: Complete Combustion", Description="Firefly enters the Complete Combustion state enhancing her Basic Attack, Skill and buffing her SPD and Weakness Break efficiency.", CharacterName="Firefly")
+        db.session.add_all([skill1_firefly, skill2_firefly])
+
+        # Yunli-Fixed
+        skill1_yunli= Skill(Name="Bladeborne Quake", Description="Restores small part of Yunli's HP. Deals Physical DMG to a single target enemy and smaller Physical DMG to adjacent targets.", CharacterName="Yunli")
+        skill2_yunli= Skill(Name="Earthbind, Etherbreak", Description="Yunli gains Parry and Taunts all enemies, lasting until the end of the next ally's or enemy's turn also increasing her stats. When triggering the Counter effect from Talent, launches the Counter Intuit: Cull instead and removes the Parry effect. If no Counter is triggered while Parry is active, Yunli will immediately launch the Counter Intuit: Slash on a random enemy target, both dealing Physical DMG of different amount.", CharacterName="Yunli")
+        db.session.add_all([skill1_yunli, skill2_yunli])
+
+        # Mydei
+        skill1_mydei= Skill(Name="Phantom Strike", Description="Deals Imaginary DMG to a single target enemy, inflicting Imaginary Charge.", CharacterName="Mydei")
+        skill2_mydei= Skill(Name="Spectral Onslaught", Description="After using her Skill, Mydei gains Phantom Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Mydei")
+        db.session.add_all([skill1_mydei, skill2_mydei])
+
+        # Phainon
+        skill1_phainon= Skill(Name="Gravity Slash", Description="Deals Physical DMG to a single target enemy, ignoring their Weakness Type to reduce their Toughness.", CharacterName="Phainon")
+        skill2_phainon= Skill(Name="Singularity Crash", Description="After using his Skill, Phainon gains Gravity Charge, increasing his CRIT DMG and DMG dealt.", CharacterName="Phainon")
+        db.session.add_all([skill1_phainon, skill2_phainon])
+
+        # Argenti
+        skill1_argenti= Skill(Name="Tempest Blade", Description="Deals Wind DMG to a single target enemy, inflicting Wind Charge.", CharacterName="Argenti")
+        skill2_argenti= Skill(Name="Hurricane Slash", Description="After using his Skill, Argenti gains Storm Charge, increasing his CRIT DMG and DMG dealt.", CharacterName="Argenti")
+        db.session.add_all([skill1_argenti, skill2_argenti])
+
+        # Himeko
+        skill1_himeko= Skill(Name="Blazing Sword", Description="Deals Fire DMG to a single target enemy, inflicting Burn.", CharacterName="Himeko")
+        skill2_himeko= Skill(Name="Inferno Strike", Description="After using her Skill, Himeko gains Flame Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Himeko")
+        db.session.add_all([skill1_himeko, skill2_himeko])
+
+        # JingYuan
+        skill1_jingyuan= Skill(Name="Thunderous Slash", Description="Deals Lightning DMG to a single target enemy, inflicting Shock.", CharacterName="Jing Yuan")
+        skill2_jingyuan= Skill(Name="Stormbreaker", Description="After using his Skill, Jing Yuan gains Thunder Charge, increasing his CRIT DMG and DMG dealt.", CharacterName="Jing Yuan")
+        db.session.add_all([skill1_jingyuan, skill2_jingyuan])
+
+        # Jade
+        skill1_jade= Skill(Name="Quantum Edge", Description="Deals Quantum DMG to a single target enemy, inflicting Quantum Charge.", CharacterName="Jade")
+        skill2_jade= Skill(Name="Entropic Slash", Description="After using her Skill, Jade gains Quantum Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Jade")
+        db.session.add_all([skill1_jade, skill2_jade])
+
+        # Rappa
+        skill1_rappa= Skill(Name="Void Strike", Description="Deals Imaginary DMG to a single target enemy, inflicting Imaginary Charge.", CharacterName="Rappa")
+        skill2_rappa= Skill(Name="Abyssal Onslaught", Description="After using his Skill, Rappa gains Void Charge, increasing his CRIT DMG and DMG dealt.", CharacterName="Rappa")
+        db.session.add_all([skill1_rappa, skill2_rappa])
+        
+        # The Herta
+        skill1_theherta= Skill(Name="Frost Edge", Description="Deals Ice DMG to a single target enemy, inflicting Frostbite.", CharacterName="The Herta")
+        skill2_theherta= Skill(Name="Glacial Slash", Description="After using her Skill, The Herta gains Glacier Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="The Herta")
+        db.session.add_all([skill1_theherta, skill2_theherta])
+
+        # Anaxa
+        skill1_anaxa= Skill(Name="Gale Blade", Description="Deals Wind DMG to a single target enemy, inflicting Wind Charge.", CharacterName="Anaxa")
+        skill2_anaxa= Skill(Name="Tempest Slash", Description="After using her Skill, Anaxa gains Storm Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Anaxa")
+        db.session.add_all([skill1_anaxa, skill2_anaxa])
+
+        # Aglaea
+        skill1_aglaea= Skill(Name="Lightning Strike", Description="Deals Lightning DMG to a single target enemy, inflicting Shock.", CharacterName="Aglaea")
+        skill2_aglaea= Skill(Name="Thunderclap Assault", Description="After using her Skill, Aglaea gains Thunder Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Aglaea")
+        db.session.add_all([skill1_aglaea, skill2_aglaea])
+
+        # Castorice
+        skill1_castorice= Skill(Name="Quantum Blast", Description="Deals Quantum DMG to a single target enemy, inflicting Quantum Charge.", CharacterName="Castorice")
+        skill2_castorice= Skill(Name="Entropic Barrage", Description="After using her Skill, Castorice gains Quantum Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Castorice")
+        db.session.add_all([skill1_castorice, skill2_castorice])
+
+        # Evernight
+        skill1_evernight= Skill(Name="Frost Nova", Description="Deals Ice DMG to a single target enemy, inflicting Frostbite.", CharacterName="Evernight")
+        skill2_evernight= Skill(Name="Glacial Storm", Description="After using her Skill, Evernight gains Glacier Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Evernight")
+        db.session.add_all([skill1_evernight, skill2_evernight])
+
+        # Kafka
+        skill1_kafka= Skill(Name="Thunder Slash", Description="Deals Lightning DMG to a single target enemy, inflicting Shock.", CharacterName="Kafka")
+        skill2_kafka= Skill(Name="Storm Surge", Description="After using her Skill, Kafka gains Thunder Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Kafka")
+        db.session.add_all([skill1_kafka, skill2_kafka])
+
+        # Welt
+        skill1_welt= Skill(Name="Void Blade", Description="Deals Imaginary DMG to a single target enemy, inflicting Imaginary Charge.", CharacterName="Welt")
+        skill2_welt= Skill(Name="Abyssal Slash", Description="After using his Skill, Welt gains Void Charge, increasing his CRIT DMG and DMG dealt.", CharacterName="Welt")
+        db.session.add_all([skill1_welt, skill2_welt])
+
+        # Black Swan
+        skill1_blackswan= Skill(Name="Gale Strike", Description="Deals Wind DMG to a single target enemy, inflicting Wind Charge.", CharacterName="Black Swan")
+        skill2_blackswan= Skill(Name="Tempest Assault", Description="After using her Skill, Black Swan gains Storm Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Black Swan")
+        db.session.add_all([skill1_blackswan, skill2_blackswan])
+
+        # Acheron
+        skill1_acheron= Skill(Name="Thunder Blade", Description="Deals Lightning DMG to a single target enemy, inflicting Shock.", CharacterName="Acheron")
+        skill2_acheron= Skill(Name="Storm Slash", Description="After using his Skill, Acheron gains Thunder Charge, increasing his CRIT DMG and DMG dealt.", CharacterName="Acheron")
+        db.session.add_all([skill1_acheron, skill2_acheron])
+
+        # Cipher
+        skill1_cipher= Skill(Name="Quantum Strike", Description="Deals Quantum DMG to a single target enemy, inflicting Quantum Charge.", CharacterName="Cipher")
+        skill2_cipher= Skill(Name="Entropic Assault", Description="After using his Skill, Cipher gains Quantum Charge, increasing his CRIT DMG and DMG dealt.", CharacterName="Cipher")
+        db.session.add_all([skill1_cipher, skill2_cipher])
+
+        # Hysilens
+        skill1_hysilens= Skill(Name="Gravity Blade", Description="Deals Physical DMG to a single target enemy, ignoring their Weakness Type to reduce their Toughness.", CharacterName="Hysilens")
+        skill2_hysilens= Skill(Name="Singularity Slash", Description="After using her Skill, Hysilens gains Gravity Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Hysilens")
+        db.session.add_all([skill1_hysilens, skill2_hysilens])
 
         # ------------------------------------
         # The Support Characters
         # ------------------------------------
 
-        # Bronya
-        skill1_bronya = Skill(Name="Combat Redeployment", Description="Boosts ally ATK and advances their action.", CharacterName="Bronya")
-        skill2_bronya = Skill(Name="The Belobog March", Description="Provides team-wide damage buff.", CharacterName="Bronya")
+        # Bronya-Fixed
+        skill1_bronya = Skill(Name="Combat Redeployment", Description="Dispels a debuff from a single ally, allows them to immediately take action, and increases their DMG.", CharacterName="Bronya")
+        skill2_bronya = Skill(Name="The Belobog March", Description=" Increases the ATK of all allies and increases their crit DMG.", CharacterName="Bronya")
         db.session.add_all([skill1_bronya, skill2_bronya])
-        # Sunday
-        skill1_sunday = Skill(Name="Benison of Paper and Rites", Description="Boosts ally DMG, CritRate and advances their action.", CharacterName="Sunday")
-        skill2_sunday = Skill(Name="Ode to Caress and Cicatrix", Description="Regenerates ally energy and increases CritDMG", CharacterName="Sunday")
+        # Sunday-Fixed
+        skill1_sunday = Skill(Name="Benison of Paper and Rites", Description="Enables one designated ally character and their summon to immediately take action, and increases their crit RATE and DMG dealt.", CharacterName="Sunday")
+        skill2_sunday = Skill(Name="Ode to Caress and Cicatrix", Description="Regenerates energy for one designated ally character, and turns the target and their summon into The Beatified increasing their crit DMG.", CharacterName="Sunday")
         db.session.add_all([skill1_sunday, skill2_sunday])
-        #RuanMei
-        skill1_ruanmei = Skill(Name="String Sings Slow Swirls", Description="Ruan Mei gains Overtone, giving all allies DMG and Weakness Break Efficiency boost.", CharacterName="Ruan Mei")
-        skill2_ruanmei = Skill(Name="Inert Respiration", Description="Increases Break Effect and SPD for allies", CharacterName="Ruan Mei")
+        #RuanMei-Fixed
+        skill1_ruanmei = Skill(Name="String Sings Slow Swirls", Description="After using her Skill, Ruan Mei gains Overtone, giving all allies DMG and Weakness Break Efficiency boost.", CharacterName="Ruan Mei")
+        skill2_ruanmei = Skill(Name="Petals to Stream, Repose in Dream", Description="Ruan Mei deploys a field that lasts for 2 turns. While inside the field, all allies' All-Type RES PEN and Break Effect increases.", CharacterName="Ruan Mei")
         db.session.add_all([skill1_ruanmei, skill2_ruanmei])
-        #Sparkle
-        skill1_sparkle = Skill(Name="Dreamdiver", Description="Increases allies' CritDMG and ATK, and at the same time Advances Forward ally's action", CharacterName="Sparkle")
-        skill2_sparkle = Skill(Name="The Hero with a Thousand Faces", Description="Recovers 4 Skill Points for the team and grants all allies DMG boost", CharacterName="Sparkle")
+        #Sparkle-Fixed
+        skill1_sparkle = Skill(Name="Dreamdiver", Description= "Increases the CRIT DMG of a single target ally at the same time Advances Forward this ally's action.", CharacterName="Sparkle")
+        skill2_sparkle = Skill(Name="The Hero with a Thousand Faces", Description="Recovers 4 Skill Points for the team and grants all allies Cipher giving them DMG boost.", CharacterName="Sparkle")
         db.session.add_all([skill1_sparkle, skill2_sparkle])
-        #Robin
-        skill1_robin = Skill(Name="Pinion's Aria", Description="Boosts ally DMG and CritDMG", CharacterName="Robin")
-        skill2_robin =  Skill(Name="Vox Harmonique, Opus Cosmique", Description="Robin enters the Concerto state and gives her allies buffs.", CharacterName="Robin")
+        #Robin-Fixed
+        skill1_robin = Skill(Name="Pinion's Aria", Description="Increase crit DMG and DMG dealt by all allies.", CharacterName="Robin")
+        skill2_robin =  Skill(Name="Vox Harmonique, Opus Cosmique", Description=" Robin enters the Concerto state and makes all other allies immediately take action. While in the Concerto state, increase all allies' ATK and crit DMG.", CharacterName="Robin")
         db.session.add_all([skill1_robin, skill2_robin])
-        #Tribbie
-        skill1_tribbie = Skill(Name="Where'd the Gifts Go", Description="Gains Numinosity, increases all ally targets' All-Type RES PEN", CharacterName="Tribbie")
-        skill2_tribbie = Skill(Name="Guess Who Lives Here", Description="Activates a Zone and deals Quantum DMG, additionaly increases enemy targets' DMG taken", CharacterName="Tribbie")
+        #Tribbie-Fixed
+        skill1_tribbie = Skill(Name="Where'd the Gifts Go", Description="Gains Numinosity, increases all ally targets' All-Type RES PEN.", CharacterName="Tribbie")
+        skill2_tribbie = Skill(Name="Guess Who Lives Here", Description="Activates a Zone and deals Quantum DMG, additionaly increases enemy targets' DMG taken.", CharacterName="Tribbie")
         db.session.add_all([skill1_tribbie, skill2_tribbie])
-        #Cerydra
-        skill1_cerydra = Skill(Name="Pawn's Promotion", Description="Grants Military Merit to one designated ally, buffing the character", CharacterName="Cerydra")
-        skill2_cerydra = Skill(Name="Scholar's Mate", Description="Gains 2 Charge of Military Merit or grants it anew", CharacterName="Cerydra")
+        #Cerydra-Fixed
+        skill1_cerydra = Skill(Name="Pawn's Promotion", Description="Grants Military Merit to one designated ally and gives Cerydra 1 points of Charge. When Charge reaches 6 points, automatically upgrades the character to Peerage increasing their crit DMG and All-Type RES PEN. ", CharacterName="Cerydra")
+        skill2_cerydra = Skill(Name="Scholar's Mate", Description="Gains 2 Charge of Military Merit. If no character on the field has it prioritizes granting it to the first character in the current team.", CharacterName="Cerydra")
         db.session.add_all([skill1_cerydra, skill2_cerydra])
-        #Jiaoqiu
-        skill1_jiaoqiu= Skill(Name="Scorch Onslaught", Description="Deals Fire DMG and inflicts 1 stack of Ashen Roast on the primary target", CharacterName="Jiaoqiu")
-        skill2_jiaoqiu = Skill(Name="Pyrograph Arcanum", Description="Sets the number of Ashen Roast on max, while in zone enemy targets receive higher DMG", CharacterName="Jiaoqiu")
+        #Jiaoqiu-Fixed
+        skill1_jiaoqiu= Skill(Name="Scorch Onslaught", Description="Deals Fire DMG and inflicts 1 stack of Ashen Roast on the primary target.", CharacterName="Jiaoqiu")
+        skill2_jiaoqiu = Skill(Name="Pyrograph Arcanum", Description="Sets the number of Ashen Roast on max, while in zone enemy targets receive higher DMG and constant Fire DoT DMG.", CharacterName="Jiaoqiu")
         db.session.add_all([skill1_jiaoqiu, skill2_jiaoqiu])
-        #Fugue
-        skill1_fugue = Skill(Name="Virtue Beckons Bliss", Description="Grants one designated ally Foxian Prayer, increasing their Break Effect", CharacterName="Fugue")
-        skill2_fugue = Skill(Name="Solar Splendor Shines Upon All", Description="Deals Fire DMG to all enemies", CharacterName="Fugue")
+        #Fugue-Fixed
+        skill1_fugue = Skill(Name="Virtue Beckons Bliss", Description="Grants one designated ally Foxian Prayer. The ally target inflicted with it increases their Break Effect and can also reduce Toughness even when attacking enemies that don't have the corresponding Weakness Type.", CharacterName="Fugue")
+        skill2_fugue = Skill(Name="Solar Splendor Shines Upon All", Description="Deals Fire DMG to all enemies ignoring their Weakness Type to reduce all enemies' Toughness.", CharacterName="Fugue")
         db.session.add_all([skill1_fugue, skill2_fugue])
-        #TheDahlia
-        skill1_thedahlia = Skill(Name="Lick... Enkindled Betrayal", Description="Deploys a Zone, while it lasts increases all allies' Weakness Break Efficiency", CharacterName="The Dahlia")
-        skill2_thedahlia = Skill(Name="Wallow... Entombed Ash", Description="Inflicts a Wilt state on all enemies, reducing their def and implanting Weakness ", CharacterName="The Dahlia")
+        #TheDahlia-Fixed
+        skill1_thedahlia = Skill(Name="Lick... Enkindled Betrayal", Description="Deploys a Zone, while it lasts increases all allies' Weakness Break Efficiency. Toughness Reduction taken by enemy targets while not Weakness Broken can also be converted into Super Break DMG.", CharacterName="The Dahlia")
+        skill2_thedahlia = Skill(Name="Wallow... Entombed Ash", Description="Inflicts a Wilt state on all enemies, reducing their DEF and implanting Weakness.", CharacterName="The Dahlia")
         db.session.add_all([skill1_thedahlia, skill2_thedahlia])
 
         # ------------------------------------
@@ -426,6 +574,8 @@ def run_seed():
         db.session.add(eff_atk_35)
         eff_energy_15= Effect(Name="ENERGY%", Value=15)
         db.session.add(eff_energy_15)
+        eff_atp_15= Effect(Name="ATP%", Value=15)
+        db.session.add(eff_atp_15)
 
         # ====================================
         # 5. Przypisanie efektow do skillow
@@ -438,7 +588,7 @@ def run_seed():
         skill2_sunday.Effects.extend([eff_critdmg_80,eff_energy_20])
         #RuanMei-Fixed
         skill1_ruanmei.Effects.extend([eff_dmg_52, eff_breakeff_50])
-        skill2_ruanmei.Effects.extend([eff_breakeff_50, eff_spd_8])
+        skill2_ruanmei.Effects.extend([eff_breakeff_50, eff_spd_8, eff_atp_15])
         #Sparkle-Fixed
         skill1_sparkle.Effects.extend([eff_critdmg_80, eff_atk_15])
         skill2_sparkle.Effects.extend([eff_critdmg_28, eff_dmg_18])
@@ -461,24 +611,24 @@ def run_seed():
         skill1_thedahlia.Effects.extend([eff_breakeff_50])
         skill2_thedahlia.Effects.extend([eff_breakeff_80])
         
-        #Gepard
+        #Gepard-Fixed
         skill_gepard.Effects.extend([eff_critdmg_15])
-        #FuXuan
+        #FuXuan-Fixed
         skill_fuxuan.Effects.extend([eff_critrate_12, eff_hp_6, eff_critdmg_10])
-        #Aventurine
+        #Aventurine-Fixed
         skill_aventurine.Effects.extend([eff_critdmg_40])
-        #PermansorTerrae
+        #PermansorTerrae-Fixed
         skill_pt.Effects.extend([eff_atk_35, eff_critdmg_10])
         
-        #Hyacine
+        #Hyacine-Fixed
         skill_hyacine.Effects.extend([eff_hp_34])
-        #Bailu
+        #Bailu-Fixed
         skill_bailu.Effects.extend([eff_critdmg_15])
-        #Huohuo
+        #Huohuo-Fixed
         skill_huohuo.Effects.extend([eff_atk_24, eff_critdmg_15, eff_energy_15])
-        #Luocha
+        #Luocha-Fixed
         skill_luocha.Effects.extend([eff_critdmg_15])
-        #Lingsha
+        #Lingsha-Fixed
         skill_lingsha.Effects.extend([eff_breakeff_20])
         
         # ====================================
