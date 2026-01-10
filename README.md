@@ -13,9 +13,10 @@ Dodanie brakujących elementów:
 - [x] opcja wyszukania postaci 
 - [x] wyświetlanie skillów + opisów 
 - [ ] poprawa seed'a
+- [ ] blokada forceowania adresu bez loginu (żeby nie wywalało błędu przy wpisaniu adresu np postaci bez konta)
 
 Poprawienie HTML (css):
-- [ ] login (index.html)
+- [x] login (index.html)
 - [ ] main.html
 - [ ] character.html
 - [ ] teams.html
