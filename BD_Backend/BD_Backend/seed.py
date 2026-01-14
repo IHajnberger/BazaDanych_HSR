@@ -300,94 +300,94 @@ def run_seed():
         skill2_yunli= Skill(Name="Earthbind, Etherbreak", Description="Yunli gains Parry and Taunts all enemies, lasting until the end of the next ally's or enemy's turn also increasing her stats. When triggering the Counter effect from Talent, launches the Counter Intuit: Cull instead and removes the Parry effect. If no Counter is triggered while Parry is active, Yunli will immediately launch the Counter Intuit: Slash on a random enemy target, both dealing Physical DMG of different amount.", CharacterName="Yunli")
         db.session.add_all([skill1_yunli, skill2_yunli])
 
-        # Mydei
-        skill1_mydei= Skill(Name="Phantom Strike", Description="Deals Imaginary DMG to a single target enemy, inflicting Imaginary Charge.", CharacterName="Mydei")
-        skill2_mydei= Skill(Name="Spectral Onslaught", Description="After using her Skill, Mydei gains Phantom Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Mydei")
+        # Mydei-Fixed
+        skill1_mydei= Skill(Name="Deaths are Legion, Regrets are None", Description="Consumes Mydei's HP. Deals Imaginary DMG to one designated enemy and weaker Imaginary DMG to adjacent targets. While enhanced his attack gets stronger based on his max HP", CharacterName="Mydei")
+        skill2_mydei= Skill(Name="Throne of Bones", Description="For each 1% of HP lost, accumulates 1 point of Charge (up to 200 points). When Charge reaches 100, consumes 100 points of Charge to enter the Vendetta state, restores his HP, and advances action. While the Vendetta state is active, Max HP increases and enchances his skill. ", CharacterName="Mydei")
         db.session.add_all([skill1_mydei, skill2_mydei])
 
-        # Phainon
-        skill1_phainon= Skill(Name="Gravity Slash", Description="Deals Physical DMG to a single target enemy, ignoring their Weakness Type to reduce their Toughness.", CharacterName="Phainon")
-        skill2_phainon= Skill(Name="Singularity Crash", Description="After using his Skill, Phainon gains Gravity Charge, increasing his CRIT DMG and DMG dealt.", CharacterName="Phainon")
+        # Phainon-Fixed
+        skill1_phainon= Skill(Name="Let There Be Light", Description="Gains 2 point(s) of Coreflame, dealing strong Physical DMG to one designated enemy and weaker Physical DMG to adjacent targets. While in Khaslana state, his skills get enchanced.", CharacterName="Phainon")
+        skill2_phainon= Skill(Name="He Who Bears the World Must Burn", Description="Transforms into Khaslana. During the transformation, deploys the Territory Ruinous Irontomb. Within it, other teammates depart and cannot take action, and all enemies have Physical Weaknesses. Khaslana does not enter his own turn, but has 8 extra turn's. When the last of Khaslana's extra turns starts, immediately launches a final hit and deals massive Physical Ultimate DMG.", CharacterName="Phainon")
         db.session.add_all([skill1_phainon, skill2_phainon])
 
-        # Argenti
-        skill1_argenti= Skill(Name="Tempest Blade", Description="Deals Wind DMG to a single target enemy, inflicting Wind Charge.", CharacterName="Argenti")
-        skill2_argenti= Skill(Name="Hurricane Slash", Description="After using his Skill, Argenti gains Storm Charge, increasing his CRIT DMG and DMG dealt.", CharacterName="Argenti")
+        # Argenti-Fixed
+        skill1_argenti= Skill(Name="Justice, Hereby Blooms", Description="Deals Physical DMG to all enemies.", CharacterName="Argenti")
+        skill2_argenti= Skill(Name="For In This Garden, Supreme Beauty Bestows", Description="Consumes half of his Energy to deal Physical DMG to all enemies. While consuming more Energy, his ultimates deals higher Physical DMG.", CharacterName="Argenti")
         db.session.add_all([skill1_argenti, skill2_argenti])
 
-        # Himeko
-        skill1_himeko= Skill(Name="Blazing Sword", Description="Deals Fire DMG to a single target enemy, inflicting Burn.", CharacterName="Himeko")
-        skill2_himeko= Skill(Name="Inferno Strike", Description="After using her Skill, Himeko gains Flame Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Himeko")
+        # Himeko-Fixed
+        skill1_himeko= Skill(Name="Molten Detonation", Description="Deals higher Fire DMG to a single enemy and weaker Fire DMG to enemies adjacent to it.", CharacterName="Himeko")
+        skill2_himeko= Skill(Name="Heavenly Flare", Description="Deals equal Fire DMG to all enemies. Himeko additionally regenerates Energy for each enemy defeated.", CharacterName="Himeko")
         db.session.add_all([skill1_himeko, skill2_himeko])
 
-        # JingYuan
-        skill1_jingyuan= Skill(Name="Thunderous Slash", Description="Deals Lightning DMG to a single target enemy, inflicting Shock.", CharacterName="Jing Yuan")
-        skill2_jingyuan= Skill(Name="Stormbreaker", Description="After using his Skill, Jing Yuan gains Thunder Charge, increasing his CRIT DMG and DMG dealt.", CharacterName="Jing Yuan")
+        # JingYuan-Fixed
+        skill1_jingyuan= Skill(Name="Rifting Zenith", Description=" Deals Lightning DMG to all enemies and increases Lightning-Lord's Hits Per Action by 2 for the next turn.", CharacterName="Jing Yuan")
+        skill2_jingyuan= Skill(Name="Lightbringer", Description="Deals Lightning DMG equal to all enemies and increases Lightning-Lord's Hits Per Action by 3 for the next turn.", CharacterName="Jing Yuan")
         db.session.add_all([skill1_jingyuan, skill2_jingyuan])
 
-        # Jade
-        skill1_jade= Skill(Name="Quantum Edge", Description="Deals Quantum DMG to a single target enemy, inflicting Quantum Charge.", CharacterName="Jade")
-        skill2_jade= Skill(Name="Entropic Slash", Description="After using her Skill, Jade gains Quantum Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Jade")
+        # Jade-Fixed
+        skill1_jade= Skill(Name="Acquisition Surety", Description="Makes a single target ally become the Debt Collector and increases their SPD lasting for 3 turn(s).After the Debt Collector attacks, deals 1 instance of Additional Quantum DMG to each enemy target hit, and consumes tiny amount of the Debt Collector's HP", CharacterName="Jade")
+        skill2_jade= Skill(Name="Vow of the Deep", Description="Deals high Quantum DMG to all enemies. At the same time, Jade enhances her Talent's follow-up attack, increasing its DMG multiplier. This enhancement can trigger 2 time(s).", CharacterName="Jade")
         db.session.add_all([skill1_jade, skill2_jade])
 
-        # Rappa
-        skill1_rappa= Skill(Name="Void Strike", Description="Deals Imaginary DMG to a single target enemy, inflicting Imaginary Charge.", CharacterName="Rappa")
-        skill2_rappa= Skill(Name="Abyssal Onslaught", Description="After using his Skill, Rappa gains Void Charge, increasing his CRIT DMG and DMG dealt.", CharacterName="Rappa")
+        # Rappa-Fixed
+        skill1_rappa= Skill(Name="Ninja Strike: Rooted Resolute", Description="Deals Imaginary DMG equal to all enemies.", CharacterName="Rappa")
+        skill2_rappa= Skill(Name="Nindo Supreme: Aishiteru", Description="Enters the Sealform state, gains 1 extra turn, obtains 3 points of Chroma Ink increasing her Weakness Break Efficiency and Break Effect. While in the Sealform state, gains Enhanced Basic ATK, and Skill and Ultimate cannot be used. After using Enhanced Basic ATK, consumes 1 point of Chroma Ink. When Chroma Ink is depleted, exit the Sealform state.", CharacterName="Rappa")
         db.session.add_all([skill1_rappa, skill2_rappa])
         
-        # The Herta
-        skill1_theherta= Skill(Name="Frost Edge", Description="Deals Ice DMG to a single target enemy, inflicting Frostbite.", CharacterName="The Herta")
-        skill2_theherta= Skill(Name="Glacial Slash", Description="After using her Skill, The Herta gains Glacier Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="The Herta")
+        # The Herta-Fixed
+        skill1_theherta= Skill(Name="Big Brain Energy | Hear Me Out", Description="Deals Ice DMG to one designated enemy, and inflicts 1 stack(s) of Interpretation stacks. Deals smaller part of Ice DMG to the targets hit by this instance of skill and their respective adjacent targets. While enchanced consumes 1 stack of Inspiration dealing higher DMG.", CharacterName="The Herta")
+        skill2_theherta= Skill(Name="Told Ya! Magic Happens", Description="Rearranges the number of Interpretation stacks on all enemies, prioritizing the transfer of a higher number of Interpretation stacks to Elite-level targets and above. Then, deals high Ice DMG to all enemies. ", CharacterName="The Herta")
         db.session.add_all([skill1_theherta, skill2_theherta])
 
-        # Anaxa
-        skill1_anaxa= Skill(Name="Gale Blade", Description="Deals Wind DMG to a single target enemy, inflicting Wind Charge.", CharacterName="Anaxa")
-        skill2_anaxa= Skill(Name="Tempest Slash", Description="After using her Skill, Anaxa gains Storm Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Anaxa")
+        # Anaxa-Fixed
+        skill1_anaxa= Skill(Name="Fractal, Exiles Falacy", Description="Deals Wind DMG to one designated enemy and additionally deals 4 instance(s) of DMG. Each instance of DMG deals Wind DMG equal DMG to one random enemy, prioritizing Bouncing to enemy targets that have not been hit by this instance of Skill.", CharacterName="Anaxa")
+        skill2_anaxa= Skill(Name="Sprouting Life Sculpts Earth", Description="nflicts the Sublimation state on all enemies, then deals high Wind DMG to all enemies. In the Sublimation state, the targets will be simultaneously inflicted with Physical, Fire, Ice, Lightning, Wind, Quantum, and Imaginary Weaknesses, lasting until the start of the targets' turn.", CharacterName="Anaxa")
         db.session.add_all([skill1_anaxa, skill2_anaxa])
 
-        # Aglaea
-        skill1_aglaea= Skill(Name="Lightning Strike", Description="Deals Lightning DMG to a single target enemy, inflicting Shock.", CharacterName="Aglaea")
-        skill2_aglaea= Skill(Name="Thunderclap Assault", Description="After using her Skill, Aglaea gains Thunder Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Aglaea")
+        # Aglaea-Fixed
+        skill1_aglaea= Skill(Name="Rise, Exalted Renown", Description="Restores HP to Garmentmaker. If Garmentmaker is absent, then summons the memosprite Garmentmaker and makes this unit immediately take action.", CharacterName="Aglaea")
+        skill2_aglaea= Skill(Name="Dance, Destined Weaveress", Description="Summons the memosprite Garmentmaker. If Garmentmaker is already on the field, then restores its HP to max. Aglaea enters the Supreme Stance state and immediately takes action. While in Supreme Stance, Aglaea gains the SPD Boost stacks from Garmentmaker's Memosprite Talent, with each stack increasing this unit's SPD. During the Stance her attack gets enchanced.", CharacterName="Aglaea")
         db.session.add_all([skill1_aglaea, skill2_aglaea])
 
-        # Castorice
-        skill1_castorice= Skill(Name="Quantum Blast", Description="Deals Quantum DMG to a single target enemy, inflicting Quantum Charge.", CharacterName="Castorice")
-        skill2_castorice= Skill(Name="Entropic Barrage", Description="After using her Skill, Castorice gains Quantum Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Castorice")
+        # Castorice-Fixed
+        skill1_castorice= Skill(Name="Silence, Wraithfly's Caress | Boneclaw, Doomdrake's Embrace", Description="Consumes part of all allies' current HP. Deals Quantum DMG to one designated enemy and slightly weaker Quantum DMG to adjacent targets. If Netherwing is on the battlefield, consumes part of all allies' current HP allowing Castorice and Netherwing to launch a Joint ATK on the target and deal higher Quantum DMG to all enemies.", CharacterName="Castorice")
+        skill2_castorice= Skill(Name="Doomshriek, Dawn's Chime", Description="Summons the memosprite Netherwing and advances its action by 100%. At the same time, creates the Territory Lost Netherland, which decreases all enemies' All-Type RES.", CharacterName="Castorice")
         db.session.add_all([skill1_castorice, skill2_castorice])
 
-        # Evernight
-        skill1_evernight= Skill(Name="Frost Nova", Description="Deals Ice DMG to a single target enemy, inflicting Frostbite.", CharacterName="Evernight")
-        skill2_evernight= Skill(Name="Glacial Storm", Description="After using her Skill, Evernight gains Glacier Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Evernight")
+        # Evernight-Fixed
+        skill1_evernight= Skill(Name="Day Gently Slips", Description="Consumes small part of Evernight's current HP to summon memosprite Evey and increases CRIT DMG of all ally memosprites for 2 turn(s).", CharacterName="Evernight")
+        skill2_evernight= Skill(Name="O Wakeful World, Goodnight", Description="Summons memosprite Evey, then memosprite Evey deals high Ice DMG based on Evey's Max HP to all enemies, and causes Evernight to enter the Darkest Riddle state. During this state, the DMG received by all enemies increases and the DMG dealt by Evernight and memosprite Evey also increases.", CharacterName="Evernight")
         db.session.add_all([skill1_evernight, skill2_evernight])
 
-        # Kafka
-        skill1_kafka= Skill(Name="Thunder Slash", Description="Deals Lightning DMG to a single target enemy, inflicting Shock.", CharacterName="Kafka")
-        skill2_kafka= Skill(Name="Storm Surge", Description="After using her Skill, Kafka gains Thunder Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Kafka")
+        # Kafka-Fixed
+        skill1_kafka= Skill(Name="Caressing Moonlight", Description="Deals high Lightning DMG to a target enemy and weaker Lightning DMG to enemies adjacent to it. If the designated enemy or the adjacent targets are currently afflicted with DoT, all DoTs currently placed on those enemies immediately produces DMG.", CharacterName="Kafka")
+        skill2_kafka= Skill(Name="Twilight Trill", Description="Deals Lightning DMG to all enemies, with a 100% base chance for enemies hit to become Shocked and immediately take DMG from their current Shock state. Shock lasts for 2 turn(s). While Shocked, enemies receive high Lightning DOT at the beginning of each turn.", CharacterName="Kafka")
         db.session.add_all([skill1_kafka, skill2_kafka])
 
-        # Welt
-        skill1_welt= Skill(Name="Void Blade", Description="Deals Imaginary DMG to a single target enemy, inflicting Imaginary Charge.", CharacterName="Welt")
-        skill2_welt= Skill(Name="Abyssal Slash", Description="After using his Skill, Welt gains Void Charge, increasing his CRIT DMG and DMG dealt.", CharacterName="Welt")
+        # Welt-Fixed
+        skill1_welt= Skill(Name="Edge of the Void", Description="Deals Imaginary DMG to a single enemy and further deals DMG 2 extra times, with each time dealing Imaginary DMG to a random enemy. On hit, there is a high base chance to reduce the enemy's SPD.", CharacterName="Welt")
+        skill2_welt= Skill(Name="Synthetic Black Hole", Description="Deals Imaginary DMG to all enemies, with a 100% base chance for enemies hit by this ability to be Imprisoned for 1 turn. Imprisoned enemies have their actions delayed and SPD reduced.", CharacterName="Welt")
         db.session.add_all([skill1_welt, skill2_welt])
 
-        # Black Swan
-        skill1_blackswan= Skill(Name="Gale Strike", Description="Deals Wind DMG to a single target enemy, inflicting Wind Charge.", CharacterName="Black Swan")
-        skill2_blackswan= Skill(Name="Tempest Assault", Description="After using her Skill, Black Swan gains Storm Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Black Swan")
+        # Black Swan-Fixed
+        skill1_blackswan= Skill(Name="Decadence, False Twilight", Description="Deals Wind DMG to a single target enemy and any adjacent targets. At the same time, there is a 100% base chance of inflicting 1 stack of Arcana on the target enemy and the adjacent targets. Additionally, there is a 100% base chance of reducing the DEF of the target enemy and the adjacent targets.", CharacterName="Black Swan")
+        skill2_blackswan= Skill(Name="Bliss of Other World's Embrace", Description=" Inflicts Epiphany on all enemies for 2 turn(s). While afflicted with Epiphany, enemies take increased DMG in their turn. Additionally, if enemies are also inflicted with Arcana, they are considered to be simultaneously afflicted with Wind Shear, Bleed, Burn, and Shock. Deals Wind DMG to all enemies.", CharacterName="Black Swan")
         db.session.add_all([skill1_blackswan, skill2_blackswan])
 
-        # Acheron
-        skill1_acheron= Skill(Name="Thunder Blade", Description="Deals Lightning DMG to a single target enemy, inflicting Shock.", CharacterName="Acheron")
-        skill2_acheron= Skill(Name="Storm Slash", Description="After using his Skill, Acheron gains Thunder Charge, increasing his CRIT DMG and DMG dealt.", CharacterName="Acheron")
+        # Acheron-Fixed
+        skill1_acheron= Skill(Name="Octobolt Flash", Description="Gains 1 point(s) of Slashed Dream. Inflicts 1 stack(s) of Crimson Knot on a single target enemy and deals Lightning DMG, as well as weaker DMG to adjacent targets.", CharacterName="Acheron")
+        skill2_acheron= Skill(Name="Slashed Dream Cries in Red", Description="Sequentially unleash Rainblade 3 times and Stygian Resurge 1 time, dealing very high Lightning DMG up to a single target enemy, as well as to other targets.", CharacterName="Acheron")
         db.session.add_all([skill1_acheron, skill2_acheron])
 
-        # Cipher
-        skill1_cipher= Skill(Name="Quantum Strike", Description="Deals Quantum DMG to a single target enemy, inflicting Quantum Charge.", CharacterName="Cipher")
-        skill2_cipher= Skill(Name="Entropic Assault", Description="After using his Skill, Cipher gains Quantum Charge, increasing his CRIT DMG and DMG dealt.", CharacterName="Cipher")
+        # Cipher-Fixed
+        skill1_cipher= Skill(Name="Hey, Jackpot for the Taking", Description="Has a guaranteed chance to Weaken one designated enemy and its adjacent targets decreasing their DMG dealt and increases Cipher's ATK, lasting for 2 turn(s). Moreover, deals high Quantum DMG equal to one designated enemy, and Quantum DMG equal to the adjacent targets.", CharacterName="Cipher")
+        skill2_cipher= Skill(Name="Yours Truly, Kitty Phantom Thief!", Description="Deals Quantum DMG to one designated enemy. Then, deals True DMG based on the current tally kept by Talent to the one designated enemy. Moreover, deals additiona Quantum DMG alongside True DMG of the current tally kept by Talent to the one designated enemy and its adjacent targets.", CharacterName="Cipher")
         db.session.add_all([skill1_cipher, skill2_cipher])
 
-        # Hysilens
-        skill1_hysilens= Skill(Name="Gravity Blade", Description="Deals Physical DMG to a single target enemy, ignoring their Weakness Type to reduce their Toughness.", CharacterName="Hysilens")
-        skill2_hysilens= Skill(Name="Singularity Slash", Description="After using her Skill, Hysilens gains Gravity Charge, increasing her CRIT DMG and DMG dealt.", CharacterName="Hysilens")
+        # Hysilens-Fixed
+        skill1_hysilens= Skill(Name="Overtone Hum: Chorus After Dark Tides", Description="Has a 100% base chance to increase the DMG taken by all enemies, lasting for 3 turn(s). At the same time, deals Physical DMG equal to all enemies.", CharacterName="Hysilens")
+        skill2_hysilens= Skill(Name="Maelstrom Rhapsody", Description="Hysilens deploys a Zone that reduces enemy targets' ATK and DEF, dealing Physical DMG to all enemies. For every 1 instance of DoT taken by an enemy target within the Zone, Hysilens deals additional Physical DoT to them.", CharacterName="Hysilens")
         db.session.add_all([skill1_hysilens, skill2_hysilens])
 
         # ------------------------------------
