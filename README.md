@@ -12,7 +12,7 @@ Dodanie brakujących elementów:
 - [x] filtrowanie przez postacie (via path, element, class itp)
 - [x] opcja wyszukania postaci 
 - [x] wyświetlanie skillów + opisów 
-- [ ] poprawa seed'a
+- [x] poprawa seed'a
 - [ ] blokada forceowania adresu bez loginu (żeby nie wywalało błędu przy wpisaniu adresu np postaci bez konta)
 
 Poprawienie HTML (css):
@@ -41,7 +41,6 @@ Poprawienie HTML (css):
      - **main.js**
      - **characters.js**
      - **teams.js**
-     - reszta jest stworzona przez Flask przy generowaniu projektu, nie tykam bo nie wiem czy coś jest potrzebne czy nie tbh
 4. **templates** - folder składujący pliki o formacie .html
      - **index.html**
      - **mains.html**
