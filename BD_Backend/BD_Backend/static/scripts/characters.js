@@ -7,12 +7,10 @@ const container = document.getElementById("charactersContainer");
 const userId = localStorage.getItem("user_id");
 
 const searchInput = document.getElementById("searchInput");
-const filterToggle = document.getElementById("filterToggle");
 const filtersPanel = document.getElementById("filtersPanel");
 
-const filterPath = document.getElementById("filterPath");
-const filterRole = document.getElementById("filterRole");
-const filterElement = document.getElementById("filterElement");
+// PRZYCISKI FILTRÓW
+const filterGroups = document.querySelectorAll(".filter-group");
 
 if (!userId) {
     window.location.replace("/");
@@ -24,23 +22,18 @@ if (!userId) {
 let allCharacters = [];
 let ownedCharacters = new Set();
 
+let activeFilters = {
+    path: null,
+    role: null,
+    element: null
+};
+
 // =====================
 // NAV
 // =====================
 function goBack() {
     window.location.href = "/main";
 }
-
-filterToggle.onclick = () => {
-    const isHidden = filtersPanel.classList.contains("hidden");
-
-    if (isHidden) {
-        filtersPanel.classList.remove("hidden");
-        filterToggle.textContent = "Clear";
-    } else {
-        clearFilters();
-    }
-};
 
 // =====================
 // LOAD DATA
@@ -53,7 +46,6 @@ async function loadAllCharacters() {
 async function loadOwnedCharacters() {
     const res = await fetch(`/api/users/${userId}/characters`);
     const owned = await res.json();
-
     ownedCharacters = new Set(owned.map(c => c.Name));
 }
 
@@ -64,9 +56,6 @@ function applyFilters() {
     let result = [...allCharacters];
 
     const search = searchInput.value.toLowerCase();
-    const path = filterPath.value;
-    const role = filterRole.value;
-    const element = filterElement.value;
 
     if (search) {
         result = result.filter(c =>
@@ -74,33 +63,41 @@ function applyFilters() {
         );
     }
 
-    if (path) {
-        result = result.filter(c => c.Path === path);
+    if (activeFilters.path) {
+        result = result.filter(c => c.Path === activeFilters.path);
     }
 
-    if (role) {
-        result = result.filter(c => c.Role === role);
+    if (activeFilters.role) {
+        result = result.filter(c => c.Role === activeFilters.role);
     }
 
-    if (element) {
-        result = result.filter(c => c.Element === element);
+    if (activeFilters.element) {
+        result = result.filter(c => c.Element === activeFilters.element);
     }
 
     renderCharacters(result);
 }
 
-function clearFilters() {
-    searchInput.value = "";
-    filterPath.value = "";
-    filterRole.value = "";
-    filterElement.value = "";
-
-    filtersPanel.classList.add("hidden");
-    filterToggle.textContent = "Filters";
-
-    renderCharacters(allCharacters);
+// =====================
+// Image helpers
+// =====================
+function characterImage(name) {
+    return `/static/img/characters_large/${name.toLowerCase()}.png`;
 }
 
+function elementImage(element) {
+    return `/static/img/element/${element.toLowerCase()}.webp`;
+}
+
+function pathImage(path) {
+    return `/static/img/path/${path.toLowerCase()}.webp`;
+}
+
+function displayName(name) {
+    return name
+        .replace(/_/g, " ")
+        .replace(/\b\w/g, c => c.toUpperCase());
+}
 
 // =====================
 // RENDER
@@ -113,28 +110,35 @@ function renderCharacters(characters) {
 
         const tile = document.createElement("div");
         tile.className = `character-tile ${isOwned ? "owned" : "not-owned"}`;
-
-        const skillsHtml = char.Skills && char.Skills.length
-            ? char.Skills.map(skill => `
-                <div class="skill">
-                    <strong>${skill.Name}</strong>
-                    <p>${skill.Description}</p>
-                </div>
-            `).join("")
-            : "<p class='no-skills'>No skills</p>";
+        tile.style.position = "relative";
 
         tile.innerHTML = `
             <input type="checkbox" ${isOwned ? "checked" : ""}>
 
-            <div class="info">
-                <h3>${char.Name}</h3>
-                <p>Role: ${char.Role}</p>
-                <p>Element: ${char.Element}</p>
-                <p>Path: ${char.Path}</p>
-            </div>
+            <div class="image">
+                <img src="${characterImage(char.Name)}"
+                     alt="${displayName(char.Name)}"
+                     onerror="this.src='/static/img/characters_large/placeholder.png'">
 
-            <div class="skills">
-                ${skillsHtml}
+                <!-- Nazwa postaci na dole grafiki -->
+                <div class="image-title">${displayName(char.Name)}</div>
+
+                <!-- Atrybuty w lewym górnym rogu -->
+                <div class="attribute-icons">
+                    <img src="${elementImage(char.Element)}" alt="${char.Element}">
+                    <img src="${pathImage(char.Path)}" alt="${char.Path}">
+                </div>
+
+                <!-- Tooltip z tekstowymi informacjami -->
+                <div class="info-tooltip">
+                    <p><strong>Role:</strong> ${char.Role}</p>
+                    <p><strong>Element:</strong> ${char.Element}</p>
+                    <p><strong>Path:</strong> ${char.Path}</p>
+                    <strong>Skills:</strong>
+                    <ul class="skills-names">
+                        ${char.Skills.map(skill => `<li>${skill.Name}: ${skill.Description}</li>`).join("")}
+                    </ul>
+                </div>
             </div>
         `;
 
@@ -144,9 +148,17 @@ function renderCharacters(characters) {
             toggleCharacter(char.Name, checkbox.checked);
         });
 
+        tile.addEventListener("click", e => {
+            if (e.target.tagName !== "INPUT") {
+                checkbox.checked = !checkbox.checked;
+                toggleCharacter(char.Name, checkbox.checked);
+            }
+        });
+
         container.appendChild(tile);
     });
 }
+
 
 // =====================
 // OWN / UNOWN
@@ -158,13 +170,11 @@ async function toggleCharacter(name, checked) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ Name: name })
         });
-
         ownedCharacters.add(name);
     } else {
         await fetch(`/api/users/${userId}/characters/${name}`, {
             method: "DELETE"
         });
-
         ownedCharacters.delete(name);
     }
 
@@ -175,9 +185,28 @@ async function toggleCharacter(name, checked) {
 // EVENTS
 // =====================
 searchInput.addEventListener("input", applyFilters);
-filterPath.addEventListener("change", applyFilters);
-filterRole.addEventListener("change", applyFilters);
-filterElement.addEventListener("change", applyFilters);
+
+// FILTRY PRZYCISKOWE
+filterGroups.forEach(group => {
+    const filterType = group.dataset.filter;
+
+    group.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => {
+
+            group.querySelectorAll("button")
+                .forEach(b => b.classList.remove("active"));
+
+            if (activeFilters[filterType] === btn.dataset.value) {
+                activeFilters[filterType] = null;
+            } else {
+                btn.classList.add("active");
+                activeFilters[filterType] = btn.dataset.value;
+            }
+
+            applyFilters();
+        });
+    });
+});
 
 // =====================
 // INIT
@@ -185,14 +214,14 @@ filterElement.addEventListener("change", applyFilters);
 async function init() {
     await loadAllCharacters();
     await loadOwnedCharacters();
-    renderCharacters(allCharacters); // ⬅️ WSZYSTKIE NA START
-    filterToggle.textContent = "Filters";
-    filtersPanel.classList.add("hidden");
+    renderCharacters(allCharacters);
 }
+init();
+
 window.addEventListener("pageshow", () => {
     const userId = localStorage.getItem("user_id");
     if (!userId) {
         window.location.replace("/");
     }
 });
-init();
+
