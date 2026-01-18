@@ -12,58 +12,108 @@
 <body>
 
     <header class="top-bar">
-        <h2>Characters</h2>
-        <button class="back-btn" onclick="goBack()">Back</button>
-    </header>
+        <img src="/static/img/arrow_left.png"
+             class="back-arrow"
+             onclick="goBack()">
+        <h2 style="color: #eaeaea ">Characters</h2>
 
-    <section class="characters-toolbar">
 
         <input type="text"
                id="searchInput"
                placeholder="Search character...">
+    </header>
+    <div class="wide-background">
+        <section class="characters-toolbar">
 
-        <button id="filterToggle">Filters</button>
+            <div id="filtersPanel" class="filters-panel hidden">
+                <div class="filter-group" data-filter="element">
+                    <span style="color: #eaeaea ">Combat type: </span>
 
-        <div id="filtersPanel" class="filters-panel hidden">
+                    <button class="filter-circle" data-value="Quantum">
+                        <img src="/static/img/element/quantum.webp">
+                    </button>
 
-            <select id="filterPath">
-                <option value="" disabled selected>Path</option>
-                <option>Hunt</option>
-                <option>Destruction</option>
-                <option>Erudition</option>
-                <option>Remembrance</option>
-                <option>Nihility</option>
-                <option>Harmony</option>
-                <option>Preservation</option>
-                <option>Abundance</option>
-            </select>
+                    <button class="filter-circle" data-value="Phsycial">
+                        <img src="/static/img/element/physcial.webp">
+                    </button>
 
-            <select id="filterRole">
-                <option value="" disabled selected>Role</option>
-                <option>DPS</option>
-                <option>Support</option>
-                <option>Sustain</option>
-            </select>
 
-            <select id="filterElement">
-                <option value="" disabled selected>Element</option>
-                <option>Lightning</option>
-                <option>Fire</option>
-                <option>Wind</option>
-                <option>Quantum</option>
-                <option>Physical</option>
-                <option>Imaginary</option>
-                <option>Ice</option>
-            </select>
+                    <button class="filter-circle" data-value="Wind">
+                        <img src="/static/img/element/wind.webp">
+                    </button>
 
-        </div>
-    </section>
+                    <button class="filter-circle" data-value="Fire">
+                        <img src="/static/img/element/fire.webp">
+                    </button>
 
-    <!-- CHARACTERS -->
-    <main class="characters-container" id="charactersContainer">
 
-    </main>
+                    <button class="filter-circle" data-value="Imaginary">
+                        <img src="/static/img/element/imaginary.webp">
+                    </button>
 
+
+                    <button class="filter-circle" data-value="Electro">
+                        <img src="/static/img/element/electro.webp">
+                    </button>
+
+                    <button class="filter-circle" data-value="Ice">
+                        <img src="/static/img/element/ice.webp">
+                    </button>
+
+
+                </div>
+                <div class="filter-group" data-filter="path">
+                    <span style="color: #eaeaea ">Path:</span>
+
+                    <button class="filter-circle" data-value="Destruction">
+                        <img src="/static/img/path/destruction.webp">
+                    </button>
+
+                    <button class="filter-circle" data-value="Hunt">
+                        <img src="/static/img/path/hunt.webp">
+                    </button>
+
+                    <button class="filter-circle" data-value="Erudition">
+                        <img src="/static/img/path/euridance.webp">
+                    </button>
+
+                    <button class="filter-circle" data-value="Harmony">
+                        <img src="/static/img/path/harmony.webp">
+                    </button>
+
+                    <button class="filter-circle" data-value="Nihility">
+                        <img src="/static/img/path/nihility.webp">
+                    </button>
+
+                    <button class="filter-circle" data-value="Preservation">
+                        <img src="/static/img/path/preservance.webp">
+                    </button>
+
+                    <button class="filter-circle" data-value="Abundance">
+                        <img src="/static/img/path/abundance.webp">
+                    </button>
+
+                    <button class="filter-circle" data-value="Remembrance">
+                        <img src="/static/img/path/rememberance.webp">
+                    </button>
+                </div>
+
+
+                <div class="filter-group role-group" data-filter="role">
+                    <span style="color: #eaeaea ">Role:</span>
+                    <button class="filter-role" data-value="DPS">DPS</button>
+                    <button class="filter-role" data-value="Sustain">Sustain</button>
+                    <button class="filter-role" data-value="Support">Support</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CHARACTERS -->
+        <main class="characters-container" id="charactersContainer">
+
+        </main>
+    </div>
     <!-- JS -->
     <script src="{{ url_for('static', filename='scripts/characters.js') }}"></script>
 
