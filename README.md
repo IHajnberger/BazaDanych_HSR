@@ -18,7 +18,7 @@ Dodanie brakujących elementów:
 Poprawienie HTML (css):
 - [x] login (index.html)
 - [ ] main.html
-- [ ] character.html
+- [x] character.html
 - [ ] teams.html
 
  > [!IMPORTANT]
