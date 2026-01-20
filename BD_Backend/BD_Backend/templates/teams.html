@@ -4,79 +4,96 @@
     <meta charset="UTF-8">
     <title>Teams</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico"> <!-- icon -->
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
     
-    <!-- Teams style -->
+   
     <link rel="stylesheet" href="{{ url_for('static', filename='css/teams.css') }}">
 </head>
 <body>
 
     <header class="top-bar">
-        <h1>My Teams</h1>
-        <button onclick="goBack()">Back</button>
+        <img src="/static/img/arrow_left.png"
+             class="back-arrow"
+             onclick="goBack()">
+        <h2 style="color: #eaeaea ">My Teams</h2>
+
     </header>
 
     <main>
 
-        <!-- TEAM BUILDER -->
-        <section class="team-builder">
+       
+        <div class="wide-background">
+            <section class="team-builder">
 
-            <div class="builder-header">
-                <h2 id="builderTitle">Create Team</h2>
-            </div>
-
-            <!-- TEAM NAME -->
-            <div class="builder-section">
-                <label>Team name</label>
-                <input id="teamNameInput" placeholder="e.g. Seele Hypercarry">
-            </div>
-
-            <!-- BUILDER GRID -->
-            <div class="builder-grid">
-
-                <!-- DPS -->
-                <div class="builder-column">
-                    <label>DPS</label>
-                    <select id="dpsSelect">
-                        <option value="">-- choose DPS --</option>
-                    </select>
+                <div class="builder-header">
+                    <h2 id="builderTitle">Create Team</h2>
                 </div>
 
-                <!-- SUPPORTS -->
-                <div class="builder-column">
-                    <h3>Supports</h3>
-                    <div id="supportSuggestions" class="suggestions"></div>
+               
+                <div class="builder-section">
+                    <label>Team name</label>
+                    <input id="teamNameInput" placeholder="e.g. Seele Hypercarry">
                 </div>
 
-                <!-- SUSTAINS -->
-                <div class="builder-column">
-                    <h3>Sustain</h3>
-                    <div id="sustainSuggestions" class="suggestions"></div>
+               
+                <div class="builder-grid">
+
+                   
+                    <div class="builder-column">
+                        <label>DPS</label>
+                        <select id="dpsSelect">
+                            <option value="">-- choose DPS --</option>
+                        </select>
+                    </div>
+
+                   
+                    <div class="builder-column">
+                        <h3>Supports</h3>
+                        <div id="supportSuggestions" class="suggestions"></div>
+                    </div>
+
+                    
+                    <div class="builder-column">
+                        <h3>Sustain</h3>
+                        <div id="sustainSuggestions" class="suggestions"></div>
+                    </div>
+
                 </div>
 
+               
+                <div class="selected-preview">
+                    <div><strong>DPS</strong><span id="selectedDps">-</span></div>
+                    <div><strong>Support 1</strong><span id="selectedSupport1">-</span></div>
+                    <div><strong>Support 2</strong><span id="selectedSupport2">-</span></div>
+                    <div><strong>Sustain</strong><span id="selectedSustain">-</span></div>
+                </div>
+
+                <button id="readyBtn" disabled>Ready</button>
+
+            </section>
+
+           
+            <section class="teams-section">
+                <h2><img src="/static/img/gwiazdka.png"
+     class="gwiazdka" /> Existing Teams</h2>
+                <div id="teamsContainer" class="teams-grid"></div>
+            </section>
+
+
+            <div id="confirmModal" class="modal hidden">
+                <div class="modal-content">
+                    <p>Delete this team?</p>
+                    <div class="modal-actions">
+                        <button id="confirmYes">Confirm</button>
+                        <button id="confirmNo">Cancel</button>
+                    </div>
+                </div>
             </div>
 
-            <!-- SELECTED PREVIEW -->
-            <div class="selected-preview">
-                <div><strong>DPS</strong><span id="selectedDps">-</span></div>
-                <div><strong>Support 1</strong><span id="selectedSupport1">-</span></div>
-                <div><strong>Support 2</strong><span id="selectedSupport2">-</span></div>
-                <div><strong>Sustain</strong><span id="selectedSustain">-</span></div>
-            </div>
 
-            <button id="readyBtn" disabled>Ready</button>
-
-        </section>
-
-        <!-- TEAMS -->
-        <section class="teams-section">
-            <h2>Existing Teams</h2>
-            <div id="teamsContainer" class="teams-grid"></div>
-        </section>
-
+        </div>
     </main>
 
-    <!-- JS -->
     <script src="{{ url_for('static', filename='scripts/teams.js') }}"></script>
 </body>
 </html>

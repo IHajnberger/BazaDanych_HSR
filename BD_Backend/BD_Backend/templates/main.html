@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <title>Main Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">   <!-- icon -->
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">  
 
-    <!-- Main style -->
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
-    <!-- BACKGROUND -->
+    
     <div class="background"></div>
+    <div class="overlay"></div>
 
-    <!-- TOP BAR -->
+   
     <header class="top-bar">
         <div class="username">
             <span id="username"></span>
@@ -28,51 +29,63 @@
         </div>
     </header>
 
-    <!-- MAIN CONTAINER -->
-    <main class="main-container">
+   
+    <div class="wide-background">
+        <main class="main-container">
 
-        <!-- DATA OVERVIEW -->
-        <section class="card overview">
-            <h2>Data Overview</h2>
+           
+            <section class="card overview">
 
-            <div class="overview-grid">
-                <div class="overview-item">
-                    <span class="label">Characters owned</span>
-                    <span class="value" id="charactersCount">0</span>
+                <h2>
+                    <img src="/static/img/gwiazdka.png"
+                         class="gwiazdka" /> Data Overview
+                </h2>
+
+                <div class="overview-grid">
+                    <div class="overview-item">
+                        <span class="label">Characters owned: </span>
+                        <span class="value" id="charactersCount">0</span>
+                    </div>
+
+                    <div class="overview-item">
+                        <span class="label">Teams created: </span>
+                        <span class="value" id="teamsCount">0</span>
+                    </div>
+
+                    <div class="overview-item">
+                        <span class="label">Best team score: </span>
+                        <span class="value" id="bestTeamScore">0</span>
+                    </div>
                 </div>
+            </section>
 
-                <div class="overview-item">
-                    <span class="label">Teams created</span>
-                    <span class="value" id="teamsCount">0</span>
+           
+            <section class="card characters">
+
+                <h2>
+                    <img src="/static/img/gwiazdka.png"
+                         class="gwiazdka" /> My Characters
+                </h2>
+                <div id="myCharacters" class="characters-grid"></div>
+            </section>
+
+           
+            <section class="card teams" style="margin-top:30px;">
+                <h2>
+                    <img src="/static/img/gwiazdka.png"
+                         class="gwiazdka" /> My Teams
+                </h2>
+
+                <div class="teams-list">
+
+                    <div id="myTeams" class="teams-grid"></div>
+
                 </div>
+            </section>
 
-                <div class="overview-item">
-                    <span class="label">Best team score</span>
-                    <span class="value" id="bestTeamScore">0</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- MY CHARACTERS -->
-        <section class="card characters">
-            <h2>My Characters</h2>
-            <div id="myCharacters" class="characters-grid"></div>
-        </section>
-
-        <!-- MY TEAMS -->
-        <section class="card teams">
-            <h2>My Teams</h2>
-
-            <div class="teams-list">
-
-                <div id="myTeams" class="teams-grid"></div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <!-- JS -->
+        </main>
+    </div>
+    
     <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
 </body>
 </html>
