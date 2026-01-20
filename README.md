@@ -1,6 +1,41 @@
 # BazaDanych
- > [!IMPORTANT]
- > Środowisko i użyte technologie:
+
+## Cel projektu:
+
+Celem projektu było stworzenie interaktywnej aplikacji webowej, która składuje postacie użytkownika a następnie oblicza jakie połączenia postaci (teamy) najlepiej pasują pod wybranego przez użytkownika DPS'a.
+
+## Funkcjonalności aplikacji
+
+- Rejestracja i logowanie użytkownika
+- Przechowywanie postaci przypisanych do konta użytkownika
+- Dodawanie i usuwanie postaci z kolekcji użytkownika
+- Tworzenie drużyn (teamów) składających się z maksymalnie 4 postaci
+- Edycja oraz usuwanie istniejących drużyn
+- Automatyczne obliczanie dopasowania teamu pod wybranego DPS
+- System punktowy oparty o:
+  - potrzeby DPS-a,
+  - efekty skillów postaci wspierających
+- Filtrowanie i wyszukiwanie postaci po:
+  - nazwie,
+  - roli,
+  - elemencie,
+  - ścieżce (Path)
+- Ochrona stron aplikacji przed dostępem bez zalogowania
+
+## Bezpieczeństwo i walidacja
+
+- Dostęp do stron aplikacji jest możliwy tylko po zalogowaniu
+- Endpointy API zawierają walidację danych wejściowych
+- Obsługiwane są błędy:
+  - braków danych,
+  - niepoprawnych relacji,
+  - prób dostępu do cudzych zasobów
+- Aplikacja zabezpiecza się przed:
+  - duplikacją danych,
+  - nieprawidłową edycją teamów,
+  - błędną konfiguracją drużyn
+  
+## Środowisko i użyte technologie:
  
  Projekt wykorzystuje lekkie środowisko backendowe oparte na Pythonie oraz popularnych bibliotekach webowych i ORM.
  
@@ -19,9 +54,9 @@
     - utrzymuje spójność wersji bibliotek.
  5. **Postman** - klient APi, używany do testowania endpointów API.
 
- ## Frontend: 
-> [!IMPORTANT]
- > Budowa projektu:
+## Frontend: 
+
+### Budowa projektu:
  
 1. **static** - folder na pliki statyczne:
     - **css** - folder zawierający pliki o formacie .css opowiedzialne za forme prezentacji poszczególnych stron:
@@ -29,21 +64,22 @@
        - **style.css** - do main.html
        - **teams.css**
        - **login.css** - do index.html
-2. **img** - zawiera zdjęcia wykorzystane do projektu
-3. **scripts** - zawiera pliki o formacie .js
-     - **index.js** 
-     - **main.js**
-     - **characters.js**
-     - **teams.js**
-4. **templates** - folder składujący pliki o formacie .html
+    - **fonts** - folder zawierający czcionki
+    - **img** - zawiera zdjęcia wykorzystane do projektu
+    - **scripts** - zawiera pliki o formacie .js
+       - **index.js** 
+       - **main.js**
+       - **characters.js**
+       - **teams.js**
+2. **templates** - folder składujący pliki o formacie .html
      - **index.html**
      - **mains.html**
      - **characters.html**
      - **teams.html**
      
 ## Backend:
- > [!IMPORTANT]
- > Budowa projektu: 
+
+### Budowa projektu: 
  
 <img width="308" height="569" alt="image" src="https://github.com/user-attachments/assets/9b4f018b-54c3-4635-b5ef-5ac8588d85d5" />
 
