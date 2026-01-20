@@ -1,61 +1,106 @@
-/* BASE */
 body {
-    margin: 0;
-    background: #0f172a;
-    color: #e5e7eb;
+    background: #111 url("/static/img/main_background.jpg") fixed center/cover no-repeat;
+    color: white;
     font-family: Arial, sans-serif;
 }
 
 .top-bar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 16px;
-    background: #020617;
+    gap: 16px;
+    margin: 25px 15% 0 15%;
+    padding: 16px 24px;
+    background: rgba(20,20,20,0.6);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    width: 70%;
+    border-radius: 20px;
+}
+
+    .top-bar h2 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+.wide-background {
+    position: absolute;
+    contain: layout;
+    width: 70%;
+    margin: 3% 15% 150px 15%;
+    background: rgba(20,20,20,0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 22px;
+    z-index: -1;
+    padding-bottom: 40px;
+}
+
+.back-arrow {
+    max-width: 20px;
+    cursor: pointer;
 }
 
 main {
     padding: 24px;
 }
 
-/* ======================
-   TEAM BUILDER
-   ====================== */
 
 .team-builder {
-    background: #020617;
-    border: 1px solid #334155;
-    border-radius: 10px;
+    max-width: 80%;
+    margin: 40px 10% 40px 10%;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
     padding: 20px;
-    margin-bottom: 40px;
+    background: rgba(20,20,20,0.6);
+    backdrop-filter: blur(10px);
 }
 
-.builder-header {
-    margin-bottom: 16px;
+.builder-header h2,
+.builder-header h3 {
+    color: #e5e7eb;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    margin: 0 0 16px 0;
 }
 
 .builder-section {
     margin-bottom: 16px;
+    background: rgba(15,15,18,0.75);
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.06);
 }
 
     .builder-section label {
         display: block;
         margin-bottom: 6px;
-        font-size: 14px;
+        font-size: 13px;
         color: #cbd5f5;
+        letter-spacing: 0.3px;
     }
 
     .builder-section input,
     .builder-section select {
-        width: 100%;
+        width: 20%;
         padding: 8px;
         background: #020617;
         color: #e5e7eb;
         border: 1px solid #334155;
-        border-radius: 4px;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+        box-sizing: border-box;
     }
 
-/* GRID */
+        .builder-section input:focus,
+        .builder-section select:focus {
+            outline: none;
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 2px rgba(96,165,250,0.25);
+        }
+
+
 .builder-grid {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr;
@@ -68,7 +113,7 @@ main {
     font-size: 15px;
 }
 
-/* SUGGESTIONS */
+
 .suggestions {
     display: flex;
     flex-direction: column;
@@ -77,62 +122,92 @@ main {
 
 .suggestion {
     padding: 8px 10px;
-    border: 1px solid #334155;
-    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
     cursor: pointer;
-    background: #020617;
+    background: rgba(15,15,18,0.9);
+    color: #e5e7eb;
     font-size: 14px;
+    transition: background 0.15s ease, border-color 0.15s ease;
 }
 
     .suggestion:hover {
         background: #1e293b;
+        border-color: #60a5fa;
     }
 
-/* SELECTED PREVIEW */
+    .suggestion.selected {
+        background: rgba(37,99,235,0.25);
+        border-color: #60a5fa;
+    }
+
 .selected-preview {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 12px;
     padding: 12px;
-    border: 1px dashed #334155;
-    border-radius: 8px;
-    margin-bottom: 16px;
+    border: 1px dashed rgba(255,255,255,0.15);
+    border-radius: 12px;
+    background: rgba(20,20,20,0.45);
+    backdrop-filter: blur(6px);
 }
 
     .selected-preview div {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        gap: 6px;
         font-size: 13px;
     }
 
     .selected-preview span {
-        margin-top: 4px;
+        color: #d8c395;
+        font-size: 13px;
         font-weight: bold;
     }
 
-/* READY BUTTON */
+
 #readyBtn {
+    margin-top: 20px;
     padding: 10px 18px;
-    background: #2563eb;
-    border: none;
-    color: white;
-    border-radius: 6px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
     cursor: pointer;
     font-size: 14px;
+    border: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
+
+    #readyBtn:hover:not(:disabled) {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(37,99,235,0.35);
+    }
 
     #readyBtn:disabled {
         background: #334155;
         cursor: not-allowed;
     }
 
-/* ======================
-   TEAMS GRID
-   ====================== */
 
-.teams-section h2 {
-    margin-bottom: 16px;
+.teams-section {
+    max-width: 80%;
+    margin: 40px 10% 60px 10%;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 20px;
+    background: rgba(20,20,20,0.6);
+    backdrop-filter: blur(10px);
 }
+
+    .teams-section h2 {
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        color: #e5e7eb;
+        margin-bottom: 16px;
+    }
 
 .teams-grid {
     display: grid;
@@ -141,23 +216,135 @@ main {
 }
 
 .team-tile {
-    background: #020617;
-    border: 1px solid #334155;
-    border-radius: 8px;
-    padding: 12px;
+    background: rgba(15,15,18,0.85);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 14px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
+    .team-tile:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    }
+
     .team-tile h3 {
-        margin: 0 0 8px 0;
+        margin: 0 0 10px 0;
         font-size: 16px;
+        font-weight: 600;
+        color: #d8c395;
     }
 
     .team-tile button {
-        margin-right: 6px;
-        margin-top: 8px;
+        background: #020617;
+        border: 1px solid #334155;
+        color: #e5e7eb;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: background 0.15s ease, border-color 0.15s ease;
     }
 
-.suggestion.selected {
-    background: #2563eb;
-    border-color: #60a5fa;
+        .team-tile button:hover {
+            background: #1e293b;
+            border-color: #60a5fa;
+        }
+
+
+.team-characters {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    background: rgba(20,20,20,0.5);
+    backdrop-filter: blur(6px);
+}
+
+    .team-characters img {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: linear-gradient(0deg, rgba(199,167,118,1) 12%, rgba(161,99,90,1) 76%);
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+        margin-right: 4px;
+    }
+
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+    .modal.hidden {
+        display: none;
+    }
+
+.modal-content {
+    background: rgba(20,20,20,0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 20px;
+    border-radius: 12px;
+    min-width: 260px;
+    text-align: center;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content:space-around;
+    margin-top: 16px;
+}
+
+    .modal-actions button {
+        padding: 6px 14px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+    }
+
+#confirmYes {
+    background: #dc2626;
+    color: white;
+}
+
+#confirmNo {
+    background: #334155;
+    color: white;
+}
+
+
+select {
+    appearance: none;
+    background: #020617;
+    color: #e5e7eb;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 10px 30px 10px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-image: linear-gradient(45deg, transparent 50%, #94a3b8 50%), linear-gradient(135deg, #94a3b8 50%, transparent 50%);
+    background-position: calc(100% - 18px) 55%, calc(100% - 12px) 55%;
+    background-size: 6px 6px;
+    background-repeat: no-repeat;
+}
+
+    select:focus {
+        outline: none;
+        border-color: #60a5fa;
+        box-shadow: 0 0 0 2px rgba(96,165,250,0.25);
+    }
+
+
+.gwiazdka {
+    max-width: 16px;
 }
