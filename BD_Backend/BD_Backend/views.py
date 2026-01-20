@@ -55,7 +55,14 @@ def login():
     if not user or not user.check_password(data.get("password")):
         return {"message": "Invalid credentials"}, 401
 
-    return {"message": "Login successful", "user_id": user.id}, 200
+    resp = jsonify({
+        "message": "Login successful",
+        "user_id": user.id
+    })
+
+    resp.set_cookie("logged_in", "1", httponly=True, samesite="Lax")
+
+    return resp, 200
 
 #pobranie info o userze
 @api_bp.route("/users/<int:user_id>", methods=["GET"])
