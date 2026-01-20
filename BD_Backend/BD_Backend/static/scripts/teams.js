@@ -262,12 +262,40 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // =====================
+    // DELETE TEAM - modal box
+    // =====================
+    function showConfirm() {
+        return new Promise(resolve => {
+            const modal = document.getElementById("confirmModal");
+            const yes = document.getElementById("confirmYes");
+            const no = document.getElementById("confirmNo");
+
+            modal.classList.remove("hidden");
+
+            yes.onclick = () => {
+                modal.classList.add("hidden");
+                resolve(true);
+            };
+
+            no.onclick = () => {
+                modal.classList.add("hidden");
+                resolve(false);
+            };
+        });
+    }
+
+
     window.deleteTeam = async function (teamId) {
-        if (!confirm("Delete this team?")) return;
+        const confirmed = await showConfirm();
+        if (!confirmed) return;
 
         await fetch(`/api/users/${userId}/teams/${teamId}`, { method: "DELETE" });
         loadTeams();
     };
+
+
+
 
     window.editTeam = async function (teamId) {
         const res = await fetch(`/api/users/${userId}/teams/${teamId}`);

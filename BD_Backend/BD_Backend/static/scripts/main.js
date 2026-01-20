@@ -15,6 +15,12 @@ if (!userId) {
     window.location.replace("/");
 }
 
+document.addEventListener("click", e => {
+    if (!menuPopup.contains(e.target) && !menuBtn.contains(e.target)) {
+        menuPopup.classList.add("hidden");
+    }
+});
+
 // =====================
 // MENU
 // =====================
@@ -74,6 +80,15 @@ async function loadOverview() {
 // =====================
 // LOAD OWNED CHARACTERS
 // =====================
+
+function characterImage(name) {
+    return `/static/img/characters_small/${name.toLowerCase()}.webp`;
+}
+
+function characterImageLarge(name) {
+    return `/static/img/characters_large/${name.toLowerCase()}.png`;
+}
+
 async function loadMyCharacters() {
     const userId = localStorage.getItem("user_id");
     if (!userId) return;
@@ -90,8 +105,8 @@ async function loadMyCharacters() {
             tile.className = "character owned";
 
             tile.innerHTML = `
-                <img src="/static/images/characters/${char.Name}.png" 
-                     alt="${char.Name}">
+                <div class="avatar"> <img src="${characterImage(char.Name)}"
+                     alt="${char.Name}"></div>
             `;
 
             container.appendChild(tile);
@@ -121,19 +136,33 @@ async function loadMyTeams() {
             return;
         }
 
-        teams.forEach(team => {
+        teams.forEach(async (team) => {
             const tile = document.createElement("div");
             tile.className = "team preview";
 
             const names = Object.values(team.Characters);
+            const score = await getTeamScore(team);
 
             tile.innerHTML = `
-                <h4>${team.Name}</h4>
-                <p>${names.join(", ")}</p>
+                <div class="singular-team">
+                    <h4 class="team-name">
+                        ${team.Name}
+                        <span class="team-score">Score: ${score}</span>
+                    </h4>
+
+                    <div class="team-characters">
+                        ${names.map(name => `
+                            <div class="team-avatar">
+                                <img src="${characterImageLarge(name)}" alt="${name}">
+                            </div>
+                        `).join("")}
+                    </div>
+                </div>
             `;
 
             container.appendChild(tile);
         });
+
 
     } catch {
         console.error("Failed to load teams");
@@ -148,7 +177,7 @@ async function loadBestTeamScore() {
     if (!userId) return;
 
     try {
-        // role
+        
         const charsRes = await fetch("/api/characters");
         const allCharacters = await charsRes.json();
 
@@ -208,3 +237,34 @@ window.addEventListener("pageshow", () => {
         window.location.replace("/");
     }
 });
+
+// =====================
+// HELPERS - score
+// =====================
+async function getTeamScore(team) {
+    if (!window.rolesCache) {
+        const res = await fetch("/api/characters");
+        const chars = await res.json();
+        window.rolesCache = {};
+
+        chars.forEach(function (c) {
+            window.rolesCache[c.Name] = c.Role;
+        });
+    }
+
+    const names = Object.values(team.Characters);
+    const dpsName = names.find(function (name) {
+        return window.rolesCache[name] === "DPS";
+    });
+
+    if (!dpsName) return "-";
+
+    const res = await fetch(
+        `/api/users/${userId}/teams/${team.id}/dps_score?dps_name=${encodeURIComponent(dpsName)}`
+    );
+
+    if (!res.ok) return "-";
+
+    const data = await res.json();
+    return data.score;
+}
