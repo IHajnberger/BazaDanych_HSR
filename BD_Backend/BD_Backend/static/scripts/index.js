@@ -8,6 +8,8 @@ function openLogin() {
 function closeAll() {
     loginModal.style.display = "none";
     registerModal.style.display = "none";
+    clearLoginForm();
+    clearRegisterForm();
 }
 
 function switchToRegister() {
@@ -35,6 +37,18 @@ function showError(message) {
     setTimeout(() => {
         toast.style.display = "none";
     }, 3000);
+}
+// clear forms
+function clearLoginForm() {
+    document.getElementById("loginUsername").value = "";
+    document.getElementById("loginPassword").value = "";
+    loginBtn.disabled = true;
+}
+
+function clearRegisterForm() {
+    document.getElementById("registerUsername").value = "";
+    document.getElementById("registerPassword").value = "";
+    registerBtn.disabled = true;
 }
 
 //Login function
@@ -100,6 +114,7 @@ async function register() {
         }
 
         // po rejestracji wracamy do loginu
+        clearRegisterForm();
         switchToLogin();
         showError("Account created! You can log in now.");
 
