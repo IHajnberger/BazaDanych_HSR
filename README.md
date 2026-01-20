@@ -57,6 +57,9 @@ Celem projektu było stworzenie interaktywnej aplikacji webowej, która składuj
 ## Frontend: 
 
 ### Budowa projektu:
+
+<img width="294" height="440" alt="image" src="https://github.com/user-attachments/assets/07784554-c9e6-48b6-8c7f-6674a2d61258" />
+
  
 1. **static** - folder na pliki statyczne:
     - **css** - folder zawierający pliki o formacie .css opowiedzialne za forme prezentacji poszczególnych stron:
@@ -81,7 +84,7 @@ Celem projektu było stworzenie interaktywnej aplikacji webowej, która składuj
 
 ### Budowa projektu: 
  
-<img width="308" height="569" alt="image" src="https://github.com/user-attachments/assets/9b4f018b-54c3-4635-b5ef-5ac8588d85d5" />
+<img width="275" height="481" alt="image" src="https://github.com/user-attachments/assets/7723e976-9324-4d64-be25-c8a6ebf50e5f" />
 
 1. **models** - folder z wszystkimi modelami SQLAlchemy opisującymi strukturę bazy danych. Każdy model odpowiada jednej tabeli lub tabeli łączącej w relacje many-to-many.
     - \_\_init\_\_.py - plik inicjujący moduł — pozwala importować modele jako from models import User, Character. Łączy folder models z resztą programu.
