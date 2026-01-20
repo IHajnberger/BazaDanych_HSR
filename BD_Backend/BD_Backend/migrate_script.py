@@ -1,4 +1,4 @@
-# to ma aktualizowac baze ale na razie nie dziala so
+# to ma aktualizowac baze ale przez usuwanie seeda nie ma sensu
 from flask import Flask
 from extensions import db, migrate
 from __init__ import create_app
