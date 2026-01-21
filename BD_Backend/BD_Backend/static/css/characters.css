@@ -458,19 +458,30 @@ body {
     .character-tile .info-tooltip {
         display: none;
         position: absolute;
-        top: 10%;
-        left: 100%; 
-        transform: translateX(10px);
+        top: 100%;
+        left: 50%; 
+        transform: translateX(-50%);
+        margin-top: 10px;
         background: rgba(20,20,20,1);
         color: white;
         padding: 10px;
         border-radius: 8px;
         width: 220px;
-        z-index: 10;
+        z-index: 20;
         box-shadow: 0 4px 12px rgba(0,0,0,0.5);
         font-size: 13px;
     }
 
     .character-tile:hover .info-tooltip {
         display: block;
+    }
+
+    .character-tile .image img {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transform-origin: center center;
+    }
+
+    .character-tile:hover .image img {
+        transform: scale(1.06);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
     }
