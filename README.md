@@ -79,6 +79,143 @@ Celem projektu było stworzenie interaktywnej aplikacji webowej, która składuj
      - **mains.html**
      - **characters.html**
      - **teams.html**
+
+## Opis elementów interaktywnych
+
+### 1. Strona logowania
+
+### Stan początkowy
+   
+<img width="300"  alt="login" src="https://github.com/user-attachments/assets/8f146a11-3792-4540-bcd1-acc6bad08025" />
+  
+**Przycisk „Login”**  
+  - inicjuje proces logowania  
+  - po kliknięciu otwiera okno logowania
+
+
+### Okno logowania
+
+<img width="300" alt="login_window" src="https://github.com/user-attachments/assets/4a746ae5-7b20-42b2-aa1b-c95b8dfd6028" />
+
+**Pole „Username”**  
+  - przyjmuje nazwe użytkownika
+  
+**Pole „Password”**  
+  - przyjmuje hasło użytkownika  
+  - znaki są maskowane
+
+**Przycisk „Log In”**  
+  - wysyła dane logowania  
+  - w przypadku poprawnych danych loguje użytkownika  
+  - w przypadku błędu wyświetla komunikat 
+
+**Przycisk „Register now”**  
+  - przełącza widok na formularz rejestracji
+
+**Przycisk „X” (prawy górny róg)**  
+  - zamyka okno logowania
+
+
+### Okno create account
+
+<img width="300" alt="register_window" src="https://github.com/user-attachments/assets/ab81741e-face-45db-b9df-f4a21a857102" />
+
+**Pole „Username”**  
+  - przyjmuje adres e-mail nowego użytkownika  
+
+**Pole „Password”**  
+  - przyjmuje hasło do konta  
+
+**Przycisk „Create”**  
+  - tworzy nowe konto użytkownika  
+  - po poprawnej rejestracji umożliwia logowanie oraz wyświetla komunikat
+  
+**Przycisk „Login”**  
+  - przełącza widok na formularz logowania
+
+**Przycisk „X” (prawy górny róg)**  
+  - zamyka okno rejestracji
+
+
+### 2. Profil użytkownika
+
+### Widok początkowy - profil użytkownika
+
+  <img width="313" height="302" alt="menu_small" src="https://github.com/user-attachments/assets/10cf62bd-8145-4079-b9eb-73311bd0019c" />
+
+**Przycisk „Menu” (prawy górny róg)**  
+  - otwiera listę opcji użytkownika 
+
+
+### Menu użytkownika
+
+  <img width="311" height="309" alt="menu" src="https://github.com/user-attachments/assets/232489d5-7e45-4cc6-8c55-c172148c0ea4" />
+  
+**Przycisk „Logout”**  
+  - wylogowuje użytkownika z aplikacji  
+
+**Przycisk „Characters”**  
+  - przenosi do listy postaci   
+
+**Przycisk „Teams”**  
+  - przenosi do kreatora drużyn   
+
+**Przycisk „Menu” lub kliknięcie poza menu**  
+  - zamyka menu użytkownika
+
+
+### 3. Postacie
+
+### Widok początkowy – lista postaci
+
+<img width="800"  alt="chars" src="https://github.com/user-attachments/assets/d5ae8d80-5b8c-4c26-afc9-271e98f1557b" />
+
+**Strzałka w lewo (lewy górny róg):**  
+  - powraca do profilu użytkownika.  
+
+**Pole wyszukiwania (prawy górny róg)**  
+  - pozwala wyszukać postać po nazwie  
+
+**Filtry (centralna część)**  
+  - **Combat type** – filtruje postacie po typie walki  
+  - **Path** – filtruje postacie po ścieżce 
+  - **Role** – filtruje postacie po roli  
+
+**Lista postaci (poniżej filtrów)**  
+  - wszystkie postacie są na początku wyszarzone (nieprzypisane)  
+  - kliknięcie w postać przypisuje ją do użytkownika i podświetla kolorem
+  - najechanie kursorem wyświetla szczegóły postaci 
+    
+
+### 4. Tworzenie drużyn
+
+### Widok początkowy - kreator drużyn
+
+ <img width="800"  alt="teams" src="https://github.com/user-attachments/assets/07439b31-0255-4809-8e32-d188bf86a690" />
+
+ **Pole „Nazwa drużyny”**  
+  - umożliwia wpisanie nazwy nowej drużyny  
+  - jeśli nie wpiszemy nic, nazwa jest generowana automatycznie jako "New Team"  
+
+**Lista rozwijana – wybór DPS**  
+  - pozwala wybrać dostępne postacie DPS z konta użytkownika  
+
+**Pola wyboru – Sustain i Support**  
+  - pojawiają się dopiero po wybraniu DPS'a  
+  - umożliwiają przypisanie odpowiednich postaci do drużyny  
+
+**Przycisk „Ready”**  
+  - aktywny dopiero, gdy wszystkie cztery postacie są wybrane  
+  - po kliknięciu tworzy drużynę i dodaje ją do sekcji poniżej
+
+**Przycisk „Delete”**  
+- usuwa wybraną drużynę  
+- otwiera okno potwierdzenia z opcjami `Confirm` i `Cancel`  
+
+**Przycisk „Edit”**  
+- wypełnia pola kreatora aktualnymi danymi drużyny  
+- umożliwia edycję istniejącej drużyny i zapisanie zmian  
+
      
 ## Backend:
 
